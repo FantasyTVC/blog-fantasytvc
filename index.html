@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liga Fantasy TVC Deportes — El Blog Oficial</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #D62828;
+    --negro: #0a0a0a;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2E2E2E;
+    --crema: #F5EFE0;
+    --blanco: #FAFAF8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    padding: 40px 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 2px solid var(--rojo);
+    padding-bottom: 30px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    color: var(--blanco);
+  }
+
+  h1 span { color: var(--rojo); }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: #B0ADA8;
+    margin-top: 10px;
+  }
+
+  /* SECCIÓN DE FILTROS */
+  .nav-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 600px) {
+    .nav-sections { grid-template-columns: 1fr; }
+  }
+
+  .filter-box {
+    background: var(--gris-oscuro);
+    border: 1px solid var(--gris-medio);
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  .filter-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--blanco);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--rojo);
+    padding-bottom: 5px;
+  }
+
+  .filter-list {
+    list-style: none;
+  }
+
+  .filter-list li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+  }
+
+  .filter-list a {
+    color: var(--crema);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .filter-list a:hover {
+    color: var(--rojo);
+    text-decoration: underline;
+  }
+
+  .date-tag {
+    color: #B0ADA8;
+    font-size: 0.85rem;
+  }
+
+  .topic-badge {
+    background: rgba(214, 40, 40, 0.2);
+    color: var(--rojo);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>FANTASY <span>TVC</span> DEPORTES</h1>
+    <p class="subtitle">Análisis, crónicas, reconstrucciones y el archivo histórico de nuestra liga</p>
+  </header>
+
+  <div class="nav-sections">
+    
+    <div class="filter-box">
+      <h3>Artículos por Fecha</h3>
+      <ul class="filter-list">
+        <li>
+          <a href="los_nuevos_pollos.html">Los Nuevos Pollos — La Reconstrucción de Edwin</a>
+          <span class="date-tag">Mayo 2026</span>
+        </li>
+        <li>
+          <a href="compa_no_lo_haga.html">Compa, No Lo Hagas — Análisis de Drafts Históricos</a>
+          <span class="date-tag">Abril 2026</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="filter-box">
+      <h3>Artículos por Tema</h3>
+      <ul class="filter-list">
+        <li>
+          <a href="los_nuevos_pollos.html">Rosters y Reconstrucción (Edwin Abonce)</a>
+          <span class="topic-badge">Dynasty</span>
+        </li>
+        <li>
+          <a href="compa_no_lo_haga.html">Arqueología de Drafts (2018-2025)</a>
+          <span class="topic-badge">Histórico</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
