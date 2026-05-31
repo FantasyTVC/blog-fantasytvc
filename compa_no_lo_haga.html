@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compa, No Lo Hagas — Liga Fantasy TVC Deportes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #D62828;
+    --negro: #0a0a0a;
+    --crema: #F5EFE0;
+    --amarillo: #F7B731;
+    --gris: #2a2a2a;
+    --gris-claro: #3d3d3d;
+    --verde: #2ECC71;
+    --rojo-suave: #ff6b6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    background: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(214,40,40,0.04) 40px,
+        rgba(214,40,40,0.04) 80px
+      ),
+      var(--negro);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "💀";
+    position: absolute;
+    font-size: 600px;
+    opacity: 0.025;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--amarillo);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', impact, sans-serif;
+    font-size: clamp(6rem, 18vw, 16rem);
+    line-height: 0.85;
+    color: var(--crema);
+    letter-spacing: 0.02em;
+    animation: fadeDown 0.8s 0.15s ease both;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--rojo);
+  }
+
+  .hero-title .small-line {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    color: var(--amarillo);
+    display: block;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-subtitle {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    color: var(--crema);
+    opacity: 0.7;
+    margin-top: 24px;
+    max-width: 600px;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .hero-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gris-claro);
+    margin-top: 32px;
+    letter-spacing: 0.2em;
+    animation: fadeDown 0.8s 0.45s ease both;
+  }
+
+  .scroll-hint {
+    margin-top: 60px;
+    animation: bounce 2s infinite;
+    font-size: 2rem;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CONTENIDO */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: var(--crema);
+    opacity: 0.9;
+    margin-bottom: 60px;
+    border-left: 4px solid var(--rojo);
+    padding-left: 28px;
+  }
+
+  /* SECCIÓN DE CRIMEN */
+  .crime-section {
+    margin-bottom: 80px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rojo);
+    opacity: 0.3;
+  }
+
+  .crime-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 9rem);
+    line-height: 1;
+    color: var(--gris);
+    position: relative;
+    margin-bottom: -16px;
+    -webkit-text-stroke: 1px rgba(245,239,224,0.1);
+  }
+
+  /* CARD DE CRIMEN */
+  .crime-card {
+    background: var(--gris);
+    border: 1px solid rgba(245,239,224,0.08);
+    border-radius: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .crime-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--rojo);
+  }
+
+  .crime-card-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: start;
+    padding: 24px 24px 16px;
+  }
+
+  .pick-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--amarillo);
+    line-height: 1;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .pick-badge small {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--crema);
+    opacity: 0.4;
+  }
+
+  .vs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .player-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  .player-name.culpable {
+    color: var(--rojo-suave);
+  }
+
+  .player-name.victima {
+    color: var(--verde);
+  }
+
+  .player-pos {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .pos-rb { background: rgba(247,183,49,0.2); color: var(--amarillo); }
+  .pos-wr { background: rgba(46,204,113,0.2); color: var(--verde); }
+  .pos-qb { background: rgba(100,149,237,0.2); color: cornflowerblue; }
+  .pos-te { background: rgba(214,40,40,0.2); color: var(--rojo-suave); }
+
+  .vs-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--crema);
+    opacity: 0.3;
+    padding: 2px 0;
+  }
+
+  .vs-divider::before, .vs-divider::after {
+    content: "—";
+    flex: none;
+  }
+
+  .culpable-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crema);
+    opacity: 0.5;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .culpable-tag strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--crema);
+    opacity: 1;
+  }
+
+  .crime-body {
+    padding: 0 24px 24px;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(245,239,224,0.75);
+  }
+
+  .crime-body em {
+    color: var(--amarillo);
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+  }
+
+  /* STAT ROW */
+  .stat-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+
+  .stat-col {
+    text-align: center;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .stat-value.bad { color: var(--rojo-suave); }
+  .stat-value.good { color: var(--verde); }
+
+  .stat-sep {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    opacity: 0.2;
+  }
+
+  .stat-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    opacity: 0.5;
+    margin-top: 2px;
+  }
+
+  /* TABLA GENERAL */
+  .table-section {
+    margin: 80px 0;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--crema);
+  }
+
+  .section-title span { color: var(--rojo); }
+
+  .section-intro {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.7;
+    margin-bottom: 32px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    background: var(--rojo);
+    color: var(--crema);
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(245,239,224,0.05);
+    vertical-align: top;
+  }
+
+  tr:hover td {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .rating-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  .rating-good { background: rgba(46,204,113,0.2); color: var(--verde); }
+  .rating-bad { background: rgba(214,40,40,0.2); color: var(--rojo-suave); }
+  .rating-ok { background: rgba(247,183,49,0.2); color: var(--amarillo); }
+
+  /* HALL DE VERGÜENZA */
+  .hall-section {
+    margin: 80px 0;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(214,40,40,0.1), rgba(0,0,0,0.5));
+    border: 1px solid rgba(214,40,40,0.3);
+    border-radius: 4px;
+  }
+
+  .hall-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--rojo);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .hall-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .hall-card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(214,40,40,0.2);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .hall-emoji {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .hall-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--crema);
+    margin-bottom: 4px;
+  }
+
+  .hall-desc {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--rojo-suave);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+
+  /* CHART SECTION */
+  .chart-section {
+    margin: 80px 0;
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 60px;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bar-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-align: right;
+    opacity: 0.7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .bar-track {
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--negro);
+    font-weight: 700;
+    transition: width 1.5s ease;
+  }
+
+  .bar-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    text-align: right;
+  }
+
+  /* CONCLUSIÓN */
+  .conclusion {
+    margin: 80px 0;
+    padding: 48px;
+    background: var(--gris);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion::before {
+    content: "🏈";
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.05;
+    right: -20px;
+    bottom: -20px;
+  }
+
+  .conclusion-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--amarillo);
+    margin-bottom: 24px;
+  }
+
+  .conclusion p {
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+
+  .conclusion p:last-child { margin-bottom: 0; }
+
+  /* PULLQUOTE */
+  .pullquote {
+    margin: 48px 0;
+    padding: 32px 40px;
+    border-left: 6px solid var(--amarillo);
+    background: rgba(247,183,49,0.05);
+  }
+
+  .pullquote p {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--crema);
+    opacity: 0.9;
+  }
+
+  .pullquote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    font-style: normal;
+  }
+
+  /* BODY TEXT */
+  .body-text {
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 24px;
+    opacity: 0.85;
+  }
+
+  .body-text strong {
+    color: var(--amarillo);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(245,239,224,0.08);
+    padding: 48px 24px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,239,224,0.2);
+  }
+
+  footer strong {
+    color: var(--rojo);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .crime-card-header { grid-template-columns: auto 1fr; }
+    .culpable-tag { display: none; }
+    .stat-comparison { grid-template-columns: 1fr auto 1fr; }
+    .hall-grid { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 90px 1fr 50px; }
+    .hall-section { padding: 24px; }
+    .conclusion { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow">Liga Fantasy TVC Deportes · Draft Histórico 2018–2025</p>
+  <h1 class="hero-title">
+    COMPA
+    <span>NO</span>
+    <span class="small-line">LO HAGAS</span>
+  </h1>
+  <p class="hero-subtitle">Una arqueología del sufrimiento fantasy: los picks que definieron (y destruyeron) equipos durante ocho años</p>
+  <p class="hero-meta">TEMPORADA 2026 · POR EL COMISIONADO Y LA EVIDENCIA</p>
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="content">
+
+  <p class="intro-text">
+    Desde el primer draft de 2018, la Liga Fantasy TVC Deportes ha sido testigo de decisiones que harían llorar a cualquier scout de la NFL. 
+    Este artículo no es un ataque personal. Es un servicio público. Un recordatorio de que el draft es, antes que nada, una trampa psicológica 
+    disfrazada de oportunidad. Y nosotros hemos caído todos. <strong style="color:var(--rojo)">Todos.</strong>
+  </p>
+
+  <!-- =============================== -->
+  <!--        AÑO 2018                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2018 — El Año de la Inocencia</div>
+    <div class="crime-year">2018</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.01<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Saquon Barkley</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">elegido sobre el resto del tablero</div>
+          <div class="player-row">
+            <span class="player-name victima">Nick Chubb / Calvin Ridley</span>
+            <span class="player-pos pos-rb">RB/WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Beto</strong>
+          Iron Chef Dynasty
+        </div>
+      </div>
+      <div class="crime-body">
+        En el primer draft de la liga, el pick 1.01 recayó sobre <em>Saquon Barkley</em> — lo cual, en retrospectiva, fue la decisión correcta según los valores. El problema no fue Saquon (trade value promedio de 68 puntos, el más alto del draft 2018). El problema fue que <em>en ese mismo draft</em> Beto eligió también a Hayden Hurst, Donte Moncrief y Cairo Santos. La táctica de "agarro al mejor disponible y luego improviso" resultó en un roster que olía a naftalina antes del kickoff de la semana 1.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Trade Value de Saquon</div>
+            <div class="stat-value good">68</div>
+            <div class="stat-name">Puntos (promedio)</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Trade Value de Guice (pick 1.02)</div>
+            <div class="stat-value bad">22</div>
+            <div class="stat-name">Puntos (promedio)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.02<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Derrius Guice</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">cuando podía haber tomado</div>
+          <div class="player-row">
+            <span class="player-name victima">George Kittle (pick 1.04)</span>
+            <span class="player-pos pos-te">TE</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        El Comisionado en persona abrió fuego con el pick 1.02 eligiendo a <em>Derrius Guice</em>, un RB que prometía destrozar a defensas. Lo que Guice terminó destrozando fue exclusivamente sus propias rodillas. Carrera de dos temporadas, trade value de 22 puntos promedio. Dos picks después, Parrish se llevaba a <em>George Kittle</em> — uno de los mejores TEs de la liga durante años, con un trade value que llegaría a 48 puntos. Caro el aprendizaje, compa.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Guice (elegido)</div>
+            <div class="stat-value bad">22</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Kittle (disponible)</div>
+            <div class="stat-value good">41</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">4.11<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Kerryon Johnson</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">cuando al 1.11 Rodrigo eligió en la misma ronda...</div>
+          <div class="player-row">
+            <span class="player-name victima">Lamar Jackson (pick 4.11)</span>
+            <span class="player-pos pos-qb">QB</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          El Listo
+          <strong>Rodrigo</strong>
+          Garrobos de Hierro
+        </div>
+      </div>
+      <div class="crime-body">
+        Ojo: esto no es un error, sino un <em>geniazo disfrazado de apuesta de borracho</em>. Rodrigo tomó a <em>Lamar Jackson</em> en la ronda 4 del primer draft. ¿Lamar Jackson? ¿Ese Lamar Jackson? Sí, ese. El que tiene un trade value promedio de 34 puntos y llegó a 53 en 2024. La liga entera pasó a Lamar en la ronda 4, incluyendo al Comisionado que tomó a Kerryon Johnson con el 1.11. Kerryon acumuló 4 temporadas y desapareció del mapa. Esta es la diferencia entre draft inteligente y draft de "suena bien el nombre". Rodrigo suena bien en los playoffs.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Lamar Jackson (R4)</div>
+            <div class="stat-value good">34</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Kerryon Johnson (R1.11)</div>
+            <div class="stat-value bad">17</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">4.02<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Dallas Goedert</span>
+            <span class="player-pos pos-te">TE</span>
+          </div>
+          <div class="vs-divider">joya escondida — tomada por</div>
+        </div>
+        <div class="culpable-tag">
+          El Vidente
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        En el mismo draft donde el Comisionado lloró con Guice en el 1.02, se redimió parcialmente tomando a <em>Dallas Goedert en la ronda 4</em>. Goedert tiene un trade value promedio de casi 27 puntos — el mejor pick de rondas tardías del draft 2018. Casi como si el universo quisiera compensar el karma del 1.02. <em>Spoiler: no fue suficiente compensación.</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2019                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2019 — La Era del Optimismo Ingenuo</div>
+    <div class="crime-year">2019</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.06<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">D.K. Metcalf</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">buena decisión, pero el contexto fue...</div>
+          <div class="player-row">
+            <span class="player-name victima">Deebo Samuel (pick 2.07)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Parrish</strong>
+          The Bulleggs
+        </div>
+      </div>
+      <div class="crime-body">
+        Parrish tomó a <em>D.K. Metcalf</em> con el 1.06 — decisión correcta, trade value promedio de 52 puntos. Pero el drama real de 2019 está en los picks inmediatos alrededor. <em>Deebo Samuel</em> cayó al 2.07 para José Angel (32 puntos promedio de trade value). <em>A.J. Brown</em> cayó al 1.10 para Paco (58 puntos de trade value). <em>Terry McLaurin</em> cayó al 3.08 para Roger con 40 puntos. Todos atrás de un Parris Campbell en 1.07 que desapareció de la faz de la tierra.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">A.J. Brown (pick 1.10)</div>
+            <div class="stat-value good">58</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Parris Campbell (pick 1.07)</div>
+            <div class="stat-value bad">12</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.09<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Hakeem Butler</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">cuando Terry McLaurin estaba disponible</div>
+          <div class="player-row">
+            <span class="player-name victima">Terry McLaurin (3.08) · Deebo (2.07)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Gerardo</strong>
+          Hijos del Salario Mínimo
+        </div>
+      </div>
+      <div class="crime-body">
+        <em>Hakeem Butler.</em> Dicho así, con mayúscula y punto, como el diagnóstico de un médico que ya no tiene esperanza. Tres temporadas. Trade value promedio de 5.6 puntos. Para que quede claro el daño colateral: con ese pick podría haber tomado a cualquier jugador que después vino en la ronda 3, incluyendo a <em>Terry McLaurin</em> (40 puntos de trade value). Pero Gerardo eligió al espejismo de Arizona que nunca se materializó. <em>Compa, no lo hagas.</em>
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Hakeem Butler (elegido)</div>
+            <div class="stat-value bad">5.6</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">McLaurin (disponible R3)</div>
+            <div class="stat-value good">40</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">4.10<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Tony Pollard</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">robo silencioso ejecutado por</div>
+        </div>
+        <div class="culpable-tag">
+          El Carterista
+          <strong>Juan José</strong>
+          Los Médulas
+        </div>
+      </div>
+      <div class="crime-body">
+        Mientras todos se peleaban en rondas 1-2, Juan José esperó pacientemente hasta el pick 4.10 y se llevó a <em>Tony Pollard</em>. ¿Trade value promedio? 29 puntos. ¿Llegó a 54 en 2022? Sí. ¿Fue elegido en la ronda 4 como si fuera un backup descartable? También sí. Este pick silencioso vale más que muchos primeros de otros dueños. El draft premia la paciencia. Y la Liga Fantasy TVC raramente la tiene.
+      </div>
+    </div>
+  </div>
+
+  <!-- PULLQUOTE -->
+  <div class="pullquote">
+    <p>"En el draft de fantasy, hay dos tipos de personas: los que aprenden de sus errores, y los que vuelven a elegir al mismo arquetipo de jugador lesionado en la primera ronda."</p>
+    <cite>— Sabiduría colectiva de la liga, temporadas 2018–2025</cite>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2020                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2020 — El Año del Gran Crimen</div>
+    <div class="crime-year">2020</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.01<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Clyde Edwards-Helaire</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">en lugar de</div>
+          <div class="player-row">
+            <span class="player-name victima">Jonathan Taylor (pick 1.02)</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Edwin</strong>
+          Los Pollos Hermanos
+        </div>
+      </div>
+      <div class="crime-body">
+        Este es <em>el crimen fundacional.</em> El Alpha y el Omega del sufrimiento en esta liga. Edwin tenía el primer pick del draft 2020 y eligió a <em>Clyde Edwards-Helaire</em>, el RB de los Chiefs que prometía ser el next big thing. Trade value promedio: 22 puntos. Con el siguiente pick, Rodrigo se llevó a <em>Jonathan Taylor</em>, que llegó a <strong>80 puntos</strong> de trade value, ganó el título de rushing en 2021, y tiene un trade value promedio de 69 puntos. La diferencia es de 47 puntos. En comparación, eso es como cambiar a Travis Kelce por un long snapper. El universo estuvo cruel ese día.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">CEH (pick 1.01 — elegido)</div>
+            <div class="stat-value bad">22</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">J. Taylor (pick 1.02 — perdido)</div>
+            <div class="stat-value good">69</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.08<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Justin Jefferson</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">tomado por Gerardo (¡certero!) — pero un pick antes:</div>
+          <div class="player-row">
+            <span class="player-name culpable">Jalen Reagor (pick 1.09 — Paco)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          La Ironía
+          <strong>Gerardo vs Paco</strong>
+          Hijos vs Tumbapatos
+        </div>
+      </div>
+      <div class="crime-body">
+        El momento más citado en la historia de la liga. Con el pick 1.08, Gerardo eligió a <em>Justin Jefferson</em> — el receptor número uno de la NFL durante varios años, con un trade value que llegó a 90 puntos y un promedio de 69. Con el pick 1.09 inmediatamente después, Paco eligió a <em>Jalen Reagor</em>. Reagor que tiene un trade value promedio de 12.5 puntos. Reagor que desapareció de los rosters de la NFL. La diferencia entre el 1.08 y el 1.09 en ese draft fue literalmente la diferencia entre el cielo y el hospital de campaña. Paco, te amamos, pero <em>compa, no lo hagas.</em>
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">J. Jefferson (pick 1.08)</div>
+            <div class="stat-value good">69</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Jalen Reagor (pick 1.09)</div>
+            <div class="stat-value bad">12</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.06<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">CeeDee Lamb</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">joya tomada por Rodrigo (3 picks para él en esa ronda)</div>
+        </div>
+        <div class="culpable-tag">
+          El Monopolio
+          <strong>Rodrigo</strong>
+          Garrobos de Hierro
+        </div>
+      </div>
+      <div class="crime-body">
+        Rodrigo tuvo 4 de los 12 primeros picks del draft 2020. ¿El resultado? <em>Jonathan Taylor (1.02), J.K. Dobbins (1.03), Cam Akers (1.04) y CeeDee Lamb (1.06).</em> CeeDee llegó a 85 puntos de trade value. Taylor a 80. La envidia de la liga fue tan palpable que se podía cortar con tijeras. El problema: con tantos buenos picks, el roster se volvió imposible de manejar. Algunas de esas joyas terminaron siendo cambiadas por migajas. El draft perfecto no garantiza el campeonato perfecto.
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">4.05<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Jalen Hurts</span>
+            <span class="player-pos pos-qb">QB</span>
+          </div>
+          <div class="vs-divider">el robo del siglo en ronda 4</div>
+        </div>
+        <div class="culpable-tag">
+          El Paciente
+          <strong>Juan José</strong>
+          Los Médulas
+        </div>
+      </div>
+      <div class="crime-body">
+        Juan José nuevamente esperando en las sombras. Pick 4.05: <em>Jalen Hurts.</em> ¿Nadie quería a Hurts en rondas 1-3? Nadie. Trade value promedio de ese pick: 30 puntos, llegando a 49 en el pico. El mismo Hurts que fue Pro-Bowler y estuvo en el Super Bowl. Tomado en la ronda 4. Juan José tiene la paciencia de un buda y la memoria de un elefante. Lástima que el equipo necesite más que dos buenas picks de rondas tardías.
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2021                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2021 — Cuando Todo Parecía Fácil</div>
+    <div class="crime-year">2021</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">2.05<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Amon-Ra St. Brown</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">la pepita de oro del draft 2021</div>
+        </div>
+        <div class="culpable-tag">
+          El Olfato
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        <em>Amon-Ra St. Brown en la ronda 2.</em> Trade value promedio: 60 puntos. Llegó a 84. Fue Pro-Bowler múltiples veces. Fue ignorado por la mitad de la liga en las rondas 1. Mientras Edwin tomaba a Najee Harris con el 1.01 y Najee resultó ser una decepción enorme (40 puntos promedio, llegando a solo 4 en 2024), José Angel se sentó tranquilo en la segunda ronda y se llevó la joya verdadera. Este pick es el antídoto narrativo de la historia del Comisionado con Guice en 2018.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Amon-Ra St. Brown (R2)</div>
+            <div class="stat-value good">60</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Najee Harris (pick 1.01)</div>
+            <div class="stat-value bad">40</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.07<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Trey Sermon</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">cuando había en tablero a...</div>
+          <div class="player-row">
+            <span class="player-name victima">Devonta Smith (1.08) · Jaylen Waddle (1.06)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Edwin</strong>
+          Los Pollos Hermanos
+        </div>
+      </div>
+      <div class="crime-body">
+        Tras el trauma de CEH, ¿qué hace Edwin en 2021? <em>Trey Sermon con el 1.07.</em> Trade value promedio del pick: 6.2 puntos. Con el pick siguiente, Javier agarró a Devonta Smith (52 puntos promedio). Edwin ya tenía a Waddle en 1.06, que también fue bueno. El problema es que Sermon es el tipo de jugador que hace que un fantasy manager se cuestione todas sus decisiones de vida. Cinco temporadas en la liga real y no pasó de ser un backup sin impacto. <em>Compa, dos drafts seguidos con picks de primera ronda fallidos es un patrón, no mala suerte.</em>
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Trey Sermon (elegido)</div>
+            <div class="stat-value bad">6</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Devonta Smith (siguiente pick)</div>
+            <div class="stat-value good">52</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">3.03<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Rhamondre Stevenson</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">¿en la ronda 3? Sí. Tomado por</div>
+        </div>
+        <div class="culpable-tag">
+          El Durmiente
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        <em>Rhamondre Stevenson en la tercera ronda</em>. Llegó a 60 puntos de trade value en 2022, con un promedio de 36 puntos por temporada. Mientras media liga trataba de adivinar si Chubba Hubbard sería bueno (también de José Angel, pick 3.02 con 14 puntos promedio), el Comisionado estaba construyendo en silencio un backfield del futuro. El pick 3.02 + 3.03 fue uno de los mejores pares de picks tardíos de cualquier draft de la liga.
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2022                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2022 — El Año de los WR y la Acumulación</div>
+    <div class="crime-year">2022</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">3.12<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Kyren Williams</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">el robo más silencioso y rentable</div>
+        </div>
+        <div class="culpable-tag">
+          El Invisible
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        Con el <em>último pick de la ronda 3</em>, José Angel tomó a Kyren Williams de los Rams. Trade value promedio: 27 puntos. Llegó a 53 en 2024. Nadie en la liga lo veía como titular ese año. Nadie. Para cuando la liga se dio cuenta, Williams era ya un RB1 consolidado. Doceavo pick de la ronda, primer pick en términos de valor generado tardío del draft 2022. Esto es scouting de élite. O suerte fenomenal. En cualquier caso, el resultado es idéntico.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Kyren Williams (R3, último)</div>
+            <div class="stat-value good">27</div>
+            <div class="stat-name">Trade value avg (pico: 53)</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Jalen Reagor (4.12 — J. José)</div>
+            <div class="stat-value bad">1</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">2.10<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Trey McBride</span>
+            <span class="player-pos pos-te">TE</span>
+          </div>
+          <div class="vs-divider">pick visionario de ronda 2</div>
+        </div>
+        <div class="culpable-tag">
+          El Arquitecto
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        <em>Trey McBride en la ronda 2</em>. Llegó a 63 puntos de trade value en 2025. Promedio de 37 puntos. En 2022 nadie creía en McBride como TE elite. El Comisionado sí. Hay que reconocerlo aunque duela: José Angel tiene un olfato particular para los TEs infravalorados (recordemos a Goedert en 2018). Lo malo es que con tantos picks acumulados en ese draft, el rostro de Zorritos es un crucigrama imposible de gestionar semana a semana.
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.04<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Treylon Burks</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">cuando Garrett Wilson estaba disponible</div>
+          <div class="player-row">
+            <span class="player-name victima">Garrett Wilson (pick 1.05)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Aldo</strong>
+          Seahawkmanía
+        </div>
+      </div>
+      <div class="crime-body">
+        Aldo llegó a la liga en 2020 con buen ojo, pero el pick de <em>Treylon Burks con el 1.04</em> en 2022 fue un balde de agua fría. Trade value promedio de Burks: 21 puntos. Al siguiente pick, Julio se llevó a <em>Garrett Wilson</em> con promedio de 61 puntos y un pico de 62. La diferencia fue de 40 puntos de trade value. Para ponerlo en perspectiva: eso es como si te dieran a elegir entre una torta de tamal y un menú degustación de ocho tiempos. <em>Compa, cuando estés en el 1.04 del draft 2022, piensa dos veces.</em>
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Treylon Burks (elegido)</div>
+            <div class="stat-value bad">21</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Garrett Wilson (pick siguiente)</div>
+            <div class="stat-value good">61</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2023                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2023 — El Renacimiento y la Trampa</div>
+    <div class="crime-year">2023</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">3.12<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Puka Nacua</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">el pick tardío más explosivo del draft</div>
+        </div>
+        <div class="culpable-tag">
+          El Ganador
+          <strong>José Angel</strong>
+          Zorritos
+        </div>
+      </div>
+      <div class="crime-body">
+        <em>Puka Nacua. Ronda 3. Último pick de la ronda.</em> Trade value promedio: 68 puntos. Pico de 79. El mismo Puka Nacua que rompió el récord de recepciones de un novato en la NFL. Nadie en la liga lo quería en rondas 1 o 2. José Angel lo tomó cuando era una apuesta de ronda 3 y lo convirtió en el pick con mejor retorno de inversión del draft 2023. A estas alturas ya está claro: si José Angel toma a alguien en ronda 3, todos deberían empezar a temblar.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Puka Nacua (R3, último)</div>
+            <div class="stat-value good">68</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Devon Achane (R1.10 — Juan José)</div>
+            <div class="stat-value good">62</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.05<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name culpable">Quentin Johnston</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">cuando Rashee Rice estaba en 2.07</div>
+          <div class="player-row">
+            <span class="player-name victima">Rashee Rice (pick 2.07)</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+        </div>
+        <div class="culpable-tag">
+          Responsable
+          <strong>Aldo</strong>
+          Seahawkmanía
+        </div>
+      </div>
+      <div class="crime-body">
+        Aldo repite en el podio del sufrimiento. <em>Quentin Johnston con el 1.05</em>: trade value promedio de 28 puntos (apenas mejoró del pick de Burks en 2022). Con el pick 2.07, Aldo también tomó a <em>Rashee Rice</em> — eso sí fue bueno (54 puntos promedio). Pero con el 1.05 podría haber tenido un WR1 consolidado. Por contraste, Beto tomó a Zay Flowers en 1.06 con promedio de 54 puntos. <em>El 1.05 de Aldo en 2023 sigue el mismo patrón que el 1.04 de 2022. Los patrones cuestan campeonatos.</em>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.10<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Devon Achane</span>
+            <span class="player-pos pos-rb">RB</span>
+          </div>
+          <div class="vs-divider">el pick más paciente del draft</div>
+        </div>
+        <div class="culpable-tag">
+          El Sabio
+          <strong>Juan José</strong>
+          Los Médulas
+        </div>
+      </div>
+      <div class="crime-body">
+        Juan José eligió a <em>Devon Achane en 1.10</em>. Trade value promedio: 62 puntos. El RB de los Dolphins que explotó en 2023 con una de las mejores temporadas de novato en reciente historia. <em>Cayó al 1.10 porque nadie creía que jugaría tanto.</em> Juan José lo creyó. Esto está empezando a volverse una costumbre: Los Médulas tienen un ojo clínico para los RBs de Miami. Lo cual es sorprendente porque Miami suele destruir a sus RBs con lesiones.
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--        AÑO 2024                 -->
+  <!-- =============================== -->
+
+  <div class="crime-section">
+    <div class="section-label">Draft 2024 — La Consolidación del Imperio Garrobos</div>
+    <div class="crime-year">2024</div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.01–1.08<small>RODRIGO</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Marvin Harrison Jr. · Rome Odunze · Brian Thomas · Caleb Williams</span>
+            <span class="player-pos pos-wr">WR/QB</span>
+          </div>
+          <div class="vs-divider">el arsenal de una sola persona</div>
+        </div>
+        <div class="culpable-tag">
+          El Monopolio II
+          <strong>Rodrigo</strong>
+          Garrobos de Hierro
+        </div>
+      </div>
+      <div class="crime-body">
+        Rodrigo replicó 2020 pero <em>a escala industrial</em>. Con los picks 1.01, 1.03, 1.05, 1.06 y 1.08, tomó a Harrison Jr. (60 pts), Rome Odunze (59 pts), Brian Thomas (57 pts), Jonathon Brooks (27 pts) y Caleb Williams (38 pts). Cinco picks de primera ronda, cuatro con trade value por encima de 37 puntos. La liga entera se preguntó cómo era posible acumular tantos picks. La respuesta: paciencia, gestión de roster y trades estratégicos a lo largo de años. El draft 2024 fue la cosecha de una siembra paciente de temporadas anteriores.
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Harrison Jr. (1.01)</div>
+            <div class="stat-value good">60</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">+</div>
+          <div class="stat-col">
+            <div class="stat-label">Picks adicionales R1 (Rodrigo)</div>
+            <div class="stat-value good">4</div>
+            <div class="stat-name">en la misma ronda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">1.09<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Ladd McConkey</span>
+            <span class="player-pos pos-wr">WR</span>
+          </div>
+          <div class="vs-divider">el novato más rentable del draft</div>
+        </div>
+        <div class="culpable-tag">
+          El Silencioso
+          <strong>Juan José</strong>
+          Los Médulas
+        </div>
+      </div>
+      <div class="crime-body">
+        Mientras todos miraban a Rodrigo acumular picks de primera ronda, Juan José tomó a <em>Ladd McConkey con el 1.09</em>. Trade value promedio: 61 puntos. Pico de 62. El WR de los Chargers tuvo una temporada de novato excelente y está en trayectoria ascendente. Tercer draft consecutivo donde Juan José se queda con la joya de segunda mitad de primera ronda. <em>Los Médulas tienen el olfato. Falta que el equipo completo refleje eso.</em>
+        <div class="stat-comparison">
+          <div class="stat-col">
+            <div class="stat-label">Ladd McConkey (1.09)</div>
+            <div class="stat-value good">61</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+          <div class="stat-sep">VS</div>
+          <div class="stat-col">
+            <div class="stat-label">Keon Coleman (1.10 — Paco)</div>
+            <div class="stat-value bad">30</div>
+            <div class="stat-name">Trade value avg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="crime-card">
+      <div class="crime-card-header">
+        <div class="pick-badge">3.06<small>PICK</small></div>
+        <div class="vs-container">
+          <div class="player-row">
+            <span class="player-name victima">Drake Maye</span>
+            <span class="player-pos pos-qb">QB</span>
+          </div>
+          <div class="vs-divider">el quarterback del futuro, tomado en R3 por</div>
+        </div>
+        <div class="culpable-tag">
+          El Astuto
+          <strong>Aldo</strong>
+          Seahawkmanía
+        </div>
+      </div>
+      <div class="crime-body">
+        Aldo se redimió parcialmente con <em>Drake Maye en la ronda 3</em>. Trade value promedio: 46 puntos. El futuro QB de los Patriots que en 2025 ya mostraba destellos de grandeza. En el draft de 2024, tomarlo en R3 cuando nadie lo veía como titular inmediato fue una apuesta correcta. <em>Aldo puede elegir mal en primera ronda y bien en tercera.</em> Al menos hay consistencia en la inconsistencia.
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!--    TABLA GENERAL DE CRÍMENES    -->
+  <!-- =============================== -->
+
+  <div class="table-section">
+    <div class="section-label">Resumen Histórico</div>
+    <h2 class="section-title">El <span>Marcador</span> del Dolor</h2>
+    <p class="section-intro">Ranking de los picks más impactantes por diferencia de valor entre lo elegido y lo disponible. Solo los casos más documentados.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Draft</th>
+          <th>Pick</th>
+          <th>Elegido</th>
+          <th>Perdido</th>
+          <th>Diferencia</th>
+          <th>Dueño</th>
+          <th>Veredicto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2020</td>
+          <td>1.01</td>
+          <td style="color:var(--rojo-suave)">CEH (22 pts)</td>
+          <td style="color:var(--verde)">J. Taylor (69 pts)</td>
+          <td style="color:var(--rojo)"><strong>−47</strong></td>
+          <td>Edwin</td>
+          <td><span class="rating-pill rating-bad">Catástrofe</span></td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td>1.09</td>
+          <td style="color:var(--rojo-suave)">Reagor (12 pts)</td>
+          <td style="color:var(--verde)">Jefferson (69 pts)</td>
+          <td style="color:var(--rojo)"><strong>−57</strong></td>
+          <td>Paco</td>
+          <td><span class="rating-pill rating-bad">Infame</span></td>
+        </tr>
+        <tr>
+          <td>2022</td>
+          <td>1.04</td>
+          <td style="color:var(--rojo-suave)">Burks (21 pts)</td>
+          <td style="color:var(--verde)">G. Wilson (61 pts)</td>
+          <td style="color:var(--rojo)"><strong>−40</strong></td>
+          <td>Aldo</td>
+          <td><span class="rating-pill rating-bad">Doloroso</span></td>
+        </tr>
+        <tr>
+          <td>2019</td>
+          <td>1.09</td>
+          <td style="color:var(--rojo-suave)">H. Butler (5 pts)</td>
+          <td style="color:var(--verde)">McLaurin (40 pts)</td>
+          <td style="color:var(--rojo)"><strong>−35</strong></td>
+          <td>Gerardo</td>
+          <td><span class="rating-pill rating-bad">Misterioso</span></td>
+        </tr>
+        <tr>
+          <td>2018</td>
+          <td>1.02</td>
+          <td style="color:var(--rojo-suave)">Guice (22 pts)</td>
+          <td style="color:var(--verde)">Kittle (41 pts)</td>
+          <td style="color:var(--rojo)"><strong>−19</strong></td>
+          <td>José Angel</td>
+          <td><span class="rating-pill rating-ok">Épico</span></td>
+        </tr>
+        <tr>
+          <td>2021</td>
+          <td>1.07</td>
+          <td style="color:var(--rojo-suave)">Sermon (6 pts)</td>
+          <td style="color:var(--verde)">D. Smith (52 pts)</td>
+          <td style="color:var(--rojo)"><strong>−46</strong></td>
+          <td>Edwin</td>
+          <td><span class="rating-pill rating-bad">Patrón</span></td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>1.05</td>
+          <td style="color:var(--rojo-suave)">Q. Johnston (28)</td>
+          <td style="color:var(--verde)">Zay Flowers (54)</td>
+          <td style="color:var(--rojo)"><strong>−26</strong></td>
+          <td>Aldo</td>
+          <td><span class="rating-pill rating-bad">Consistente</span></td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td>4.05</td>
+          <td style="color:var(--verde)">J. Hurts (30 pts)</td>
+          <td>—</td>
+          <td style="color:var(--verde)"><strong>+28</strong></td>
+          <td>Juan José</td>
+          <td><span class="rating-pill rating-good">Robo legal</span></td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>3.12</td>
+          <td style="color:var(--verde)">Puka Nacua (68)</td>
+          <td>—</td>
+          <td style="color:var(--verde)"><strong>+65</strong></td>
+          <td>José Angel</td>
+          <td><span class="rating-pill rating-good">Obra maestra</span></td>
+        </tr>
+        <tr>
+          <td>2018</td>
+          <td>4.11</td>
+          <td style="color:var(--verde)">Lamar (34 pts)</td>
+          <td>—</td>
+          <td style="color:var(--verde)"><strong>+32</strong></td>
+          <td>Rodrigo</td>
+          <td><span class="rating-pill rating-good">Visionario</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HALL DE VERGÜENZA -->
+  <div class="hall-section">
+    <h2 class="hall-title">🏆 Hall de la Infamia TVC 🏆</h2>
+    <div class="hall-grid">
+      <div class="hall-card">
+        <span class="hall-emoji">💀</span>
+        <div class="hall-name">El Fantasma</div>
+        <div class="hall-desc">Derrius Guice<br>Pick 1.02 — 2018<br>2 temporadas · Trade value: 22</div>
+      </div>
+      <div class="hall-card">
+        <span class="hall-emoji">🤦</span>
+        <div class="hall-name">La Ironía</div>
+        <div class="hall-desc">Jalen Reagor sobre Jefferson<br>Pick 1.09 — 2020<br>Diferencia: 57 puntos de TV</div>
+      </div>
+      <div class="hall-card">
+        <span class="hall-emoji">😭</span>
+        <div class="hall-name">La Tragedia</div>
+        <div class="hall-desc">CEH sobre J. Taylor<br>Pick 1.01 — 2020<br>El crimen fundacional</div>
+      </div>
+      <div class="hall-card">
+        <span class="hall-emoji">🔥</span>
+        <div class="hall-name">El Fantasma II</div>
+        <div class="hall-desc">Hakeem Butler<br>Pick 1.09 — 2019<br>5 puntos de trade value</div>
+      </div>
+      <div class="hall-card">
+        <span class="hall-emoji">😅</span>
+        <div class="hall-name">El Sermón</div>
+        <div class="hall-desc">Trey Sermon dos veces<br>2021 y tradelist 2023<br>Historia de amor tóxico</div>
+      </div>
+      <div class="hall-card">
+        <span class="hall-emoji">🏈</span>
+        <div class="hall-name">Tim Tebow TE</div>
+        <div class="hall-desc">Javier — Draft 2021<br>Ronda 5, pick 5.08<br>Honorable mención absurda</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRÁFICA DE BARRAS — MEJOR PICK POR DUEÑO -->
+  <div class="chart-section">
+    <div class="section-label">Análisis Estadístico</div>
+    <h2 class="section-title">Mejor Pick <span>por Dueño</span></h2>
+    <p class="section-intro">Trade value promedio del mejor pick histórico de cada dueño fundador (basado en los datos del draft 2018–2025). Los dueños que entraron después tienen menos historial.</p>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Rodrigo (Garrobos)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#27ae60,#2ecc71)">J. Taylor (69)</div>
+        </div>
+        <div class="bar-value" style="color:var(--verde)">69</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">José Angel (Zorritos)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:88%;background:linear-gradient(90deg,#27ae60,#2ecc71)">Puka (68)</div>
+        </div>
+        <div class="bar-value" style="color:var(--verde)">68</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Gerardo (Hijos)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:82%;background:linear-gradient(90deg,#27ae60,#2ecc71)">J. Jefferson (69)</div>
+        </div>
+        <div class="bar-value" style="color:var(--verde)">69</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Juan José (Médulas)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:79%;background:linear-gradient(90deg,#27ae60,#2ecc71)">McConkey (61)</div>
+        </div>
+        <div class="bar-value" style="color:var(--verde)">61</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Beto (Iron Chef)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:76%;background:linear-gradient(90deg,#f39c12,#f7b731)">Saquon (68)</div>
+        </div>
+        <div class="bar-value" style="color:var(--amarillo)">68</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Parrish (Bulleggs)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:68%;background:linear-gradient(90deg,#f39c12,#f7b731)">DK Metcalf (52)</div>
+        </div>
+        <div class="bar-value" style="color:var(--amarillo)">52</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Javier (Delfines)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#f39c12,#f7b731)">Devonta Smith (52)</div>
+        </div>
+        <div class="bar-value" style="color:var(--amarillo)">52</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Aldo (Seahawkm.)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#c0392b,#e74c3c)">Rashee Rice (54)</div>
+        </div>
+        <div class="bar-value" style="color:var(--rojo-suave)">54</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Paco (Tumbapatos)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:52%;background:linear-gradient(90deg,#c0392b,#e74c3c)">AJ Brown (58) ✓</div>
+        </div>
+        <div class="bar-value" style="color:var(--rojo-suave)">58</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Edwin (Pollos)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:48%;background:linear-gradient(90deg,#c0392b,#e74c3c)">Tee Higgins (47)</div>
+        </div>
+        <div class="bar-value" style="color:var(--rojo-suave)">47</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCLUSIÓN -->
+  <div class="conclusion">
+    <h2 class="conclusion-title">¿Y ahora qué, compa?</h2>
+    <p>
+      Ocho años de drafts producen una cosa clara: <strong>en esta liga nadie es inocente</strong>. Todos hemos tomado a un Hakeem Butler, a un Treylon Burks, a un Trey Sermon. La pregunta no es si vas a cometer un error en el draft — la pregunta es si vas a cometer el <em>mismo</em> error dos veces.
+    </p>
+    <p>
+      Los patrones hablan solos. Edwin tiene dos primeros de primera ronda fallidos consecutivos en 2020 y 2021. Aldo repite el mismo pick de WR de primera ronda que decepciona en 2022 y 2023. Juan José acumula joyas tardías en cada draft pero el equipo sigue luchando por consistencia. Rodrigo domina cuando tiene picks acumulados, pero esos picks vienen de años de gestión paciente que no todos están dispuestos a hacer.
+    </p>
+    <p>
+      La moraleja del draft 2026 es sencilla: <strong>no te enamores de un jugador antes del draft</strong>. El board manda. La posición disponible manda. El trade value manda. Y si escuchas una voz interna diciéndote "Clyde Edwards-Helaire es el next big thing"... <strong>Compa, no lo hagas.</strong>
+    </p>
+  </div>
+
+  <!-- FINAL PULLQUOTE -->
+  <div class="pullquote">
+    <p>"El mejor pick del draft no es el que más hype tiene. Es el que nadie quería y tú sí viste."</p>
+    <cite>— Puka Nacua, ronda 3, último pick, draft 2023</cite>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Liga Fantasy TVC Deportes</strong> · Draft Histórico 2018–2025 · Compa No Lo Hagas<br>
+  Todos los datos extraídos del archivo histórico oficial de la liga · Temporada 2026
+</footer>
+
+</body>
+</html>
