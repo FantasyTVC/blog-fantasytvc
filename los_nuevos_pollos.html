@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Nuevos Pollos — La Reconstrucción de Edwin Abonce</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #C8281A;
+    --amarillo: #F5C518;
+    --negro: #0E0E0E;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2E2E2E;
+    --gris-claro: #B0ADA8;
+    --crema: #F2EFE7;
+    --blanco: #FAFAF8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 6vw 5rem;
+    overflow: hidden;
+    border-bottom: 2px solid var(--rojo);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: -2rem;
+    left: -1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(140px, 28vw, 340px);
+    color: rgba(200,40,26,0.07);
+    line-height: 0.85;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .hero-kicker {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 2px;
+    background: var(--amarillo);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 11vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 1px;
+    color: var(--blanco);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title span {
+    color: var(--rojo);
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--gris-claro);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-tag {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    padding: 6px 14px;
+    border: 1px solid rgba(176,173,168,0.3);
+    border-radius: 2px;
+  }
+
+  .hero-tag.red { border-color: var(--rojo); color: var(--rojo); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+
+  .article-body {
+    padding: 5rem 0;
+  }
+
+  /* PROSE */
+  p {
+    margin-bottom: 1.5rem;
+    color: #D8D5CE;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: 1px;
+    color: var(--blanco);
+    margin: 3.5rem 0 1.25rem;
+    line-height: 1;
+  }
+
+  h2 .accent { color: var(--rojo); }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amarillo);
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  strong { color: var(--blanco); font-weight: 500; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--rojo);
+    padding: 1.25rem 2rem;
+    margin: 3rem 0;
+    background: var(--gris-oscuro);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--blanco);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin: 3rem 0;
+    background: var(--gris-medio);
+  }
+
+  .stat-card {
+    background: var(--gris-oscuro);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--amarillo);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* TRADE TABLE */
+  .trade-block {
+    margin: 3rem 0;
+    border: 1px solid var(--gris-medio);
+  }
+
+  .trade-block-header {
+    background: var(--gris-medio);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .trade-block-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+  }
+
+  .trade-verdict {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .tv-win { background: rgba(34,139,68,0.2); color: #5ECC7A; border: 1px solid rgba(94,204,122,0.3); }
+  .tv-loss { background: rgba(200,40,26,0.2); color: #F07070; border: 1px solid rgba(240,112,112,0.3); }
+  .tv-neutral { background: rgba(245,197,24,0.15); color: var(--amarillo); border: 1px solid rgba(245,197,24,0.3); }
+
+  .trade-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 0;
+  }
+
+  .trade-col {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .trade-col.gave { border-right: 1px solid var(--gris-medio); }
+
+  .trade-col-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .trade-col.got .trade-col-label { color: #5ECC7A; }
+  .trade-col.gave .trade-col-label { color: #F07070; }
+
+  .trade-arrow-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gris-claro);
+    font-size: 18px;
+  }
+
+  .trade-player {
+    font-size: 13px;
+    color: #D8D5CE;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pos { font-size: 10px; padding: 1px 5px; border-radius: 2px; font-weight: 500; }
+  .pos-qb { background: rgba(127,119,221,0.25); color: #AFA9EC; }
+  .pos-wr { background: rgba(55,138,221,0.25); color: #85B7EB; }
+  .pos-rb { background: rgba(29,158,117,0.25); color: #5DCAA5; }
+  .pos-te { background: rgba(239,159,39,0.25); color: #FAC775; }
+  .pos-pk { background: rgba(136,135,128,0.2); color: var(--gris-claro); }
+
+  .trade-note {
+    padding: 0.75rem 1.5rem 1.25rem;
+    border-top: 1px solid var(--gris-medio);
+    font-size: 13px;
+    color: var(--gris-claro);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ROSTER TABLE */
+  .roster-section {
+    margin: 3rem 0;
+  }
+
+  .pos-group {
+    margin-bottom: 2px;
+  }
+
+  .pos-group-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px 140px 70px;
+    gap: 0;
+    background: var(--gris-medio);
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    align-items: center;
+  }
+
+  .pos-group-header .pos-name { font-size: 12px; font-weight: 500; }
+
+  .roster-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px 140px 70px;
+    gap: 0;
+    padding: 10px 12px;
+    background: var(--gris-oscuro);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .roster-row:hover { background: var(--gris-medio); }
+
+  .player-num-col { color: var(--gris-claro); font-size: 12px; }
+  .player-name-col { color: var(--blanco); font-weight: 400; }
+  .player-rank-col { color: var(--gris-claro); font-size: 12px; }
+
+  .ktc-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .ktc-mini-bar { height: 4px; border-radius: 2px; }
+  .ktc-mini-val { font-size: 12px; color: var(--gris-claro); min-width: 38px; }
+
+  .rookie-pip { font-size: 9px; background: rgba(55,138,221,0.3); color: #85B7EB; padding: 1px 5px; border-radius: 2px; margin-left: 4px; font-weight: 500; }
+
+  .pos-badge-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .rank-pill {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .rank-elite { background: rgba(34,139,68,0.2); color: #5ECC7A; }
+  .rank-ok { background: rgba(245,197,24,0.15); color: var(--amarillo); }
+  .rank-bad { background: rgba(200,40,26,0.2); color: #F07070; }
+
+  /* SECTION DIVIDER */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 4rem 0 1rem;
+  }
+
+  .section-rule::before, .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gris-medio);
+  }
+
+  .section-rule span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    white-space: nowrap;
+  }
+
+  /* CALLOUT */
+  .callout {
+    border: 1px solid var(--rojo);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .callout::before {
+    content: '!';
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--negro);
+    padding: 0 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--rojo);
+  }
+
+  .callout p { color: var(--crema); margin: 0; }
+
+  /* VERDICT */
+  .verdict-final {
+    background: var(--gris-oscuro);
+    border-top: 3px solid var(--rojo);
+    padding: 2.5rem;
+    margin: 3.5rem 0;
+  }
+
+  .verdict-final-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--blanco);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .verdict-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #D8D5CE;
+    line-height: 1.5;
+  }
+
+  .verdict-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .v-pro { background: #5ECC7A; }
+  .v-con { background: #F07070; }
+  .v-neutral { background: var(--amarillo); }
+
+  /* FOOTER */
+  .article-footer {
+    border-top: 1px solid var(--gris-medio);
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gris-claro);
+  }
+
+  .footer-brand span { color: var(--rojo); }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--gris-claro);
+    opacity: 0.6;
+  }
+
+  /* INTRO CHICKEN ICON */
+  .big-icon {
+    font-size: 80px;
+    display: block;
+    margin: 0 0 1rem;
+    filter: grayscale(0.3);
+  }
+
+  /* TIMELINE */
+  .timeline {
+    margin: 2.5rem 0;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--gris-medio);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 1.75rem 1.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rojo);
+    border: 2px solid var(--negro);
+  }
+
+  .timeline-date {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 4px;
+  }
+
+  .timeline-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blanco);
+    margin-bottom: 4px;
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--gris-claro);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .trade-body-grid { grid-template-columns: 1fr; }
+    .trade-arrow-col { display: none; }
+    .trade-col.gave { border-right: none; border-bottom: 1px solid var(--gris-medio); }
+    .roster-row, .pos-group-header { grid-template-columns: 1fr 60px 60px; }
+    .roster-row .player-rank-col { display: none; }
+    .pos-group-header .rank-pill { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<article>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-text">POLLOS</div>
+    <span class="hero-kicker">Liga Fantasy TVC Deportes · Offseason 2026 · Análisis</span>
+    <h1 class="hero-title">Los <span>Nuevos</span><br>Pollos</h1>
+    <p class="hero-subtitle">Edwin Abonce tira el tablero al piso y reconstruye desde cero. Picks de segunda ronda, cuatro QBs y una apuesta al futuro que sabe a revancha.</p>
+    <div class="hero-meta">
+      <span class="hero-tag red">Rebuild</span>
+      <span class="hero-tag">Temporada 2026</span>
+      <span class="hero-tag">División Alberto Bernard</span>
+      <span class="hero-tag">Por: TVC Deportes Fantasy</span>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="container">
+    <div class="article-body">
+
+      <!-- INTRO -->
+      <span class="big-icon">🍗</span>
+
+      <p>Hay un momento en cada liga dynasty en el que un dueño tiene que hacer la pregunta más difícil: <strong>¿sigo remando con lo que tengo, o tiro todo y empiezo de nuevo?</strong> Edwin Abonce llegó a ese punto este offseason. Después de acumular otro año sin llegar a la gran final, el arquitecto de Los Pollos Hermanos tomó la decisión más radical de su historia en la liga: reset total.</p>
+
+      <p>No fue una decisión de pánico. Fue quirúrgica. En cuestión de semanas, Edwin transformó a su equipo de una franquicia estancada con jugadores veteranos en declive a una máquina de picks de segunda ronda y talento joven con hambre de revancha. El resultado es un roster que no se parece en nada al que terminó la temporada 2025 — y eso, en dynasty, puede ser exactamente lo que necesitabas.</p>
+
+      <p>Esto es lo que pasó, cómo lo hizo, y lo que significa para el futuro de los Pollos en la División Alberto Bernard.</p>
+
+      <div class="pull-quote">
+        <p>"No fue de pánico. Fue quirúrgica. Edwin vendió alto, compró joven, y acumuló el capital que necesita para construir la próxima dinastía."</p>
+      </div>
+
+      <!-- STATS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-num">9</span>
+          <span class="stat-label">Trades realizados</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">6+</span>
+          <span class="stat-label">Picks de 2da ronda</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Rookies en el roster</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">2°</span>
+          <span class="stat-label">Mejor QB de la liga</span>
+        </div>
+      </div>
+
+      <!-- SECCION 1 -->
+      <div class="section-rule"><span>La Historia</span></div>
+      <h2>De la <span class="accent">gloria</span> al limbo</h2>
+
+      <p>Para entender por qué Edwin hizo lo que hizo, hay que entender de dónde viene. El draft de 2020 fue el mejor de su carrera — y quizás uno de los mejores de la historia de la liga. En una sola jornada capturó a <strong>Michael Pittman</strong>, <strong>Tee Higgins</strong> y <strong>Brandon Aiyuk</strong> en segundas rondas. Tres receptores que se convirtieron en contribuidores reales en la NFL. Cualquier otro equipo hubiera estado en playoffs durante años con ese tridente.</p>
+
+      <p>El problema fue el 1.01. <strong>Clyde Edwards-Helaire</strong> con la primera selección del draft resultó ser el mayor error de su mandato — un RB que nunca desarrolló el perfil de primera opción que prometía, y que se convirtió en símbolo de una franquicia que generó buenos picks pero no supo cerrar el trato cuando importaba.</p>
+
+      <p>Los años siguientes trajeron más aciertos en el draft — Pickens, James Cook, Jaylen Waddle — pero el equipo nunca terminó de consolidarse como contendiente real. Demasiados jugadores buenos en distintas posiciones, sin la profundidad ni la cohesión para competir en postemporada. Y así, año tras año, los Pollos se quedaron mirando los playoffs desde afuera.</p>
+
+      <p>Hasta que Edwin dijo: basta.</p>
+
+      <!-- TIMELINE DE TRADES -->
+      <div class="section-rule"><span>El Offseason</span></div>
+      <h2>Nueve <span class="accent">trades</span> en tres meses</h2>
+
+      <p>Entre febrero y mayo de 2026, Edwin ejecutó nueve movimientos de roster que redefinieron completamente la identidad del equipo. Aquí el recuento cronológico:</p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">3 feb — vs The Bulleggs (Parrish)</div>
+          <div class="timeline-title">El trade más discutible: Jordan Love por Sutton + 4to</div>
+          <div class="timeline-desc">Edwin cedió a Jordan Love (QB joven, alto KTC) por Courtland Sutton y una cuarta de Parrish. Sutton en DEN sin Waddle tiene poco futuro. Esta es la movida más cuestionable del offseason y la única que claramente perdió.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">21 mar — vs Tumbapatos (Paco)</div>
+          <div class="timeline-title">Vende Sutton inmediatamente</div>
+          <div class="timeline-desc">Sin sentimentalismos, vendió a Sutton por un segundo propio a Paco. Convirtió el error en capital de draft de forma rápida. Movimiento correcto.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">8 abr — vs Tumbapatos (Paco)</div>
+          <div class="timeline-title">Adquiere Rachaad White + picks por paquete de 2das/4tas/5tas</div>
+          <div class="timeline-desc">Operación de reorganización de picks donde White llegó como bonus. Cuerpo útil en WAS aunque el costo en un 2do fue alto.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">15 abr — vs Seahawkmania (Aldo)</div>
+          <div class="timeline-title">Jordan Mason + picks por 2do del 2027</div>
+          <div class="timeline-desc">Excelente retorno. Tres picks más un RB a cambio de capital futuro. Edwin ganó volumen.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">15 abr — vs Backfield Penetration (Samuel)</div>
+          <div class="timeline-title">El gran movimiento de liquidación: Pittman + Dulcich + Boutte por Fields + dos 2das</div>
+          <div class="timeline-desc">Edwin deshizo el corazón de su sala WR/TE de banca y recibió a Justin Fields operando en KC más dos 2das rondas de Samuel. Trade limpio y bien ejecutado.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">15 abr — vs Tumbapatos (Paco)</div>
+          <div class="timeline-title">Vende Waddle + recupera un 2do</div>
+          <div class="timeline-desc">Cedió el 1er de Zorritos más su propio 2do por Waddle + el 2do de Paco. Costo alto pero Waddle era una pieza que quería recuperar — lo draftó en el 2021.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">23 abr — vs The Bulleggs (Parrish)</div>
+          <div class="timeline-title">Compra a DK Metcalf + 3ro por Sinnott + Mitchell + 2do de Sea</div>
+          <div class="timeline-desc">Pagó premium por Metcalf — un WR1 físico recién llegado a PIT. La jugada preparaba el terreno para el mejor trade del offseason.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">26 abr — vs Zorritos (José Angel)</div>
+          <div class="timeline-title">Vende Trey Benson por 3ra temprana</div>
+          <div class="timeline-desc">Convirtió al RB joven en capital de draft. Defensible en rebuild, pero Benson tiene upside real en ARI. Si explota, esta venta dolerá.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">1 may — vs Espejitos FFT (Julio)</div>
+          <div class="timeline-title">El mejor trade del offseason: Metcalf + 4ta por Richardson + TRES 2das rondas</div>
+          <div class="timeline-desc">Edwin agarró a Metcalf el 23 de abril y lo flipeó ocho días después por un botín enorme. Julio pagó 3 segundas + Anthony Richardson por un WR. Edwin se llevó el mejor negocio de la liga este año.</div>
+        </div>
+
+      </div>
+
+      <!-- EL MEJOR TRADE DETALLADO -->
+      <div class="section-rule"><span>Trade Destacado</span></div>
+      <h2>El <span class="accent">Flipeo</span> del siglo</h2>
+
+      <p>Si hay un solo trade que define todo el offseason de Edwin, es el que cerró el 1 de mayo con Julio de Espejitos FFT. No solo por el valor que recibió — sino por la velocidad y frialdad con la que ejecutó.</p>
+
+      <div class="trade-block">
+        <div class="trade-block-header">
+          <span class="trade-block-title">vs Espejitos FFT · 1 de mayo, 2026</span>
+          <span class="trade-verdict tv-win">Win masivo para Edwin</span>
+        </div>
+        <div class="trade-body-grid">
+          <div class="trade-col gave">
+            <div class="trade-col-label">Edwin cedió</div>
+            <div class="trade-player"><span class="pos pos-wr">WR</span> DK Metcalf · PIT</div>
+            <div class="trade-player"><span class="pos pos-pk">PK</span> 2027 4ta ronda</div>
+          </div>
+          <div class="trade-arrow-col">⇄</div>
+          <div class="trade-col got">
+            <div class="trade-col-label">Edwin recibió</div>
+            <div class="trade-player"><span class="pos pos-qb">QB</span> Anthony Richardson · IND</div>
+            <div class="trade-player"><span class="pos pos-pk">PK</span> 2026 2da (Julio)</div>
+            <div class="trade-player"><span class="pos pos-pk">PK</span> 2027 2da (Julio)</div>
+            <div class="trade-player"><span class="pos pos-pk">PK</span> 2026 2da (Parrish)</div>
+          </div>
+        </div>
+        <div class="trade-note">
+          Edwin compró a Metcalf el 23 de abril por Sinnott + Mitchell + un 2do. Ocho días después lo vendió por tres segundas rondas + un QB con upside. En dynasty, ese tipo de operaciones no se olvidan.
+        </div>
+      </div>
+
+      <p>Tres picks de segunda ronda en menos de una semana de haber adquirido al receptor. Julio pagó precio de WR1 premium por un jugador que Edwin había conseguido a precio de mayoreo. Es el tipo de movimiento que diferencia a los managers que piensan en términos de <em>valor</em> de los que piensan en términos de <em>nombres</em>.</p>
+
+      <!-- ROSTER ACTUAL -->
+      <div class="section-rule"><span>El Roster</span></div>
+      <h2>Lo que <span class="accent">quedó</span> en el gallinero</h2>
+
+      <p>Después de toda la cirugía, el roster de Los Nuevos Pollos se ve así — con sus rankings KTC actualizados. Un equipo de contrastes brutales:</p>
+
+      <!-- QB -->
+      <div class="roster-section">
+        <div class="pos-group">
+          <div class="pos-group-header">
+            <span class="pos-badge-big" style="color:#AFA9EC;">QB</span>
+            <span>Quarterback</span>
+            <span class="rank-pill rank-elite">2° / 12</span>
+            <span>KTC</span>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">1</span>
+            <span class="player-name-col">Josh Allen</span>
+            <span class="player-rank-col">QB1</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:93px;background:#7F77DD;"></div><span class="ktc-mini-val">7,642</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">2</span>
+            <span class="player-name-col">Shedeur Sanders <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">QB31</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:29px;background:#534AB7;"></div><span class="ktc-mini-val">2,337</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">3</span>
+            <span class="player-name-col">Anthony Richardson</span>
+            <span class="player-rank-col">QB35</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:26px;background:#534AB7;"></div><span class="ktc-mini-val">2,161</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">4</span>
+            <span class="player-name-col">Justin Fields</span>
+            <span class="player-rank-col">QB36</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:26px;background:#534AB7;"></div><span class="ktc-mini-val">2,155</span></div>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- RB -->
+        <div class="pos-group" style="margin-top:2px;">
+          <div class="pos-group-header">
+            <span class="pos-badge-big" style="color:#5DCAA5;">RB</span>
+            <span>Running Back</span>
+            <span class="rank-pill rank-ok">8° / 12</span>
+            <span>KTC</span>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">1</span>
+            <span class="player-name-col">James Cook</span>
+            <span class="player-rank-col">RB8</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:81px;background:#1D9E75;"></div><span class="ktc-mini-val">6,645</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">2</span>
+            <span class="player-name-col">Cam Skattebo <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">RB19</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:67px;background:#1D9E75;"></div><span class="ktc-mini-val">5,524</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">3</span>
+            <span class="player-name-col">Kaleb Johnson <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">RB53</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:37px;background:#0F6E56;"></div><span class="ktc-mini-val">3,020</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">4</span>
+            <span class="player-name-col">Ollie Gordon <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">RB55</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:36px;background:#0F6E56;"></div><span class="ktc-mini-val">2,948</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">5</span>
+            <span class="player-name-col">Ray Davis</span>
+            <span class="player-rank-col">RB72</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:30px;background:#085041;"></div><span class="ktc-mini-val">2,487</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">6</span>
+            <span class="player-name-col">Jarquez Hunter <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">RB82</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:25px;background:#085041;"></div><span class="ktc-mini-val">2,046</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">7</span>
+            <span class="player-name-col">Isaac Guerendo</span>
+            <span class="player-rank-col">RB84</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:24px;background:#085041;"></div><span class="ktc-mini-val">1,964</span></div>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- WR -->
+        <div class="pos-group" style="margin-top:2px;">
+          <div class="pos-group-header">
+            <span class="pos-badge-big" style="color:#85B7EB;">WR</span>
+            <span>Wide Receiver</span>
+            <span class="rank-pill rank-bad">11° / 12</span>
+            <span>KTC</span>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">1</span>
+            <span class="player-name-col">George Pickens</span>
+            <span class="player-rank-col">WR11</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:80px;background:#378ADD;"></div><span class="ktc-mini-val">6,582</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">2</span>
+            <span class="player-name-col">Jalen Coker</span>
+            <span class="player-rank-col">WR56</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:46px;background:#185FA5;"></div><span class="ktc-mini-val">3,773</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">3</span>
+            <span class="player-name-col">Elic Ayomanor <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">WR73</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:40px;background:#185FA5;"></div><span class="ktc-mini-val">3,283</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">4</span>
+            <span class="player-name-col">Pat Bryant <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">WR78</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:38px;background:#185FA5;"></div><span class="ktc-mini-val">3,125</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">5</span>
+            <span class="player-name-col">Brandon Aiyuk</span>
+            <span class="player-rank-col">WR90</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:34px;background:#0C447C;"></div><span class="ktc-mini-val">2,818</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">6</span>
+            <span class="player-name-col">Jordan Whittington</span>
+            <span class="player-rank-col">WR127</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:23px;background:#0C447C;"></div><span class="ktc-mini-val">1,878</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">7</span>
+            <span class="player-name-col">Keenan Allen</span>
+            <span class="player-rank-col">WR132</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:21px;background:#0C447C;"></div><span class="ktc-mini-val">1,747</span></div>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- TE -->
+        <div class="pos-group" style="margin-top:2px;">
+          <div class="pos-group-header">
+            <span class="pos-badge-big" style="color:#FAC775;">TE</span>
+            <span>Tight End</span>
+            <span class="rank-pill rank-elite">3° / 12</span>
+            <span>KTC</span>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">1</span>
+            <span class="player-name-col">Brock Bowers</span>
+            <span class="player-rank-col">TE1</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:100px;background:#EF9F27;"></div><span class="ktc-mini-val">8,237</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">2</span>
+            <span class="player-name-col">Dalton Kincaid</span>
+            <span class="player-rank-col">TE15</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:48px;background:#BA7517;"></div><span class="ktc-mini-val">3,936</span></div>
+            <span></span>
+          </div>
+          <div class="roster-row">
+            <span class="player-num-col">3</span>
+            <span class="player-name-col">Terrance Ferguson <span class="rookie-pip">R</span></span>
+            <span class="player-rank-col">TE21</span>
+            <div class="ktc-bar-wrap"><div class="ktc-mini-bar" style="width:40px;background:#BA7517;"></div><span class="ktc-mini-val">3,308</span></div>
+            <span></span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ANALISIS POSICIONAL -->
+      <div class="section-rule"><span>El Diagnóstico</span></div>
+      <h2>El <span class="accent">reloj</span> de arena</h2>
+
+      <p>El roster de Edwin tiene la forma de un reloj de arena. Élite en los extremos — Josh Allen es el segundo mejor QB de la liga y Brock Bowers es el TE1 absoluto — pero con un hueco estructural en el medio que amenaza toda la construcción.</p>
+
+      <h3>Lo que funciona: QB y TE</h3>
+      <p>Pocas franquicias en la liga pueden presumir tener al mismo tiempo un QB1 y un TE1 de la liga. Allen a 7,642 KTC es el activo más valioso que puedes tener en PPR dynasty. Bowers a 8,237 KTC es literalmente el jugador más valioso del equipo y el mejor tight end del juego. Estos dos solos le dan a Edwin una plataforma competitiva que muchos dueños envidian.</p>
+
+      <p>Además, la cantidad de QBs en el roster es inusual — cuatro señores — y probablemente temporal. Shedeur Sanders (2,337), Richardson (2,161) y Fields (2,155) son activos de intercambio. Alguno de ellos puede convertirse en la moneda para el WR de alto impacto que tanto necesita el equipo.</p>
+
+      <h3>La apuesta del año: el grupo de RBs</h3>
+      <p>La posición está en el 8° lugar de la liga, pero hay algo emocionante escondido ahí. Con Cook como ancla comprobada (RB8, 6,645 KTC), el resto del grupo es una lotería de rookies con upside enorme: <strong>Cam Skattebo</strong> en RB19, <strong>Kaleb Johnson</strong> y <strong>Ollie Gordon</strong> son tres apuestas que, si una sola de ellas gana un backfield estelar en la NFL, catapultan la posición de mediocre a élite de un año para otro. Esa es la naturaleza del rebuild bien hecho.</p>
+
+      <div class="callout">
+        <p>Si Cam Skattebo (RB19, KTC 5,524) consolida trabajo en su equipo NFL, Edwin habrá encontrado su RB2 del futuro sin pagar precio de estrella. Esa es la ventaja del rebuild: adquirir a los jugadores antes de que todos sepan que son buenos.</p>
+      </div>
+
+      <h3>El hueco que no se puede ignorar: WR</h3>
+      <p>Décimo primero de doce equipos en receivers. Es la posición más débil de la liga y el talón de Aquiles de toda la reconstrucción. George Pickens a WR11 es un WR1 real y el ancla de la posición, pero después de él hay una caída abrupta. Coker (WR56), Ayomanor (WR73) y Bryant (WR78) son apuestas de upside sin producción NFL probada. Aiyuk a WR90 es un veterano en la última etapa de su carrera.</p>
+
+      <p>Esta es la misión número uno del draft de novatos: encontrar uno o dos receptores que puedan romperla en la NFL y darle profundidad real a esa sala. Con las múltiples segundas rondas que acumuló, Edwin tiene el capital para hacerlo.</p>
+
+      <!-- PICKS -->
+      <div class="section-rule"><span>El Arsenal</span></div>
+      <h2>Un cartucho <span class="accent">lleno</span></h2>
+
+      <p>El activo más subestimado del nuevo Edwin no está en su roster — está en sus picks. A lo largo del offseason acumuló capital de draft que le da opciones reales para el draft de novatos de 2026 y el siguiente año:</p>
+
+      <p>Entre las rondas confirmadas destacan dos 2das del 2026 (de Julio y Parrish), dos 2das del 2027 (de Julio y Samuel), una 3ra de Samuel, otra 3ra de Zorritos, más cuartas y quintas rondas adicionales. Es un arsenal generoso para un equipo que construye a futuro.</p>
+
+      <p>La decisión clave de Edwin ahora es cómo usa esos picks. La opción conservadora es draftear en la 2026 e ir construyendo capa por capa. La opción agresiva — y más en su estilo — es usar esos picks como moneda para hacer un megamove por un WR de élite establecido que lo convierta en contendiente inmediato. Con Allen y Bowers como base, un WR1 real podría cambiar completamente la conversación.</p>
+
+      <!-- VEREDICTO -->
+      <div class="section-rule"><span>Veredicto Final</span></div>
+
+      <div class="verdict-final">
+        <div class="verdict-final-title">¿Funcionará el reset?</div>
+
+        <div class="verdict-item">
+          <div class="verdict-dot v-pro"></div>
+          <span>Allen (QB1) + Bowers (TE1) son la base más sólida de la liga — pocas franquicias tienen esos dos activos al mismo tiempo.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-pro"></div>
+          <span>El flipeo de Metcalf fue el mejor trade del offseason en la liga — tres 2das rondas + Richardson en menos de 8 días.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-pro"></div>
+          <span>El grupo de RBs rookies (Skattebo, K. Johnson, Gordon, Hunter) tiene lotería de upside. Uno de ellos puede ser una estrella.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-pro"></div>
+          <span>El capital acumulado en picks de 2da es suficiente para hacer otro movimiento grande si aparece la oportunidad correcta.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-neutral"></div>
+          <span>Los cuatro QBs del roster son un activo de intercambio disfrazado de profundidad — alguno de ellos pagará el WR que el equipo necesita.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-neutral"></div>
+          <span>Vender Trey Benson es defensible, pero fue el RB más joven del equipo. Si explota en ARI, será la venta más dolorosa del rebuild.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-con"></div>
+          <span>WR en 11° de 12 es la herida abierta. Pickens no puede cargar solo una sala tan débil en un año de playoffs.</span>
+        </div>
+        <div class="verdict-item">
+          <div class="verdict-dot v-con"></div>
+          <span>Ceder Jordan Love por Sutton fue el único error claro — un QB joven de alto valor convertido en un veterano sin futuro.</span>
+        </div>
+
+        <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--gris-medio); font-size:15px; color:var(--crema); line-height:1.7;">
+          El roster 2026 de Edwin no está construido para ganar <em>ahora</em>. Está construido para ganar en grande en 2027 o 2028. Si el draft de novatos produce aunque sea un WR de impacto, y si uno de los RBs rookies explota, Los Nuevos Pollos tendrán uno de los techos más altos de toda la liga. La pregunta no es si Edwin puede construir un equipo ganador — ya lo demostró en 2020. La pregunta es si esta vez sabrá cerrar el trato cuando llegue el momento.
+        </div>
+      </div>
+
+      <!-- CIERRE -->
+      <p style="color:var(--gris-claro); font-style:italic; font-size:15px; margin-top:2rem;">El gallinero está en reconstrucción. Pero los pollos que van creciendo ahí dentro tienen hambre. Y Josh Allen sigue esperando que alguien le dé los receptores que merece.</p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="article-footer">
+      <div class="footer-brand">TVC <span>Fantasy</span> · Liga Dynasty</div>
+      <div class="footer-note">Temporada 2026 · Datos KTC actualizados post-draft de novatos</div>
+    </div>
+
+  </div>
+
+</article>
+
+</body>
+</html>
