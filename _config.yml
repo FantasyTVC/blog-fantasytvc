@@ -1,2 +1,10 @@
-## YAML Template.
+# Configuración de la Liga Fantasy TVC Deportes
+title: Fantasy TVC Deportes
+description: Crónicas, análisis dynasty y el archivo histórico oficial de nuestra liga.
+url: "https://fantasytvc.github.io"
+baseurl: "/blog-fantasytvc"
+
+# Ajustes de Jekyll para GitHub Pages
+permalink: /:categories/:title/
+markdown: kramdown## YAML Template.
 ---
