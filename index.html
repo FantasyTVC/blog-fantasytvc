@@ -52,7 +52,7 @@
     margin-top: 10px;
   }
 
-  /* SECCIÓN DE FILTROS */
+  /* SECCIÓN DE FILTROS AUTOMÁTICOS */
   .nav-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -86,21 +86,33 @@
   }
 
   .filter-list li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    padding-bottom: 10px;
   }
+
+  .filter-list li:last-child { border-bottom: none; }
 
   .filter-list a {
     color: var(--crema);
     text-decoration: none;
+    font-weight: 500;
     transition: color 0.2s;
+    line-height: 1.3;
+    margin-bottom: 5px;
   }
 
   .filter-list a:hover {
     color: var(--rojo);
-    text-decoration: underline;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .date-tag {
@@ -115,6 +127,7 @@
     border-radius: 3px;
     font-size: 0.75rem;
     font-weight: bold;
+    text-transform: uppercase;
   }
 </style>
 </head>
@@ -123,7 +136,7 @@
 <div class="container">
   <header>
     <h1>FANTASY <span>TVC</span> DEPORTES</h1>
-    <p class="subtitle">Análisis, crónicas, reconstrucciones y el archivo histórico de nuestra liga</p>
+    <p class="subtitle">Análisis, crónicas, reconstrucciones y el archivo histórico oficial de nuestra liga</p>
   </header>
 
   <div class="nav-sections">
@@ -131,28 +144,28 @@
     <div class="filter-box">
       <h3>Artículos por Fecha</h3>
       <ul class="filter-list">
+        {% for post in site.posts %}
         <li>
-          <a href="los_nuevos_pollos.html">Los Nuevos Pollos — La Reconstrucción de Edwin</a>
-          <span class="date-tag">Mayo 2026</span>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <div class="meta-row">
+            <span class="date-tag">{{ post.date | date: "%B %Y" }}</span>
+          </div>
         </li>
-        <li>
-          <a href="compa_no_lo_haga.html">Compa, No Lo Hagas — Análisis de Drafts Históricos</a>
-          <span class="date-tag">Abril 2026</span>
-        </li>
+        {% endfor %}
       </ul>
     </div>
 
     <div class="filter-box">
       <h3>Artículos por Tema</h3>
       <ul class="filter-list">
+        {% for post in site.posts %}
         <li>
-          <a href="los_nuevos_pollos.html">Rosters y Reconstrucción (Edwin Abonce)</a>
-          <span class="topic-badge">Dynasty</span>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <div class="meta-row">
+            <span class="topic-badge">{{ post.category }}</span>
+          </div>
         </li>
-        <li>
-          <a href="compa_no_lo_haga.html">Arqueología de Drafts (2018-2025)</a>
-          <span class="topic-badge">Histórico</span>
-        </li>
+        {% endfor %}
       </ul>
     </div>
 
