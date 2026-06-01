@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tumbapatos FC — Análisis de Franquicia 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --red-light: #E74C3C;
+    --cream: #F5F0E8;
+    --off-white: #FAF8F4;
+    --black: #1A1A1A;
+    --charcoal: #2C2C2C;
+    --gray-dark: #555;
+    --gray-mid: #888;
+    --gray-light: #CCC;
+    --gray-pale: #EEEAE3;
+    --gold: #D4A017;
+    --gold-light: #F0C040;
+    --green: #27AE60;
+    --green-light: #2ECC71;
+    --yellow: #F39C12;
+    --ink: #1A1A1A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--red);
+  }
+  .hero::before {
+    content: 'TFC';
+    position: absolute;
+    right: -20px;
+    top: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -10px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-league {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--red-light);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    color: #fff;
+    line-height: .9;
+    letter-spacing: .02em;
+    margin-bottom: 1rem;
+  }
+  .hero-title span { color: var(--red-light); }
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 2.5rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat {
+    background: var(--black);
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+  .hero-stat .n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: #fff;
+    display: block;
+  }
+  .hero-stat .n.bad { color: var(--red-light); }
+  .hero-stat .n.ok { color: var(--gold-light); }
+  .hero-stat .n.good { color: var(--green-light); }
+  .hero-stat .label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 3rem 0; border-bottom: 1px solid var(--gray-pale); }
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: .5rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: .02em;
+  }
+  .section-title span { color: var(--red); }
+
+  p { margin-bottom: 1rem; color: var(--charcoal); font-size: .95rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--black); }
+
+  /* VERDICT BOX */
+  .verdict-box {
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: .9rem;
+  }
+
+  /* CHART CONTAINERS */
+  .chart-wrap {
+    background: #fff;
+    border: 1px solid var(--gray-pale);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .chart-wrap h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 1.2rem;
+  }
+  .chart-canvas-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--gray-pale);
+    border: 1px solid var(--gray-pale);
+    margin: 1.5rem 0;
+  }
+  .stat-cell {
+    background: #fff;
+    padding: 1.2rem 1rem;
+  }
+  .stat-cell .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--black);
+    line-height: 1;
+    display: block;
+  }
+  .stat-cell .val.bad { color: var(--red); }
+  .stat-cell .val.ok { color: var(--yellow); }
+  .stat-cell .val.good { color: var(--green); }
+  .stat-cell .lbl {
+    font-size: .75rem;
+    color: var(--gray-mid);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* DRAFT TABLE */
+  .draft-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .85rem;
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    padding: .6rem .8rem;
+    text-align: left;
+    border-bottom: 2px solid var(--gray-pale);
+    white-space: nowrap;
+  }
+  td {
+    padding: .65rem .8rem;
+    border-bottom: 1px solid var(--gray-pale);
+    color: var(--charcoal);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--off-white); }
+  .pick-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .badge-r1 { background: var(--red); color: #fff; }
+  .badge-r2 { background: var(--gold); color: #fff; }
+  .draft-rating-pos { color: var(--green); font-weight: 600; }
+  .draft-rating-neg { color: var(--red); font-weight: 600; }
+  .draft-rating-neu { color: var(--gray-mid); }
+
+  /* ROSTER GRID */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .pos-card {
+    background: #fff;
+    border: 1px solid var(--gray-pale);
+    padding: 1.2rem;
+  }
+  .pos-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .8rem;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid var(--gray-pale);
+  }
+  .pos-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: .05em;
+  }
+  .pos-rank-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .7rem;
+    padding: 3px 8px;
+    font-weight: 500;
+  }
+  .rank-good { background: #E8F5E9; color: var(--green); }
+  .rank-mid { background: #FFF8E1; color: var(--yellow); }
+  .rank-bad { background: #FFEBEE; color: var(--red); }
+  .player-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .4rem 0;
+    border-bottom: 1px solid var(--gray-pale);
+    font-size: .82rem;
+  }
+  .player-row:last-child { border-bottom: none; }
+  .player-name { color: var(--charcoal); font-weight: 500; }
+  .player-meta { color: var(--gray-mid); font-size: .75rem; }
+  .player-ktc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* DIVISION TABLE */
+  .div-table-wrap { margin: 1.5rem 0; }
+  .div-table-wrap table td:first-child { font-weight: 500; }
+  .team-tumba td { background: #FFF5F5 !important; }
+  .team-tumba td:first-child { border-left: 3px solid var(--red); padding-left: 10px; }
+
+  /* H2H BARS */
+  .h2h-block { margin: 1.5rem 0; }
+  .h2h-item {
+    background: #fff;
+    border: 1px solid var(--gray-pale);
+    padding: 1rem 1.2rem;
+    margin-bottom: .8rem;
+  }
+  .h2h-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .8rem;
+  }
+  .h2h-name {
+    font-weight: 600;
+    font-size: .9rem;
+  }
+  .h2h-record {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .8rem;
+    color: var(--gray-mid);
+  }
+  .h2h-bar-track {
+    height: 8px;
+    background: var(--gray-pale);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: .5rem;
+  }
+  .h2h-bar-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 4px;
+    transition: width .4s ease;
+  }
+  .h2h-pts {
+    display: flex;
+    justify-content: space-between;
+    font-size: .75rem;
+    color: var(--gray-mid);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* OUTLOOK */
+  .outlook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .outlook-card {
+    background: #fff;
+    border: 1px solid var(--gray-pale);
+    padding: 1.2rem;
+  }
+  .outlook-icon {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+    display: block;
+  }
+  .outlook-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: .04em;
+    margin-bottom: .5rem;
+  }
+  .outlook-card p {
+    font-size: .8rem;
+    color: var(--gray-dark);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .outlook-card.positive { border-top: 3px solid var(--green); }
+  .outlook-card.warning { border-top: 3px solid var(--yellow); }
+  .outlook-card.danger { border-top: 3px solid var(--red); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    border-top: 3px solid var(--red);
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: .6rem;
+    font-size: .75rem;
+    color: var(--gray-mid);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* HIGHLIGHT PILL */
+  .highlight {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: .7rem;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 7px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  .highlight.gold { background: var(--gold); }
+  .highlight.green { background: var(--green); }
+
+  @media (max-width: 600px) {
+    .hero-stats { grid-template-columns: repeat(2,1fr); }
+    .pos-grid { grid-template-columns: 1fr; }
+    .outlook-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-league">Liga Fantasy TVC Deportes · Análisis de Franquicia · 2026</p>
+    <h1 class="hero-title">Tumbapatos<br><span>FC</span></h1>
+    <p class="hero-sub">
+      Ocho temporadas. Cero playoffs. El único equipo de la historia de la liga que nunca
+      ha clasificado a postemporada. Con ocho plazas disponibles y el mejor capital de
+      draft en años recientes, 2026 no tiene excusas.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="n bad">0</span>
+        <div class="label">Playoffs históricos</div>
+      </div>
+      <div class="hero-stat">
+        <span class="n bad">32%</span>
+        <div class="label">% victorias (36-75)</div>
+      </div>
+      <div class="hero-stat">
+        <span class="n ok">125.9</span>
+        <div class="label">Pts/semana promedio</div>
+      </div>
+      <div class="hero-stat">
+        <span class="n good">11°</span>
+        <div class="label">Ranking pts 2025</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HISTORIAL DE PUNTOS -->
+<section class="section">
+  <div class="container">
+    <p class="section-tag">Diagnóstico histórico</p>
+    <h2 class="section-title">Siempre en el <span>fondo</span> de la tabla</h2>
+
+    <p>El gráfico más incómodo para cualquier dueño de los Tumbapatos es también el más honesto: en <strong>ninguna de las ocho temporadas disputadas</strong> el equipo ha superado el promedio semanal de puntuación de la liga. La brecha oscila entre 5 y 31 puntos semanales, lo que en un formato de 14 semanas regulares se traduce en decenas de derrotas prevenibles.</p>
+
+    <div class="chart-wrap">
+      <h3>Puntos por semana — Tumbapatos FC vs promedio de liga (2018–2025)</h3>
+      <div class="chart-canvas-wrap" style="height:260px">
+        <canvas id="ptsChart" role="img" aria-label="Comparativa de puntos por semana entre Tumbapatos FC y el promedio de la liga, 2018 a 2025. Tumbapatos estuvo por debajo todos los años.">Tumbapatos FC estuvo por debajo del promedio de la liga en las 8 temporadas.</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Tumbapatos FC</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(39,174,96,0.6)"></div>Promedio de liga</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <span class="val bad">12°</span>
+        <div class="lbl">Ranking pts temporada 2024<br>(último de la liga)</div>
+      </div>
+      <div class="stat-cell">
+        <span class="val bad">109</span>
+        <div class="lbl">Pts/sem promedio 2024<br>(mínimo histórico)</div>
+      </div>
+      <div class="stat-cell">
+        <span class="val ok">7°</span>
+        <div class="lbl">Mejor ranking puntos<br>(temporada 2023)</div>
+      </div>
+      <div class="stat-cell">
+        <span class="val ok">130</span>
+        <div class="lbl">Pts/sem en 2023<br>(su techo histórico)</div>
+      </div>
+    </div>
+
+    <p>El ranking de puntos anuales dice todo: 10°, 8°, 10°, 9°, 10°, 7°, 12°, 11°. Su mejor año en puntuación fue 2023 con un séptimo lugar, que tampoco fue suficiente para colarse entre los clasificados. El patrón no es mala suerte — es una producción estructuralmente deficiente que sólo en 2023 y 2025 empezó a mostrar señales de mejora.</p>
+
+    <div class="chart-wrap">
+      <h3>Ranking de puntos anotados entre todos los equipos por temporada</h3>
+      <div class="chart-canvas-wrap" style="height:200px">
+        <canvas id="rankChart" role="img" aria-label="Ranking de puntos de Tumbapatos FC entre 1 (mejor) y 12 (peor) por año de 2018 a 2025. Nunca estuvo en el top 6.">Tumbapatos nunca alcanzó el top 6 de la liga en puntos anotados en ninguna temporada.</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Ranking Tumbapatos (más bajo = mejor)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(212,160,23,0.5);border:1px dashed #D4A017"></div>Línea de playoffs (top 8)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIAL DE DRAFT -->
+<section class="section">
+  <div class="container">
+    <p class="section-tag">Capital desperdiciado</p>
+    <h2 class="section-title">El archivo de los <span>picks altos</span></h2>
+
+    <p>En dynasty, el draft es el acelerador del rebuild. Los Tumbapatos han tenido <strong>17 picks de primera o segunda ronda</strong> entre 2018 y 2025 — un número considerable para cualquier franquicia. El problema no fue la cantidad de capital, sino la ejecución: varios de esos picks de primera ronda resultaron ser inversiones con retorno negativo, y los pocos aciertos notables (A.J. Brown, Kenneth Walker) no se mantuvieron en el roster el tiempo suficiente para anclar una ventana competitiva.</p>
+
+    <div class="verdict-box">
+      <strong>El patrón Tumbapatos:</strong> picks de impacto que no se retienen, picks fallidos que no se recortan a tiempo, y nunca el backfield de élite que un roster PPR exige para competir semana a semana.
+    </div>
+
+    <div class="draft-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Pick</th>
+            <th>Rnd</th>
+            <th>Jugador</th>
+            <th>Pos</th>
+            <th>Valor KTC 2025</th>
+            <th>Rating</th>
+            <th>Veredicto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2018</td>
+            <td><span class="pick-badge badge-r1">1.03</span></td>
+            <td>1</td>
+            <td>Rashaad Penny</td>
+            <td>RB</td>
+            <td>—</td>
+            <td class="draft-rating-neg">−35.2</td>
+            <td>Lesiones crónicas, nunca rindió</td>
+          </tr>
+          <tr>
+            <td>2018</td>
+            <td><span class="pick-badge badge-r2">2.03</span></td>
+            <td>2</td>
+            <td>Sam Bradford</td>
+            <td>QB</td>
+            <td>—</td>
+            <td class="draft-rating-neg">−19.0</td>
+            <td>Se retiró al año siguiente</td>
+          </tr>
+          <tr>
+            <td>2019</td>
+            <td><span class="pick-badge badge-r1">1.01</span></td>
+            <td>1</td>
+            <td>Josh Jacobs</td>
+            <td>RB</td>
+            <td>53</td>
+            <td class="draft-rating-neg">−10.6</td>
+            <td>Pick caro por RB que perdió valor</td>
+          </tr>
+          <tr>
+            <td>2019</td>
+            <td><span class="pick-badge badge-r1">1.02</span></td>
+            <td>1</td>
+            <td>N'Keal Harry</td>
+            <td>WR</td>
+            <td>—</td>
+            <td class="draft-rating-neg">−45.0</td>
+            <td>El bust más grande de su clase</td>
+          </tr>
+          <tr style="background:#F0FFF4">
+            <td>2019</td>
+            <td><span class="pick-badge badge-r1">1.10</span></td>
+            <td>1</td>
+            <td><strong>A.J. Brown</strong></td>
+            <td>WR</td>
+            <td>53</td>
+            <td class="draft-rating-pos">+34.1</td>
+            <td>✓ Único acierto real de esa clase</td>
+          </tr>
+          <tr style="background:#F0FFF4">
+            <td>2019</td>
+            <td><span class="pick-badge badge-r1">1.12</span></td>
+            <td>1</td>
+            <td><strong>T.J. Hockenson</strong></td>
+            <td>TE</td>
+            <td>24</td>
+            <td class="draft-rating-pos">+11.4</td>
+            <td>✓ Buen TE, pero ya no está</td>
+          </tr>
+          <tr>
+            <td>2020</td>
+            <td><span class="pick-badge badge-r1">1.07</span></td>
+            <td>1</td>
+            <td>Jerry Jeudy</td>
+            <td>WR</td>
+            <td>21</td>
+            <td class="draft-rating-pos">+9.3</td>
+            <td>Correcto pero sin impacto top</td>
+          </tr>
+          <tr>
+            <td>2020</td>
+            <td><span class="pick-badge badge-r1">1.09</span></td>
+            <td>1</td>
+            <td>Jalen Reagor</td>
+            <td>WR</td>
+            <td>—</td>
+            <td class="draft-rating-neg">−12.5</td>
+            <td>Bust claro, fuera de la liga</td>
+          </tr>
+          <tr>
+            <td>2021</td>
+            <td><span class="pick-badge badge-r1">1.09</span></td>
+            <td>1</td>
+            <td>Trevor Lawrence</td>
+            <td>QB</td>
+            <td>32</td>
+            <td class="draft-rating-pos">+3.2</td>
+            <td>Aún en el roster, en desarrollo</td>
+          </tr>
+          <tr>
+            <td>2022</td>
+            <td><span class="pick-badge badge-r1">1.03</span></td>
+            <td>1</td>
+            <td><strong>Kenneth Walker</strong></td>
+            <td>RB</td>
+            <td>60</td>
+            <td class="draft-rating-pos">+11.75</td>
+            <td>✓ Ya no está en el roster</td>
+          </tr>
+          <tr>
+            <td>2022</td>
+            <td><span class="pick-badge badge-r1">1.08</span></td>
+            <td>1</td>
+            <td>Skyy Moore</td>
+            <td>WR</td>
+            <td>10</td>
+            <td class="draft-rating-neg">−16.0</td>
+            <td>Nunca despegó en KC</td>
+          </tr>
+          <tr>
+            <td>2022</td>
+            <td><span class="pick-badge badge-r2">2.06</span></td>
+            <td>2</td>
+            <td>David Bell</td>
+            <td>WR</td>
+            <td>1.75</td>
+            <td class="draft-rating-neg">−14.3</td>
+            <td>Prácticamente inactivo</td>
+          </tr>
+          <tr>
+            <td>2024</td>
+            <td><span class="pick-badge badge-r1">1.10</span></td>
+            <td>1</td>
+            <td>Keon Coleman</td>
+            <td>WR</td>
+            <td>30.5</td>
+            <td class="draft-rating-pos">+6.5</td>
+            <td>Prometedor, pero ya no está</td>
+          </tr>
+          <tr>
+            <td>2024</td>
+            <td><span class="pick-badge badge-r1">3.11</span></td>
+            <td>3</td>
+            <td><strong>Bo Nix</strong></td>
+            <td>QB</td>
+            <td>38</td>
+            <td class="draft-rating-pos">+33.0</td>
+            <td>✓ El QB del presente</td>
+          </tr>
+          <tr style="background:#F0FFF4">
+            <td>2025</td>
+            <td><span class="pick-badge badge-r1">1.06</span></td>
+            <td>1</td>
+            <td><strong>Quinshon Judkins</strong></td>
+            <td>RB</td>
+            <td>61</td>
+            <td class="draft-rating-pos">+29.0</td>
+            <td>✓ RB con alto techo — ya no en roster</td>
+          </tr>
+          <tr>
+            <td>2025</td>
+            <td><span class="pick-badge badge-r1">1.11</span></td>
+            <td>1</td>
+            <td><strong>RJ Harvey</strong></td>
+            <td>RB</td>
+            <td>51</td>
+            <td class="draft-rating-pos">+28.0</td>
+            <td>✓ Starter activo en el roster</td>
+          </tr>
+          <tr>
+            <td>2025</td>
+            <td><span class="pick-badge badge-r2">2.06</span></td>
+            <td>2</td>
+            <td><strong>Cam Ward</strong></td>
+            <td>QB</td>
+            <td>34</td>
+            <td class="draft-rating-pos">+18.0</td>
+            <td>✓ QB #1 pick draft NFL 2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>Draft rating acumulado de picks R1 y R2 por año (suma de valor ganado/perdido)</h3>
+      <div class="chart-canvas-wrap" style="height:220px">
+        <canvas id="draftChart" role="img" aria-label="Rating acumulado de picks de primera y segunda ronda de los Tumbapatos por año de draft, de 2018 a 2025.">Los años 2018, 2020 y 2022 tuvieron ratings negativos. Solo 2025 fue claramente positivo.</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Rating negativo (capital perdido)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27AE60"></div>Rating positivo (capital ganado)</div>
+      </div>
+    </div>
+
+    <p>La tendencia más reciente es esperanzadora: la clase 2025 fue la mejor de la historia de la franquicia en términos de retorno de capital, con Cam Ward y RJ Harvey aportando valor real al roster actual. La pregunta es si el dueño logrará mantener esas piezas el tiempo suficiente para convertirlas en victorias — el historial sugiere que hay una tendencia a deshacerse de talento antes de que madure.</p>
+  </div>
+</section>
+
+<!-- ROSTER 2026 -->
+<section class="section">
+  <div class="container">
+    <p class="section-tag">Evaluación del plantel</p>
+    <h2 class="section-title">El roster <span>2026</span></h2>
+
+    <p>Por primera vez en la historia de la franquicia, los Tumbapatos tienen un grupo de receptores que inspira respeto genuino en toda la liga. La contradicción es que el talento está distribuido de manera asimétrica: brillante donde menos se necesita, escaso donde más duele.</p>
+
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="pos-header">
+          <span class="pos-name">QUARTERBACKS</span>
+          <span class="pos-rank-badge rank-mid">5° / 12</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Bo Nix</div><div class="player-meta">DEN · QB11 KTC · 25 años</div></div>
+          <span class="player-ktc">4,970</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Cam Ward</div><div class="player-meta">TEN · QB17 KTC · 23 años</div></div>
+          <span class="player-ktc">4,372</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Malik Willis</div><div class="player-meta">QB23 KTC</div></div>
+          <span class="player-ktc">3,734</span>
+        </div>
+      </div>
+
+      <div class="pos-card">
+        <div class="pos-header">
+          <span class="pos-name">RUNNING BACKS</span>
+          <span class="pos-rank-badge rank-bad">11° / 12</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">RJ Harvey</div><div class="player-meta">DEN · RB27 KTC · 23 años</div></div>
+          <span class="player-ktc">4,323</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Blake Corum</div><div class="player-meta">LA · RB31 KTC</div></div>
+          <span class="player-ktc">4,073</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Rachaad White</div><div class="player-meta">TB · RB45 KTC</div></div>
+          <span class="player-ktc">3,412</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Tank Bigsby</div><div class="player-meta">JAX · RB56 KTC</div></div>
+          <span class="player-ktc">2,924</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Isiah Pacheco</div><div class="player-meta">KC · RB60 KTC</div></div>
+          <span class="player-ktc">2,830</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Devin Neal</div><div class="player-meta">RB64 KTC · Novato</div></div>
+          <span class="player-ktc">2,643</span>
+        </div>
+      </div>
+
+      <div class="pos-card">
+        <div class="pos-header">
+          <span class="pos-name">WIDE RECEIVERS</span>
+          <span class="pos-rank-badge rank-good">4° / 12</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Jaylen Waddle</div><div class="player-meta">MIA · WR26 KTC · 26 años</div></div>
+          <span class="player-ktc">5,541</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Jameson Williams</div><div class="player-meta">DET · WR28 KTC · 24 años</div></div>
+          <span class="player-ktc">5,528</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Rashee Rice</div><div class="player-meta">KC · WR29 KTC · 24 años</div></div>
+          <span class="player-ktc">5,356</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Christian Watson</div><div class="player-meta">GB · WR34 KTC</div></div>
+          <span class="player-ktc">4,667</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Xavier Worthy</div><div class="player-meta">KC · WR47 KTC</div></div>
+          <span class="player-ktc">4,179</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Davante Adams</div><div class="player-meta">LV · WR49 KTC</div></div>
+          <span class="player-ktc">4,173</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Mike Evans</div><div class="player-meta">TB · WR51 KTC</div></div>
+          <span class="player-ktc">4,101</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Courtland Sutton + 4 más</div><div class="player-meta">WR55–WR126</div></div>
+          <span class="player-ktc">profund.</span>
+        </div>
+      </div>
+
+      <div class="pos-card">
+        <div class="pos-header">
+          <span class="pos-name">TIGHT ENDS</span>
+          <span class="pos-rank-badge rank-bad">10° / 12</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Isaiah Likely</div><div class="player-meta">BAL · TE12 KTC</div></div>
+          <span class="player-ktc">4,168</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Mason Taylor</div><div class="player-meta">NYJ · TE27 KTC · Novato</div></div>
+          <span class="player-ktc">2,895</span>
+        </div>
+        <div class="player-row">
+          <div><div class="player-name">Ja'Tavion Sanders</div><div class="player-meta">TE34 KTC</div></div>
+          <span class="player-ktc">2,623</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>Valor KTC por posición vs promedio esperado de liga (estimado top-4 titulares)</h3>
+      <div class="chart-canvas-wrap" style="height:200px">
+        <canvas id="rosterChart" role="img" aria-label="Valor KTC acumulado de los mejores jugadores por posición en el roster de Tumbapatos para 2026.">Tumbapatos tiene ventaja clara en WR, posición media en QB, y debilidad en RB y TE.</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Tumbapatos FC</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(136,136,136,0.4)"></div>Referencia de liga (estimado)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVISION -->
+<section class="section">
+  <div class="container">
+    <p class="section-tag">División Luis Castillo</p>
+    <h2 class="section-title">El camino a <span>playoffs</span></h2>
+
+    <p>Para clasificar como primero o segundo de la División Luis Castillo, los Tumbapatos deben superar a rivales con los que históricamente han tenido dificultades. La división se compone de cuatro equipos: Delfines de Tabasco y Espejitos FFT son rivales establecidos con récords superiores, mientras que Backfield Penetration es el equipo recién ingresado que en 2025 resultó ser el punching bag de la división.</p>
+
+    <div class="div-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Equipo</th>
+            <th>Récord hist.</th>
+            <th>% Vic</th>
+            <th>Pts/sem prom.</th>
+            <th>Mejor temp.</th>
+            <th>Playoffs hist.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Espejitos FFT</strong> <span class="highlight gold">Favorito</span></td>
+            <td>63–48</td>
+            <td>57%</td>
+            <td>155.4</td>
+            <td>11–4 (2024)</td>
+            <td>Múltiples</td>
+          </tr>
+          <tr>
+            <td><strong>Delfines de Tabasco</strong></td>
+            <td>70–54</td>
+            <td>56%</td>
+            <td>137.4</td>
+            <td>11–4 (2021, 2023)</td>
+            <td>Múltiples</td>
+          </tr>
+          <tr class="team-tumba">
+            <td><strong>Tumbapatos FC</strong> <span class="highlight">Nosotros</span></td>
+            <td>36–75</td>
+            <td>32%</td>
+            <td>125.9</td>
+            <td>7–8 (2023)</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td><strong>Backfield Penetration</strong> <span class="highlight green">Ventaja</span></td>
+            <td>2–12</td>
+            <td>14%</td>
+            <td>108.0</td>
+            <td>2–12 (2025)</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-mid);margin:1.5rem 0 .8rem">Historial de enfrentamientos directos vs rivales de división</h3>
+
+    <div class="h2h-block">
+      <div class="h2h-item">
+        <div class="h2h-header">
+          <span class="h2h-name">vs Espejitos FFT</span>
+          <span class="h2h-record">3–11 · Racha: 4 derrotas seguidas</span>
+        </div>
+        <div class="h2h-bar-track">
+          <div class="h2h-bar-fill" style="width:21.4%"></div>
+        </div>
+        <div class="h2h-pts">
+          <span>Tumba avg: 121.1 pts/sem</span>
+          <span>Espejitos avg: 146.3 pts/sem</span>
+        </div>
+      </div>
+
+      <div class="h2h-item">
+        <div class="h2h-header">
+          <span class="h2h-name">vs Delfines de Tabasco</span>
+          <span class="h2h-record">3–8 · Última victoria: sem. 13 de 2025</span>
+        </div>
+        <div class="h2h-bar-track">
+          <div class="h2h-bar-fill" style="width:27.3%"></div>
+        </div>
+        <div class="h2h-pts">
+          <span>Tumba avg: 126.3 pts/sem</span>
+          <span>Delfines avg: 144.9 pts/sem</span>
+        </div>
+      </div>
+
+      <div class="h2h-item">
+        <div class="h2h-header">
+          <span class="h2h-name">vs Backfield Penetration</span>
+          <span class="h2h-record">2–0 · Invictos en el historial</span>
+        </div>
+        <div class="h2h-bar-track">
+          <div class="h2h-bar-fill" style="width:100%;background:var(--green)"></div>
+        </div>
+        <div class="h2h-pts">
+          <span>Tumba avg: 153.7 pts/sem</span>
+          <span>Backfield avg: 106.6 pts/sem</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <h3>Puntos anotados por temporada — División Luis Castillo</h3>
+      <div class="chart-canvas-wrap" style="height:280px">
+        <canvas id="divChart" role="img" aria-label="Comparativa de puntos totales por temporada entre los equipos de la División Luis Castillo de 2018 a 2025.">Espejitos FFT domina la división en puntos. Tumbapatos siempre ha sido el último de la división.</canvas>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C0392B"></div>Tumbapatos FC</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27AE60"></div>Espejitos FFT</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1A7AB5"></div>Delfines de Tabasco</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#888"></div>Backfield Penetration</div>
+      </div>
+    </div>
+
+    <div class="verdict-box">
+      <strong>La ecuación divisional para 2026:</strong> Backfield Penetration (2–12 en 2025, 108 pts/sem promedio) es prácticamente puntos garantizados en los dos enfrentamientos directos. Ganar los dos partidos vs Delfines es factible si el backfield mejora — el histórico 3-8 se explica en parte porque Tumbapatos ha promediado 18 puntos menos por juego contra ellos. El escollo mayor es Espejitos FFT, que con su producción consistente (+155 pts/sem promedio histórico) necesita que los Tumbapatos jueguen cerca de su techo para ser derrotados. Dos victorias sobre ellos en 14 semanas es el objetivo que separa la clasificación del noveno lugar.
+    </div>
+  </div>
+</section>
+
+<!-- OUTLOOK -->
+<section class="section">
+  <div class="container">
+    <p class="section-tag">Perspectiva 2026</p>
+    <h2 class="section-title">El veredicto: <span>ahora o nunca</span></h2>
+
+    <p>Con ocho plazas de playoffs disponibles sobre doce equipos, la estadística básica dice que cualquier equipo con rendimiento promedio debería clasificar. Los Tumbapatos han estado por debajo del promedio durante ocho años seguidos. La buena noticia es que el roster 2026 tiene más talento que cualquier edición anterior — la mala, que el talento está en la posición equivocada.</p>
+
+    <div class="outlook-grid">
+      <div class="outlook-card positive">
+        <span class="outlook-icon">📡</span>
+        <h4>Fortaleza WR</h4>
+        <p>Waddle, Williams y Rice son tres WR top-30 dynasty. La posición es 4ta de 12 en la liga y constituye la mejor moneda de cambio para negociar.</p>
+      </div>
+      <div class="outlook-card warning">
+        <span class="outlook-icon">⚡</span>
+        <h4>QB en transición</h4>
+        <p>Bo Nix (QB11) consolidó su primera temporada. Cam Ward tiene el upside más alto de cualquier QB de su clase. La posición puede ser top-5 si ambos se desarrollan.</p>
+      </div>
+      <div class="outlook-card danger">
+        <span class="outlook-icon">🚨</span>
+        <h4>Backfield crítico</h4>
+        <p>Ningún RB en el top 25 de la liga. RJ Harvey (RB27) es prometedor pero es novato. En PPR, los RBs siguen siendo el motor diferenciador semana a semana.</p>
+      </div>
+      <div class="outlook-card positive">
+        <span class="outlook-icon">🗓</span>
+        <h4>División accesible</h4>
+        <p>Backfield Penetration garantiza puntos. Los Delfines están al alcance. Solo Espejitos es un muro real. El camino al título divisional existe.</p>
+      </div>
+      <div class="outlook-card warning">
+        <span class="outlook-icon">📊</span>
+        <h4>Isaiah Likely</h4>
+        <p>TE12 es respetable pero el hueco detrás de él es real. Mason Taylor (novato Jets) tiene potencial, pero depende del desarrollo de Aaron Rodgers a los 42 años.</p>
+      </div>
+      <div class="outlook-card positive">
+        <span class="outlook-icon">💰</span>
+        <h4>Capital de draft</h4>
+        <p>Por primera vez en años el roster base es sólido y las picks disponibles pueden usarse para buscar el RB que falta en lugar de reconstruir desde cero.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--black);color:#fff;padding:2rem;margin-top:1.5rem">
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;color:var(--red-light);margin-bottom:.8rem">La recomendación del analista</p>
+      <p style="color:rgba(255,255,255,0.8);font-size:.9rem;margin-bottom:.8rem">
+        El camino más corto hacia los playoffs pasa por <strong style="color:#fff">convertir el excedente de WR en un RB de impacto</strong> antes del kickoff de la Semana 1. Waddle, Williams y Rice son tres activos altamente cotizados en el mercado de dynasty — conservar dos de ellos sigue dejando a los Tumbapatos en el top-6 de receivers de la liga, mientras que el tercero puede financiar un Running Back entre RB10 y RB20.
+      </p>
+      <p style="color:rgba(255,255,255,0.8);font-size:.9rem;margin-bottom:0">
+        Si el backfield no se refuerza, los Tumbapatos dependerán de que WRs como Jameson Williams (históricamente volátil) y Rashee Rice (en recuperación de lesión) tengan temporadas limpias y de alto volumen simultáneamente. En ocho años esta franquicia ha apostado repetidamente por escenarios optimistas que no se materializaron. Para 2026, con 8 de 12 plazas disponibles, la pregunta no es si los Tumbapatos tienen talento para clasificar — es si finalmente harán el movimiento que convierte el talento en victorias.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  Liga Fantasy TVC Deportes · Análisis Tumbapatos FC · Temporada 2026 · Datos: Sleeper / KTC / Concentrado de Resultados histórico
+</footer>
+
+<script>
+Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
+Chart.defaults.color = '#888';
+
+// 1. PUNTOS POR SEMANA
+new Chart(document.getElementById('ptsChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+    datasets: [
+      {
+        label: 'Tumbapatos FC',
+        data: [127.9, 139.0, 127.6, 128.0, 121.1, 130.4, 109.2, 126.4],
+        backgroundColor: '#C0392B',
+        borderRadius: 3,
+        order: 2
+      },
+      {
+        label: 'Promedio liga',
+        data: [145.3, 144.2, 144.3, 143.9, 137.6, 139.0, 140.5, 141.4],
+        type: 'line',
+        borderColor: 'rgba(39,174,96,0.7)',
+        backgroundColor: 'rgba(39,174,96,0.1)',
+        borderWidth: 2,
+        borderDash: [5,4],
+        pointRadius: 4,
+        pointBackgroundColor: 'rgba(39,174,96,0.7)',
+        fill: false,
+        tension: 0.3,
+        order: 1
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { min: 90, max: 160, grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// 2. RANKING PTS
+new Chart(document.getElementById('rankChart'), {
+  type: 'line',
+  data: {
+    labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+    datasets: [
+      {
+        label: 'Ranking Tumbapatos',
+        data: [10, 8, 10, 9, 10, 7, 12, 11],
+        borderColor: '#C0392B',
+        backgroundColor: 'rgba(192,57,43,0.1)',
+        borderWidth: 2,
+        pointRadius: 5,
+        pointBackgroundColor: '#C0392B',
+        fill: true,
+        tension: 0.3
+      },
+      {
+        label: 'Línea playoffs (top 8)',
+        data: [8, 8, 8, 8, 8, 8, 8, 8],
+        borderColor: 'rgba(212,160,23,0.6)',
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        fill: false
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: {
+        min: 1, max: 12,
+        reverse: true,
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: {
+          stepSize: 1,
+          font: { size: 11 },
+          callback: v => v + '°'
+        }
+      }
+    }
+  }
+});
+
+// 3. DRAFT RATINGS
+const draftRatings = {
+  2018: -35.2 + (-19) + 0.6 + (-1) + (-0.5),
+  2019: -10.6 + (-45) + 34.1 + 11.4 + (-0.5),
+  2020: 9.3 + (-12.5) + (-2.7) + 8.8 + 0.75,
+  2021: 3.2 + (-12.6) + 7.7 + (-5.7) + 1.3,
+  2022: 11.75 + (-16) + (-14.3) + 2.75,
+  2023: 14.3 + 4.7 + 0.3 + 0 + 8.7 + 9.3,
+  2024: 6.5 + 33,
+  2025: 29 + 28 + 18 + 24 + (-1) + 0 + 6 + 26
+};
+const dRatVals = Object.values(draftRatings).map(v => Math.round(v * 10) / 10);
+new Chart(document.getElementById('draftChart'), {
+  type: 'bar',
+  data: {
+    labels: Object.keys(draftRatings),
+    datasets: [{
+      label: 'Rating acumulado',
+      data: dRatVals,
+      backgroundColor: dRatVals.map(v => v >= 0 ? '#27AE60' : '#C0392B'),
+      borderRadius: 3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: {
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: { font: { size: 11 } },
+        afterDataLimits(scale) { scale.max += 10; scale.min -= 5; }
+      }
+    }
+  }
+});
+
+// 4. ROSTER VALUE
+new Chart(document.getElementById('rosterChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Quarterback', 'Running Back', 'Wide Receiver', 'Tight End'],
+    datasets: [
+      {
+        label: 'Tumbapatos FC',
+        data: [9342, 12469, 19016, 4168],
+        backgroundColor: '#C0392B',
+        borderRadius: 3
+      },
+      {
+        label: 'Ref. liga (est.)',
+        data: [10500, 18000, 16500, 7500],
+        backgroundColor: 'rgba(136,136,136,0.35)',
+        borderRadius: 3
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.raw.toLocaleString()} KTC` } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 }, callback: v => (v/1000).toFixed(0)+'k' } }
+    }
+  }
+});
+
+// 5. DIVISION CHART
+new Chart(document.getElementById('divChart'), {
+  type: 'line',
+  data: {
+    labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+    datasets: [
+      {
+        label: 'Tumbapatos FC',
+        data: [1663, 1808, 1659, 1792, 1695, 1956, 1638, 1769],
+        borderColor: '#C0392B', backgroundColor: 'rgba(192,57,43,0.08)',
+        borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#C0392B',
+        fill: true, tension: 0.3
+      },
+      {
+        label: 'Espejitos FFT',
+        data: [1728, 2078, 2228, 2127, 2209, 2423, 2444, 2018],
+        borderColor: '#27AE60', backgroundColor: 'rgba(39,174,96,0.05)',
+        borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#27AE60',
+        fill: false, tension: 0.3
+      },
+      {
+        label: 'Delfines de Tabasco',
+        data: [1886, 1680, 1890, 2149, 2023, 2047, 1798, 1822],
+        borderColor: '#1A7AB5', backgroundColor: 'transparent',
+        borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#1A7AB5',
+        fill: false, tension: 0.3
+      },
+      {
+        label: 'Backfield Penetration',
+        data: [null, null, null, null, null, null, null, 1512],
+        borderColor: '#888', backgroundColor: 'transparent',
+        borderWidth: 1.5, pointRadius: 4, pointBackgroundColor: '#888',
+        borderDash: [4,3], fill: false, tension: 0.3
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { min: 1400, max: 2600, grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 }, callback: v => v.toLocaleString() } }
+    }
+  }
+});
+</script>
+</body>
+</html>
+HTMLEOF
