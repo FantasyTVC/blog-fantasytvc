@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft de Novatos 2026 — Primera Ronda | Liga Fantasy TVC Deportes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8C44A;
+    --gold-dim: #b09636;
+    --red: #C0392B;
+    --dark: #0D0D0D;
+    --dark2: #161616;
+    --dark3: #1F1F1F;
+    --card: #242424;
+    --border: #2e2e2e;
+    --text: #E8E8E8;
+    --muted: #888;
+    --green: #27AE60;
+    --blue: #2980B9;
+    --orange: #E67E22;
+    --purple: #8E44AD;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    background: linear-gradient(135deg, #0D0D0D 0%, #1a1200 50%, #0D0D0D 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(232,196,74,0.12) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 96px);
+    letter-spacing: 2px;
+    line-height: 0.95;
+    color: #fff;
+    position: relative;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    margin-top: 16px;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    margin-top: 24px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    position: relative;
+  }
+
+  /* ====== LAYOUT ====== */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .section-lead {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  p { margin-bottom: 14px; color: #ccc; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ====== PICK BOARD ====== */
+  .pick-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .pick-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--pos-color);
+    padding: 18px 20px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .pick-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .pick-player {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pick-pos-team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .pos-badge {
+    background: var(--pos-color);
+    color: #000;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+  }
+  .nfl-team {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .pick-owner {
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .pick-owner strong { color: var(--gold); }
+  .pick-grade {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .grade-a { color: #2ecc71; }
+  .grade-b { color: #3498db; }
+  .grade-c { color: var(--gold); }
+  .grade-d { color: #e74c3c; }
+
+  /* ====== POSITION BREAKDOWN ====== */
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .breakdown-card {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    padding: 22px;
+    text-align: center;
+  }
+  .breakdown-card .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--pos-color2);
+  }
+  .breakdown-card .pos-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .breakdown-card .pos-names {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 10px;
+    line-height: 1.8;
+  }
+
+  /* ====== CHART: horizontal bars ====== */
+  .bar-chart { margin-top: 32px; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+  .bar-label {
+    width: 150px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ccc;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .bar-track {
+    flex: 1;
+    background: var(--dark3);
+    height: 28px;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--bar-color);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
+    transition: width 1s ease;
+  }
+  .bar-note {
+    width: 60px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ====== DELFINES CALLOUT ====== */
+  .callout-box {
+    background: linear-gradient(135deg, rgba(192,57,43,0.15), rgba(192,57,43,0.05));
+    border: 1px solid rgba(192,57,43,0.4);
+    border-left: 4px solid var(--red);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .callout-box.gold-box {
+    background: linear-gradient(135deg, rgba(232,196,74,0.1), rgba(232,196,74,0.03));
+    border: 1px solid rgba(232,196,74,0.3);
+    border-left: 4px solid var(--gold);
+  }
+  .callout-box.green-box {
+    background: linear-gradient(135deg, rgba(39,174,96,0.1), rgba(39,174,96,0.03));
+    border: 1px solid rgba(39,174,96,0.3);
+    border-left: 4px solid var(--green);
+  }
+  .callout-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  /* ====== RANKINGS TABLE ====== */
+  .rankings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 13px;
+  }
+  .rankings-table th {
+    background: var(--dark3);
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--gold-dim);
+  }
+  .rankings-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #ccc;
+    vertical-align: middle;
+  }
+  .rankings-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .rankings-table .rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--gold);
+    width: 40px;
+  }
+  .rankings-table .player-name { font-weight: 600; color: #fff; }
+  .rankings-table .match { color: #2ecc71; font-weight: 700; }
+  .rankings-table .drop { color: #e74c3c; }
+  .rankings-table .rise { color: #3498db; }
+
+  /* ====== TEAM GRADES ====== */
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .team-grade-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .tg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; }
+  .team-div { font-size: 11px; color: var(--muted); }
+  .tg-grade {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    line-height: 1;
+  }
+  .picks-list { font-size: 12px; color: #aaa; margin-top: 10px; }
+  .picks-list li { padding: 3px 0; list-style: none; border-bottom: 1px solid var(--border); }
+  .picks-list li:last-child { border: none; }
+  .picks-list .p-pos { display: inline-block; width: 30px; font-weight: 700; }
+  .tg-analysis { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; }
+
+  /* ====== DONUT CHART SVG ====== */
+  .chart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .donut-legend { flex: 1; min-width: 200px; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-count { font-weight: 700; margin-left: auto; color: #fff; }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--dark2);
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .footer strong { color: var(--gold); }
+
+  /* ====== TIER STRIP ====== */
+  .tier-strip {
+    display: flex;
+    gap: 0;
+    margin: 28px 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .tier-cell {
+    flex: 1;
+    padding: 16px 12px;
+    background: var(--tier-bg);
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+  .tier-cell:last-child { border-right: none; }
+  .tier-label { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--muted); letter-spacing: 2px; margin-bottom: 8px; }
+  .tier-players { font-size: 11px; color: #ccc; line-height: 1.9; }
+  .tier-players span { display: block; }
+
+  @media (max-width: 600px) {
+    .pick-board { grid-template-columns: 1fr; }
+    .bar-label { width: 110px; font-size: 11px; }
+    .tier-strip { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Liga Fantasy TVC Deportes · Análisis Periodístico</div>
+  <h1>Draft de <span>Novatos</span><br>2026</h1>
+  <div class="hero-sub">Análisis completo de la Primera Ronda — 12 selecciones, 12 apuestas al futuro</div>
+  <div class="hero-badge">29 de Mayo, 2026</div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="container">
+    <h2>El Veredicto de la Primera Ronda</h2>
+    <div class="section-lead">Contexto y análisis general</div>
+    <p>La primera ronda del Draft de Novatos 2026 de la Liga Fantasy TVC Deportes quedó marcada por la hegemonía de los receptores abiertos, la audacia de los Delfines de Tabasco —que dominaron el mercado con tres selecciones— y la captura del talento más deseado del ciclo: Jeremiyah Love, el corredor que intenta convertirse en el primer RB seleccionado en el top-5 desde Saquon Barkley en 2018.</p>
+    <p>Esta clase de novatos 2026 tiene fortaleza en los primeros cuatro picks y una caída pronunciada hacia el final del primer turno. La liga navegó esa realidad con distintas filosofías: algunos apostaron por el techo alto, otros por el volumen en posiciones de necesidad, y los Delfines simplemente hicieron todo lo anterior tres veces.</p>
+
+    <div class="callout-box gold-box">
+      <div class="callout-title">📋 La Clase en Números</div>
+      <p>12 selecciones · 7 Receptores Abiertos (WR) · 2 Corredores (RB) · 1 Ala Cerrada (TE) · 1 Quarterback (QB) · 1 TE adicional — El WR domina la ronda con 58% de las picks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD COMPLETO -->
+<section>
+  <div class="container">
+    <h2>El Tablero Completo</h2>
+    <div class="section-lead">Primera Ronda — Picks 1.01 al 1.12</div>
+
+    <div class="pick-board">
+
+      <!-- 1.01 -->
+      <div class="pick-card" style="--pos-color: #27AE60;">
+        <div class="pick-num">PICK 1.01 · ZORRITOS JR</div>
+        <div class="pick-player">Jeremiyah Love</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;">RB</span>
+          <span class="nfl-team">Arizona Cardinals</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">El RB1 indiscutible del ciclo. Notre Dame. 6'0", 214 lbs. Corredor explosivo con visión elite, velocidad de largo aliento y capacidad como receptor. Perfil de All-Pro a largo plazo con tintes de Ahman Green.</p>
+        <div class="pick-grade grade-a">A+</div>
+        <div class="pick-owner">Seleccionado por <strong>Zorritos Jr</strong></div>
+      </div>
+
+      <!-- 1.02 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.02 · HIJOS DEL SALARIO MÍNIMO</div>
+        <div class="pick-player">Carnell Tate</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Tennessee Titans</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">WR1 de la clase en formatos 1QB. Ohio State. Destino ideal en Tennessee donde puede acumular volumen de targets desde el día uno. Algunos expertos lo tienen como el mejor receptor de este ciclo.</p>
+        <div class="pick-grade grade-a">A</div>
+        <div class="pick-owner">Seleccionado por <strong>Hijos del Salario Mínimo</strong></div>
+      </div>
+
+      <!-- 1.03 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.03 · TUMBAPATOS FC</div>
+        <div class="pick-player">Makai Lemon</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Philadelphia Eagles</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">Temporada de breakout en 2025: 79 recepciones, 1,156 yardas, 11 TDs. PFSN WR Impact Score de 85.1. Aterrizó en Filadelfia en una ofensiva sólida. Compite con Tyson por el WR2 de la clase.</p>
+        <div class="pick-grade grade-a">A</div>
+        <div class="pick-owner">Seleccionado por <strong>Tumbapatos FC</strong></div>
+      </div>
+
+      <!-- 1.04 -->
+      <div class="pick-card" style="--pos-color: #27AE60;">
+        <div class="pick-num">PICK 1.04 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Jadarian Price</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;">RB</span>
+          <span class="nfl-team">Seattle Seahawks</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">RB2 de la clase. Ex compañero de backfield de Love en Notre Dame. Métricas por toque de élite. La preocupación: situación compartida en Seattle. Si logra el rol estelar, el upside es enorme.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(1ª pick)</em></div>
+      </div>
+
+      <!-- 1.05 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.05 · IRON CHEF DYNASTY</div>
+        <div class="pick-player">Jordyn Tyson</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">New Orleans Saints</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">Muchos analistas lo tienen como WR1 del ciclo en su Big Board. Saints le ofrecen una oportunidad real de targets. El debate Tyson vs. Tate es el más polarizante de esta clase.</p>
+        <div class="pick-grade grade-a">A−</div>
+        <div class="pick-owner">Seleccionado por <strong>Iron Chef Dynasty</strong></div>
+      </div>
+
+      <!-- 1.06 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.06 · GARROBOS DE HIERRO</div>
+        <div class="pick-player">KC Concepción</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Cleveland Browns</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">Texas A&M. Los Browns lo seleccionaron en 1ª ronda NFL. Destino cuestionado por la calidad de la franquicia, pero su capacidad con la pelota en mano post-recepción lo mantiene como valor sólido.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Garrobos de Hierro</strong></div>
+      </div>
+
+      <!-- 1.07 -->
+      <div class="pick-card" style="--pos-color: #8E44AD;">
+        <div class="pick-num">PICK 1.07 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Kenyon Sadiq</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;">TE</span>
+          <span class="nfl-team">New York Jets</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">TE1 del ciclo. Los Jets lo ubican como blanco prioritario en su sistema. En PPR el TE con uso garantizado puede ser diferencial de semana en semana. Segundo pick de los Delfines.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(2ª pick)</em></div>
+      </div>
+
+      <!-- 1.08 -->
+      <div class="pick-card" style="--pos-color: #27AE60;">
+        <div class="pick-num">PICK 1.08 · TUMBAPATOS FC</div>
+        <div class="pick-player">Jonah Coleman</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;">RB</span>
+          <span class="nfl-team">Denver Broncos</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">El ex Husky muestra perfil de back de tres downs según analistas. Denver puede ser buen aterrizaje. Tumbapatos construye un backfield de futuro con Lemon + Coleman. Riesgo moderado, techo alto.</p>
+        <div class="pick-grade grade-b">B−</div>
+        <div class="pick-owner">Seleccionado por <strong>Tumbapatos FC</strong> <em>(2ª pick)</em></div>
+      </div>
+
+      <!-- 1.09 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.09 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">Denzel Boston</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Cleveland Browns</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">Receptor X de perfil clásico: alto, largo, manos de velcro. Sus números en 2025 sufrieron por falta de QB de calidad. En Cleveland tendrá que demostrar su valor en un ambiente exigente. El riesgo es real.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong></div>
+      </div>
+
+      <!-- 1.10 -->
+      <div class="pick-card" style="--pos-color: #3498DB;">
+        <div class="pick-num">PICK 1.10 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Omar Cooper Jr.</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">New York Jets</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">Los Jets lo subieron en el draft NFL. Su capacidad YAC es su mayor diferenciador frente a Concepción. Coincide con Sadiq en la misma franquicia, lo cual es un riesgo y una oportunidad de volumen. Tercer pick de los Delfines.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(3ª pick)</em></div>
+      </div>
+
+      <!-- 1.11 -->
+      <div class="pick-card" style="--pos-color: #E67E22;">
+        <div class="pick-num">PICK 1.11 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Fernando Mendoza</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#E67E22;">QB</span>
+          <span class="nfl-team">Las Vegas Raiders — Pick #1 Overall NFL</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">QB1 de la clase. Seleccionado #1 por los Raiders. Comparado con Joe Burrow por su colocación de balón. En formato 1QB su valor baja, pero en Superflex es pick de 1ª ronda garantizado. Los Raiders reconstruyeron su línea ofensiva.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong></div>
+      </div>
+
+      <!-- 1.12 -->
+      <div class="pick-card" style="--pos-color: #8E44AD;">
+        <div class="pick-num">PICK 1.12 · SEAHAWKMANIA</div>
+        <div class="pick-player">Eli Stowers</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;">TE</span>
+          <span class="nfl-team">Philadelphia Eagles</span>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-bottom:8px;">TE2 de la clase. Producción sólida y buen aterrizaje en Filadelfia. Muchos analistas lo colocan entre el último del primer turno y el primero del segundo. El debate Stowers vs. Sadiq define el valor de los TEs del ciclo.</p>
+        <div class="pick-grade grade-b">B−</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="container">
+    <h2>Clasificación por Niveles</h2>
+    <div class="section-lead">Jerarquía de valor dynasty en formato 1QB</div>
+
+    <div class="tier-strip">
+      <div class="tier-cell" style="--tier-bg: rgba(39,174,96,0.15);">
+        <div class="tier-label" style="color:#27AE60;">ÉLITE</div>
+        <div class="tier-players">
+          <span>Jeremiyah Love</span>
+          <span>Carnell Tate</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="--tier-bg: rgba(52,152,219,0.1);">
+        <div class="tier-label" style="color:#3498db;">ALTO</div>
+        <div class="tier-players">
+          <span>Makai Lemon</span>
+          <span>Jordyn Tyson</span>
+          <span>Jadarian Price</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="--tier-bg: rgba(232,196,74,0.1);">
+        <div class="tier-label" style="color:var(--gold);">SÓLIDO</div>
+        <div class="tier-players">
+          <span>KC Concepción</span>
+          <span>Kenyon Sadiq</span>
+          <span>Fernando Mendoza</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="--tier-bg: rgba(231,76,60,0.1);">
+        <div class="tier-label" style="color:#e74c3c;">ESPECULATIVO</div>
+        <div class="tier-players">
+          <span>Jonah Coleman</span>
+          <span>Omar Cooper Jr.</span>
+          <span>Denzel Boston</span>
+          <span>Eli Stowers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANÁLISIS DE POSICIÓN -->
+<section>
+  <div class="container">
+    <h2>Distribución por Posición</h2>
+    <div class="section-lead">Los WR dominan la primera ronda</div>
+
+    <div class="chart-wrapper">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <!-- WR 7/12 = 58% → 209° -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#1e1e1e" stroke-width="28"/>
+        <!-- WR -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#3498DB" stroke-width="28"
+          stroke-dasharray="254 183" stroke-dashoffset="0"
+          transform="rotate(-90 100 100)"/>
+        <!-- RB -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#27AE60" stroke-width="28"
+          stroke-dasharray="88 349" stroke-dashoffset="-254"
+          transform="rotate(-90 100 100)"/>
+        <!-- TE -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#8E44AD" stroke-width="28"
+          stroke-dasharray="88 349" stroke-dashoffset="-342"
+          transform="rotate(-90 100 100)"/>
+        <!-- QB -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#E67E22" stroke-width="28"
+          stroke-dasharray="44 393" stroke-dashoffset="-430"
+          transform="rotate(-90 100 100)"/>
+        <text x="100" y="95" text-anchor="middle" font-family="Bebas Neue" font-size="28" fill="white">12</text>
+        <text x="100" y="113" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#888">PICKS</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3498DB;"></div>
+          <span>Wide Receiver (WR)</span>
+          <span class="legend-count">7</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#27AE60;"></div>
+          <span>Running Back (RB)</span>
+          <span class="legend-count">2</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#8E44AD;"></div>
+          <span>Tight End (TE)</span>
+          <span class="legend-count">2</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#E67E22;"></div>
+          <span>Quarterback (QB)</span>
+          <span class="legend-count">1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="breakdown-grid" style="margin-top:32px;">
+      <div class="breakdown-card" style="--pos-color2:#3498DB;">
+        <div class="big-num" style="color:#3498DB;">7</div>
+        <div class="pos-label">Wide Receivers</div>
+        <div class="pos-names">Tate · Lemon · Tyson<br>Concepción · Boston<br>Cooper · —</div>
+      </div>
+      <div class="breakdown-card" style="--pos-color2:#27AE60;">
+        <div class="big-num" style="color:#27AE60;">2</div>
+        <div class="pos-label">Running Backs</div>
+        <div class="pos-names">Love<br>Price · Coleman</div>
+      </div>
+      <div class="breakdown-card" style="--pos-color2:#8E44AD;">
+        <div class="big-num" style="color:#8E44AD;">2</div>
+        <div class="pos-label">Tight Ends</div>
+        <div class="pos-names">Sadiq<br>Stowers</div>
+      </div>
+      <div class="breakdown-card" style="--pos-color2:#E67E22;">
+        <div class="big-num" style="color:#E67E22;">1</div>
+        <div class="pos-label">Quarterback</div>
+        <div class="pos-names">Fernando Mendoza<br>(#1 NFL Draft)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVA RANKINGS -->
+<section>
+  <div class="container">
+    <h2>Liga vs. Consenso del Mercado</h2>
+    <div class="section-lead">Qué tan alineada quedó la liga con el ranking dynasty 1QB estándar</div>
+    <p>El consenso de expertos en dynasty 1QB (FantasyPros, CBS Sports, NFL Mock Draft Database) sirve como termómetro para evaluar si cada pick fue un robo, un valor justo o un sobrepago posicional.</p>
+
+    <table class="rankings-table">
+      <thead>
+        <tr>
+          <th>Pick</th>
+          <th>Jugador</th>
+          <th>Pos.</th>
+          <th>Equipo Fantasy</th>
+          <th>Rank Consenso</th>
+          <th>Diferencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-num">1.01</td>
+          <td class="player-name">Jeremiyah Love</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Zorritos Jr</td>
+          <td class="match">#1</td>
+          <td class="match">✓ Perfecto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.02</td>
+          <td class="player-name">Carnell Tate</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Hijos del Salario Mínimo</td>
+          <td class="match">#2</td>
+          <td class="match">✓ Perfecto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.03</td>
+          <td class="player-name">Makai Lemon</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Tumbapatos FC</td>
+          <td>#3–4</td>
+          <td class="match">✓ Valor justo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.04</td>
+          <td class="player-name">Jadarian Price</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Delfines de Tabasco</td>
+          <td>#4–5</td>
+          <td class="match">✓ Valor justo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.05</td>
+          <td class="player-name">Jordyn Tyson</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Iron Chef Dynasty</td>
+          <td>#3</td>
+          <td class="rise">↑ Posible robo (debatible)</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.06</td>
+          <td class="player-name">KC Concepción</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Garrobos de Hierro</td>
+          <td>#6</td>
+          <td class="match">✓ Perfecto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.07</td>
+          <td class="player-name">Kenyon Sadiq</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Delfines de Tabasco</td>
+          <td>#8–9</td>
+          <td class="rise">↑ Ligero robo en TE</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.08</td>
+          <td class="player-name">Jonah Coleman</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Tumbapatos FC</td>
+          <td>#14–15</td>
+          <td class="drop">↓ Sobrepago posicional</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.09</td>
+          <td class="player-name">Denzel Boston</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Backfield Penetration</td>
+          <td>#10</td>
+          <td class="match">≈ Valor razonable</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.10</td>
+          <td class="player-name">Omar Cooper Jr.</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Delfines de Tabasco</td>
+          <td>#9</td>
+          <td class="rise">↑ Ligero robo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.11</td>
+          <td class="player-name">Fernando Mendoza</td>
+          <td><span class="pos-badge" style="background:#E67E22;color:#fff;font-size:10px;padding:2px 6px;">QB</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#11 (1QB)</td>
+          <td class="match">✓ Correcto en 1QB</td>
+        </tr>
+        <tr>
+          <td class="rank-num">1.12</td>
+          <td class="player-name">Eli Stowers</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Seahawkmania</td>
+          <td>#13–14</td>
+          <td class="rise">↑ Buen pick final de ronda</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ANÁLISIS POR EQUIPO -->
+<section>
+  <div class="container">
+    <h2>Calificación por Equipo</h2>
+    <div class="section-lead">¿Quién ganó y quién perdió la primera ronda?</div>
+
+    <div class="callout-box">
+      <div class="callout-title">🦬 La Historia del Draft: Delfines de Tabasco</div>
+      <p>Con tres selecciones en la primera ronda (picks 1.04, 1.07 y 1.10), los Delfines de Tabasco ejecutaron la estrategia más agresiva e intrigante del draft. Jadarian Price (RB2), Kenyon Sadiq (TE1) y Omar Cooper Jr. (WR con YAC élite en los Jets) conforman un trío de novatos que refuerza profundidad en varias posiciones simultáneamente. La gestión de tanto talento joven es el reto; la recompensa potencial, enorme.</p>
+    </div>
+
+    <div class="teams-grid">
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Zorritos Jr</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-a">A+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 1.01 · Jeremiyah Love</li>
+        </ul>
+        <div class="tg-analysis">El premio gordo. Love es el activo dynasty más valioso de esta clase. Un pick que puede definir una franquicia por 6-8 años.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Hijos del Salario Mínimo</div>
+            <div class="team-div">Div. Alberto Bernard</div>
+          </div>
+          <div class="tg-grade grade-a">A</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.02 · Carnell Tate</li>
+        </ul>
+        <div class="tg-analysis">WR1 de la clase en situación ideal en Tennessee. Si el equipo necesitaba receptor, este pick es oro puro.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Tumbapatos FC</div>
+            <div class="team-div">Div. Luis Castillo</div>
+          </div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.03 · Makai Lemon</li>
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 1.08 · Jonah Coleman</li>
+        </ul>
+        <div class="tg-analysis">Lemon es excelente; Coleman fue sobrepago en 1.08 según el consenso. Dos picks con visiones a largo plazo.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Delfines de Tabasco</div>
+            <div class="team-div">Div. Luis Castillo</div>
+          </div>
+          <div class="tg-grade grade-a">A−</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 1.04 · Jadarian Price</li>
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 1.07 · Kenyon Sadiq</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.10 · Omar Cooper Jr.</li>
+        </ul>
+        <div class="tg-analysis">El gran movimiento del draft. Tres picks, tres posiciones distintas, valor en cada una. El equipo a seguir en la temporada de novatos.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Iron Chef Dynasty</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-a">A</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.05 · Jordyn Tyson</li>
+        </ul>
+        <div class="tg-analysis">Tyson en 1.05 puede ser el robo de la ronda. Muchos analistas lo tienen como WR1 del ciclo. Valor excelente.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Garrobos de Hierro</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.06 · KC Concepción</li>
+        </ul>
+        <div class="tg-analysis">Pick correcto al precio correcto. Concepción era WR4 del ciclo según consenso. Sin sorpresas, sin errores.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Backfield Penetration</div>
+            <div class="team-div">Div. Luis Castillo</div>
+          </div>
+          <div class="tg-grade grade-c">C+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 1.09 · Denzel Boston</li>
+        </ul>
+        <div class="tg-analysis">Boston tiene talento real pero aterrizó en Cleveland con el QB más cuestionado del draft. El riesgo es la situación, no el jugador.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Los Pollos Hermanos</div>
+            <div class="team-div">Div. Alberto Bernard</div>
+          </div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#E67E22;">QB</span> 1.11 · Fernando Mendoza</li>
+        </ul>
+        <div class="tg-analysis">QB1 del ciclo seleccionado #1 en el Draft NFL. En 1QB, el valor es el correcto para el pick 11. Apuesta a largo plazo.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Seahawkmania</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-b">B+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 1.12 · Eli Stowers</li>
+        </ul>
+        <div class="tg-analysis">Cerrar con el TE2 del ciclo en Filadelfia es un buen resultado para el último pick. Muchos lo proyectan como segundo pick del 2do turno — aquí llegó al final del primero.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BAR CHART -->
+<section>
+  <div class="container">
+    <h2>Calidad de Picks por División</h2>
+    <div class="section-lead">Evaluación relativa del capital adquirido</div>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Div. Luis Castillo</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:88%;--bar-color:#E8C44A;">Tumbapatos + Delfines + Backfield</div>
+        </div>
+        <div class="bar-note">5 picks</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Div. Gerardo V.L.</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:72%;--bar-color:#3498DB;">Garrobos + Iron + Zorritos + Seahawk</div>
+        </div>
+        <div class="bar-note">4 picks</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Div. Alberto Bernard</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:60%;--bar-color:#27AE60;">Hijos + Pollos</div>
+        </div>
+        <div class="bar-note">2 picks</div>
+      </div>
+    </div>
+
+    <div class="callout-box green-box" style="margin-top:28px;">
+      <div class="callout-title">🏆 Ganadores Netos de la Primera Ronda</div>
+      <p><strong>Zorritos Jr (Love 1.01)</strong> y <strong>Iron Chef Dynasty (Tyson 1.05)</strong> se llevan las mejores calificaciones por pick individual. <strong>Delfines de Tabasco</strong> gana en volumen y versatilidad con sus tres selecciones. <strong>Tumbapatos FC</strong> tiene el pick más cuestionado con Coleman en 1.08.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Liga Fantasy TVC Deportes</strong> · Draft de Novatos 2026 · Primera Ronda</p>
+  <p style="margin-top:8px;">Análisis basado en rankings de FantasyPros, CBS Sports, NFL Mock Draft Database y Underdog Network · Mayo 2026</p>
+</div>
+
+</body>
+</html>
