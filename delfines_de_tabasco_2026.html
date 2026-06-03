@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delfines de Tabasco — Análisis 2026 | Liga Fantasy TVC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #0a1628;
+    --ocean-mid: #112240;
+    --ocean-surface: #1a3a5c;
+    --teal: #00c9b1;
+    --teal-dim: #007a6d;
+    --gold: #e8b84b;
+    --gold-dim: #9a7320;
+    --coral: #e85454;
+    --coral-dim: #7a2020;
+    --text-primary: #e8eaf0;
+    --text-secondary: #8899b0;
+    --text-muted: #445566;
+    --border: rgba(0,201,177,0.15);
+    --card-bg: rgba(17,34,64,0.8);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ocean-deep);
+    color: var(--text-primary);
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% 80%, rgba(0,201,177,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 40% at 20% 20%, rgba(0,100,180,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 10%, rgba(232,184,75,0.06) 0%, transparent 50%);
+    animation: heroBreath 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroBreath {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+
+  .wave-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    opacity: 0.08;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(0,201,177,0.3) 20px,
+      rgba(0,201,177,0.3) 21px
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--text-primary);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--teal);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--teal), transparent);
+    margin: 2rem auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  .hero-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  section + section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    color: var(--teal);
+    font-style: italic;
+  }
+
+  .prose {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  .prose strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* TRADE CARD */
+  .trade-section {
+    background: var(--ocean-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trade-visual {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .trade-side {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .trade-side.outgoing {
+    border-color: rgba(232,84,84,0.2);
+    background: rgba(232,84,84,0.04);
+  }
+
+  .trade-side.incoming {
+    border-color: rgba(0,201,177,0.2);
+    background: rgba(0,201,177,0.04);
+  }
+
+  .trade-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .trade-side.outgoing .trade-label { color: var(--coral); }
+  .trade-side.incoming .trade-label { color: var(--teal); }
+
+  .trade-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .trade-player:last-child { border-bottom: none; }
+
+  .trade-player-name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .trade-player-pos {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  .trade-player-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+  }
+
+  .trade-arrow {
+    font-size: 2.5rem;
+    color: var(--teal);
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  /* PROSPECT CARDS */
+  .prospects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) {
+    .prospects-grid { grid-template-columns: 1fr; }
+    .trade-visual { grid-template-columns: 1fr; }
+    .trade-arrow { transform: rotate(90deg); }
+  }
+
+  .prospect-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .prospect-card:hover {
+    border-color: rgba(0,201,177,0.4);
+    transform: translateY(-3px);
+  }
+
+  .prospect-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--teal), var(--gold));
+  }
+
+  .prospect-pick {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .prospect-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .prospect-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .prospect-college {
+    color: var(--gold);
+  }
+
+  .prospect-attrs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .attr-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid;
+    border-radius: 2px;
+  }
+
+  .attr-chip.green { border-color: var(--teal-dim); color: var(--teal); }
+  .attr-chip.gold { border-color: var(--gold-dim); color: var(--gold); }
+  .attr-chip.red { border-color: var(--coral-dim); color: var(--coral); }
+
+  .prospect-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-box {
+    text-align: center;
+  }
+
+  .stat-box-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--teal);
+  }
+
+  .stat-box-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* ROSTER ANALYSIS */
+  .pos-blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .pos-blocks { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .pos-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .pos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pos-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .pos-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .pos-badge.danger { background: rgba(232,84,84,0.15); color: var(--coral); }
+  .pos-badge.warning { background: rgba(232,184,75,0.12); color: var(--gold); }
+  .pos-badge.ok { background: rgba(0,201,177,0.12); color: var(--teal); }
+
+  .pos-ranking {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .pos-ranking span { color: var(--text-secondary); }
+
+  .pos-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .pos-player:last-child { border-bottom: none; }
+
+  .pos-player-info { display: flex; flex-direction: column; }
+  .pos-player-name { font-size: 0.9rem; font-weight: 600; }
+  .pos-player-rank { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-muted); }
+
+  .pos-player-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
+  .age-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .age-old { background: var(--coral); }
+  .age-mid { background: var(--gold); }
+  .age-young { background: var(--teal); }
+
+  /* VERDICT */
+  .verdict-section {
+    background: var(--ocean-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) {
+    .verdict-grid { grid-template-columns: 1fr; }
+    .prospects-grid { grid-template-columns: 1fr; }
+  }
+
+  .verdict-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .verdict-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .verdict-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .verdict-card p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  /* SCORE METER */
+  .score-section {
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .score-ring-wrap {
+    display: inline-block;
+    position: relative;
+    margin: 3rem auto 1.5rem;
+  }
+
+  .score-ring-wrap svg {
+    transform: rotate(-90deg);
+  }
+
+  .score-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+  }
+
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .score-desc {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+  }
+
+  .score-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .score-dim {
+    text-align: center;
+  }
+
+  .score-dim-bar {
+    width: 80px;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0.5rem auto;
+  }
+
+  .score-dim-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--teal), var(--gold));
+  }
+
+  .score-dim-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+  }
+
+  .score-dim-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--ocean-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-dim); border-radius: 2px; }
+
+  /* QUOTE PULL */
+  .pullquote {
+    border-left: 3px solid var(--teal);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(0,201,177,0.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  .tag-cloud {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* timeline */
+  .timeline {
+    margin-top: 2rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .tl-item {
+    position: relative;
+    padding: 0 0 1.5rem 1.5rem;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .tl-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-text {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wave-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Liga Fantasy TVC Deportes · División Luis Castillo · Análisis 2026</p>
+    <h1 class="hero-title">
+      Delfines de
+      <span>Tabasco</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">De la decadencia al horizonte: cómo el capital de draft puede transformar a un equipo envejecido en una potencia del futuro.</p>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <div class="hero-stat-value">9°</div>
+        <div class="hero-stat-label">RB en la liga</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">10°</div>
+        <div class="hero-stat-label">WR en la liga</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">11°</div>
+        <div class="hero-stat-label">TE en la liga</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">2</div>
+        <div class="hero-stat-label">Picks Round 1 adquiridos</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXT -->
+<section>
+  <div class="container">
+    <p class="section-tag">// El contexto</p>
+    <h2 class="section-title">Una era llega a su <em>fin</em></h2>
+    <div class="prose">
+      <p>Los Delfines de Tabasco construyeron su identidad sobre nombres sólidos y probados. Dak Prescott, Derrick Henry, DeVonta Smith —jugadores que en su momento representaron élite fantasy. Pero 2026 los encuentra con la cruda aritmética de una liga Dynasty: la edad promedio de sus unidades es alarmante, la profundidad es escasa, y los rankings posicionales muestran un equipo atrapado en el pasado.</p>
+      <br>
+      <p>El diagnóstico es claro: <strong>9° en RBs, 10° en WRs, 11° en TEs y QBs de promedio 31 años</strong>. No es una crisis de un año, es una erosión estructural. El dueño de los Delfines lo supo antes que nadie y tomó la única decisión lógica en Dynasty: <strong>vender el presente para comprar el futuro.</strong></p>
+    </div>
+
+    <div class="pullquote">
+      <p>"En Dynasty, el momento de reconstruir es cuando todavía tienes algo que vender. Los Delfines intercambiaron activos reales por capital de draft de primera ronda cuando aún podían negociar desde posición de fuerza."</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Offseason 2026 · Pre-Draft</div>
+        <div class="tl-text">Los Delfines ceden <strong>Cade Otton (TE28), Jonah Coleman y Kyren Williams (RB17)</strong> a cambio de los picks 1.07 y 1.10 del Draft de Novatos 2026.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">29 de Mayo, 2026 · Draft de Novatos</div>
+        <div class="tl-text">Con el pick 1.07 se selecciona al TE Kenyon Sadiq (Oregon/NY Jets, 16° global). Con el 1.10 llega el WR Omar Cooper Jr. (Indiana/NY Jets, 30° global).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Temporada 2026</div>
+        <div class="tl-text">Ambos rookies ingresan al Taxi Squad de los Delfines mientras el equipo trata de competir con su núcleo veterano.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADE VISUAL -->
+<section class="trade-section">
+  <div class="container">
+    <p class="section-tag">// El intercambio</p>
+    <h2 class="section-title">La apuesta <em>estratégica</em></h2>
+    <p class="prose">El trade es revelador porque muestra que el dueño priorizó posición en el draft sobre valor inmediato. Otton era el mejor TE del equipo, Williams el mejor RB. Se cedió el núcleo productivo del presente para financiar la reconstrucción.</p>
+
+    <div class="trade-visual">
+      <div class="trade-side outgoing">
+        <div class="trade-label">↑ Sale de Delfines</div>
+        <div class="trade-player">
+          <div>
+            <div class="trade-player-name">Kyren Williams</div>
+            <div class="trade-player-pos">RB · Los Angeles Rams</div>
+          </div>
+          <div class="trade-player-rank">RB17 · 5609 pts</div>
+        </div>
+        <div class="trade-player">
+          <div>
+            <div class="trade-player-name">Cade Otton</div>
+            <div class="trade-player-pos">TE · Tampa Bay Buccaneers</div>
+          </div>
+          <div class="trade-player-rank">TE28 · 2817 pts</div>
+        </div>
+        <div class="trade-player">
+          <div>
+            <div class="trade-player-name">Jonah Coleman</div>
+            <div class="trade-player-pos">RB · Seattle Seahawks</div>
+          </div>
+          <div class="trade-player-rank">Joven · Potencial</div>
+        </div>
+      </div>
+
+      <div class="trade-arrow">⇄</div>
+
+      <div class="trade-side incoming">
+        <div class="trade-label">↓ Llega a Delfines</div>
+        <div class="trade-player">
+          <div>
+            <div class="trade-player-name">Pick 1.07</div>
+            <div class="trade-player-pos">→ Kenyon Sadiq · TE</div>
+          </div>
+          <div class="trade-player-rank">#16 Global NFL</div>
+        </div>
+        <div class="trade-player">
+          <div>
+            <div class="trade-player-name">Pick 1.10</div>
+            <div class="trade-player-pos">→ Omar Cooper Jr. · WR</div>
+          </div>
+          <div class="trade-player-rank">#30 Global NFL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSPECTS -->
+<section>
+  <div class="container">
+    <p class="section-tag">// Los prospectos</p>
+    <h2 class="section-title">El futuro llega en <em>azul y blanco</em></h2>
+    <p class="prose">Ambos picks aterrizaron en los New York Jets, lo que añade un elemento interesante para su desarrollo: comparten sistema, comparten cuarto de reuniones, y comparten al mariscal de campo Geno Smith. Lo que hagan en Nueva York dictará el tiempo de retorno de esta inversión.</p>
+
+    <div class="prospects-grid">
+
+      <!-- KENYON SADIQ -->
+      <div class="prospect-card">
+        <div class="prospect-pick">Pick 1.07 · TE</div>
+        <div class="prospect-name">Kenyon Sadiq</div>
+        <div class="prospect-meta">Oregon Ducks · <span class="prospect-college">New York Jets · #16 Global</span></div>
+        <div class="prospect-attrs">
+          <span class="attr-chip green">4.39 en 40 yds</span>
+          <span class="attr-chip green">Récord histórico Combine TE</span>
+          <span class="attr-chip gold">6-3 · 241 lbs</span>
+          <span class="attr-chip gold">21 años</span>
+          <span class="attr-chip red">6 drops en 2025</span>
+        </div>
+        <div class="prospect-body">
+          <strong>Sadiq es el prospecto de TE más atlético que ha pasado por el Combine en la historia del puesto.</strong> Su marca de 4.39 en el 40 no solo rompió el récord de tight ends — fue más rápida que varios de los wide receivers de su clase. Con 21 años y un cuerpo construido meticulosamente en Oregon (llegó a 220 lbs, salió a 241), el margen de mejora es real.
+          <br><br>
+          Su comparación natural es <strong>Evan Engram</strong> por la versatilidad y el perfil de mismatch, aunque analistas apuntan que Sadiq tiene la combinación atlética para superar esa carrera con mayor consistencia. En Oregon bloqueó el 52% de sus snaps, lo que lo separa de los "big slot" que raramente traducen.
+          <br><br>
+          La única bandera roja real: sus 6 dropped passes en 2025. Para un pick de primera ronda, la consistencia en la recepción es no negociable. El talento es innegable; la ejecución será el arbitraje de su carrera.
+        </div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-box-value">51</div>
+            <div class="stat-box-label">Recepciones</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">560</div>
+            <div class="stat-box-label">Yardas 2025</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">8</div>
+            <div class="stat-box-label">TDs (1° FBS)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">4.39</div>
+            <div class="stat-box-label">40 yds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OMAR COOPER JR -->
+      <div class="prospect-card">
+        <div class="prospect-pick">Pick 1.10 · WR</div>
+        <div class="prospect-name">Omar Cooper Jr.</div>
+        <div class="prospect-meta">Indiana Hoosiers · <span class="prospect-college">New York Jets · #30 Global</span></div>
+        <div class="prospect-attrs">
+          <span class="attr-chip green">Campeón Nacional CFP 2025</span>
+          <span class="attr-chip green">Maestro del slot</span>
+          <span class="attr-chip gold">6-0 · 199 lbs</span>
+          <span class="attr-chip gold">22 años</span>
+          <span class="attr-chip red">Sin aceleración explosiva</span>
+        </div>
+        <div class="prospect-body">
+          <strong>Cooper es exactamente lo opuesto de un prospecto de hype: es el estudiante diligente que se convirtió en el más confiable.</strong> Fue el receptor líder de Indiana en su histórica temporada 16-0 que culminó en título nacional, compartiendo protagonismo con el QB #1 del draft Fernando Mendoza.
+          <br><br>
+          Su huella técnica es la de un profesional: pacing preciso, explotación de coberturas de zona, manos confiables bajo contacto y un IQ receptivo que sus coaches describen como sobresaliente. En los Jets encuentra una situación de WR3 detrás de Garrett Wilson y A.D. Mitchell, lo que le da tiempo para desarrollarse.
+          <br><br>
+          Su techo no es WR1 élite — pero su suelo tampoco es profundo. <strong>Un WR2/3 confiable de alto volumen en el slot es exactamente la escasez que los Delfines necesitan cubrir</strong> en una posición donde actualmente ranquean 10° de 12 con promedio de edad de 27 años.
+        </div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-box-value">69</div>
+            <div class="stat-box-label">Recepciones</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">937</div>
+            <div class="stat-box-label">Yardas 2025</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">13</div>
+            <div class="stat-box-label">TDs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-value">13.6</div>
+            <div class="stat-box-label">Yds/recep</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ROSTER ANALYSIS -->
+<section style="background: rgba(17,34,64,0.4);">
+  <div class="container">
+    <p class="section-tag">// El roster completo</p>
+    <h2 class="section-title">Fortalezas, debilidades y <em>urgencias</em></h2>
+    <p class="prose">El roster 2026 de los Delfines es un ejercicio de contrastes: piezas veteranas que todavía tienen valor de producción inmediata, conviviendo con hoyos estructurales que los nuevos rookies no tapan todavía.</p>
+
+    <div class="pos-blocks">
+
+      <div class="pos-block">
+        <div class="pos-header">
+          <div class="pos-title">⚡ Quarterbacks</div>
+          <div class="pos-badge warning">7° / 12 · Precaución</div>
+        </div>
+        <div class="pos-ranking">Promedio de edad: <span>31.1 años</span> — El más alto de todas las posiciones</div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Dak Prescott</span>
+            <span class="pos-player-rank">QB16 de la liga</span>
+          </div>
+          <div class="pos-player-value">4,416 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Sam Darnold</span>
+            <span class="pos-player-rank">QB20</span>
+          </div>
+          <div class="pos-player-value">3,879 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Tua Tagovailoa</span>
+            <span class="pos-player-rank">QB34</span>
+          </div>
+          <div class="pos-player-value">2,253 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Kirk Cousins</span>
+            <span class="pos-player-rank">QB47</span>
+          </div>
+          <div class="pos-player-value">1,148 pts</div>
+        </div>
+        <br>
+        <p style="font-size:0.9rem; color: var(--text-secondary); line-height:1.6; font-weight:300;">Dak todavía sirve. El problema es hacia adelante: ninguno de los cuatro tiene futuro dynasty real. Tua es el único con argumentos de longevidad y está en el borderline. Esta posición necesita una inversión seria en los próximos dos drafts.</p>
+      </div>
+
+      <div class="pos-block">
+        <div class="pos-header">
+          <div class="pos-title">🏃 Running Backs</div>
+          <div class="pos-badge danger">9° / 12 · Urgente</div>
+        </div>
+        <div class="pos-ranking">Promedio de edad: <span>27.1 años</span> · Ceder Kyren Williams fue costoso</div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Javonte Williams</span>
+            <span class="pos-player-rank">RB21</span>
+          </div>
+          <div class="pos-player-value">5,338 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Derrick Henry</span>
+            <span class="pos-player-rank">RB23</span>
+          </div>
+          <div class="pos-player-value">4,891 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Tyjae Spears</span>
+            <span class="pos-player-rank">RB50</span>
+          </div>
+          <div class="pos-player-value">3,207 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-young"></span>Jerome Ford</span>
+            <span class="pos-player-rank">RB86</span>
+          </div>
+          <div class="pos-player-value">1,912 pts</div>
+        </div>
+        <br>
+        <p style="font-size:0.9rem; color: var(--text-secondary); line-height:1.6; font-weight:300;">La salida de Kyren Williams (RB17) duele ahora mismo. Javonte y Henry son el dúo de producción presente, pero ninguno es la respuesta dynasty a largo plazo. Tyjae Spears es la pieza más interesante: joven, veloz, con upside como receptor. Jerome Ford es profundidad útil.</p>
+      </div>
+
+      <div class="pos-block">
+        <div class="pos-header">
+          <div class="pos-title">📡 Wide Receivers</div>
+          <div class="pos-badge danger">10° / 12 · Crítico</div>
+        </div>
+        <div class="pos-ranking">Promedio de edad: <span>27.1 años</span> · Cooper Jr. llega en el momento exacto</div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>DeVonta Smith</span>
+            <span class="pos-player-rank">WR18 — El ancla</span>
+          </div>
+          <div class="pos-player-value">6,095 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-young"></span>Parker Washington</span>
+            <span class="pos-player-rank">WR39</span>
+          </div>
+          <div class="pos-player-value">4,473 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Quentin Johnston</span>
+            <span class="pos-player-rank">WR47</span>
+          </div>
+          <div class="pos-player-value">4,195 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Rashid Shaheed</span>
+            <span class="pos-player-rank">WR62</span>
+          </div>
+          <div class="pos-player-value">3,529 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Tyler Lockett</span>
+            <span class="pos-player-rank">WR204 — Fin de ciclo</span>
+          </div>
+          <div class="pos-player-value">539 pts</div>
+        </div>
+        <br>
+        <p style="font-size:0.9rem; color: var(--text-secondary); line-height:1.6; font-weight:300;">DeVonta Smith es la joya intocable. Parker Washington y Q. Johnston son piezas válidas con techo. Pero debajo del Top 3 la unidad se desploma rápidamente. Omar Cooper Jr. llegará a integrarse a ese WR3/4 dentro de 1-2 temporadas con proyección de ser el WR2 definitivo del equipo.</p>
+      </div>
+
+      <div class="pos-block">
+        <div class="pos-header">
+          <div class="pos-title">🎯 Tight Ends</div>
+          <div class="pos-badge danger">11° / 12 · Desastre heredado</div>
+        </div>
+        <div class="pos-ranking">Promedio de edad: <span>30.1 años</span> · El mayor agujero del roster</div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-mid"></span>Hunter Henry</span>
+            <span class="pos-player-rank">TE30</span>
+          </div>
+          <div class="pos-player-value">2,789 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Dalton Schultz</span>
+            <span class="pos-player-rank">TE35</span>
+          </div>
+          <div class="pos-player-value">2,594 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-young"></span>Cade Stover</span>
+            <span class="pos-player-rank">TE50 — Mejor apuesta futura</span>
+          </div>
+          <div class="pos-player-value">1,683 pts</div>
+        </div>
+        <div class="pos-player">
+          <div class="pos-player-info">
+            <span class="pos-player-name"><span class="age-indicator age-old"></span>Taysom Hill</span>
+            <span class="pos-player-rank">TE83 — Relicto funcional</span>
+          </div>
+          <div class="pos-player-value">537 pts</div>
+        </div>
+        <br>
+        <p style="font-size:0.9rem; color: var(--text-secondary); line-height:1.6; font-weight:300;">La nota irónica: cedieron a Cade Otton (TE28) para conseguir a Kenyon Sadiq —un upgrade real si Sadiq se desarrolla. Henry y Schultz tapan el hoyo temporalmente, pero Sadiq es la solución dynasty. Cade Stover es la pieza puente más interesante del grupo actual.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT CARDS -->
+<section class="verdict-section">
+  <div class="container">
+    <p class="section-tag">// El veredicto</p>
+    <h2 class="section-title">Tres <em>verdades</em> sobre esta temporada</h2>
+
+    <div class="verdict-grid">
+      <div class="verdict-card">
+        <span class="icon">⏳</span>
+        <h3>El precio de la paciencia</h3>
+        <p>Ambos rookies llegan a un equipo que espera usar el Taxi Squad para protegerlos. Kenyon Sadiq y Omar Cooper Jr. no serán la solución en 2026 —son la inversión para 2027-2028. Este año los Delfines corren con lo que tienen y cruzan los dedos con la productividad de Dak y Smith.</p>
+      </div>
+      <div class="verdict-card">
+        <span class="icon">💎</span>
+        <h3>El activo más valioso: Sadiq</h3>
+        <p>En Dynasty, el TE de élite es el bien más escaso. El mercado de TEs tarda 1-2 años en madurar, pero Sadiq tiene el perfil atlético para convertirse en TE1 de liga. Su llegada transforma estructuralmente la posición más débil de los Delfines (11°/12) en una potencial fortaleza.</p>
+      </div>
+      <div class="verdict-card">
+        <span class="icon">⚠️</span>
+        <h3>La ventana se cierra pronto</h3>
+        <p>Dak Prescott tiene 31 años. Derrick Henry tiene más. DeVonta Smith es el único jugador del roster que une present value con futuro dynasty. Los Delfines necesitan resolver la posición de QB antes de que Sadiq y Cooper maduren, o habrán construido un equipo de élite sin motor.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCORE -->
+<section class="score-section">
+  <div class="container">
+    <p class="section-tag" style="text-align:center">// Calificación general</p>
+    <h2 class="section-title" style="text-align:center">Prospectiva <em>2026</em></h2>
+
+    <div class="score-ring-wrap">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <circle cx="90" cy="90" r="75" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+        <circle cx="90" cy="90" r="75" fill="none" stroke="url(#scoreGrad)" stroke-width="10"
+          stroke-dasharray="471" stroke-dashoffset="141" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00c9b1"/>
+            <stop offset="100%" stop-color="#e8b84b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="score-center">
+        <div class="score-value">6.8</div>
+        <div class="score-label">/ 10</div>
+      </div>
+    </div>
+
+    <div class="score-desc">Reconstrucción en marcha</div>
+
+    <div class="score-breakdown">
+      <div class="score-dim">
+        <div class="score-dim-value">5/10</div>
+        <div class="score-dim-bar"><div class="score-dim-fill" style="width:50%"></div></div>
+        <div class="score-dim-label">Valor inmediato</div>
+      </div>
+      <div class="score-dim">
+        <div class="score-dim-value">9/10</div>
+        <div class="score-dim-bar"><div class="score-dim-fill" style="width:90%"></div></div>
+        <div class="score-dim-label">Capital de futuro</div>
+      </div>
+      <div class="score-dim">
+        <div class="score-dim-value">7/10</div>
+        <div class="score-dim-bar"><div class="score-dim-fill" style="width:70%"></div></div>
+        <div class="score-dim-label">Calidad del trade</div>
+      </div>
+      <div class="score-dim">
+        <div class="score-dim-value">4/10</div>
+        <div class="score-dim-bar"><div class="score-dim-fill" style="width:40%"></div></div>
+        <div class="score-dim-label">Probabilidad playoffs 2026</div>
+      </div>
+      <div class="score-dim">
+        <div class="score-dim-value">8/10</div>
+        <div class="score-dim-bar"><div class="score-dim-fill" style="width:80%"></div></div>
+        <div class="score-dim-label">Perspectiva 2027-28</div>
+      </div>
+    </div>
+
+    <div class="pullquote" style="max-width:700px; margin: 3rem auto 0;">
+      <p>Los Delfines de Tabasco tomaron la decisión correcta en el momento correcto. El roster actual es competitivo pero no está a nivel de campeón. Lo inteligente era no negarlo. Ahora tienen dos primeras rondas con apellido NFL real, y si resuelven el QB en el próximo draft, pueden ser el equipo más temible de la liga para 2028.</p>
+    </div>
+
+    <div class="tag-cloud" style="justify-content:center; margin-top:2rem;">
+      <span class="tag">Dynasty</span>
+      <span class="tag">Reconstrucción</span>
+      <span class="tag">Kenyon Sadiq</span>
+      <span class="tag">Omar Cooper Jr.</span>
+      <span class="tag">Liga Fantasy TVC</span>
+      <span class="tag">División Luis Castillo</span>
+      <span class="tag">Draft 2026</span>
+      <span class="tag">New York Jets</span>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">Liga Fantasy TVC Deportes</div>
+  <div class="footer-copy">Análisis de temporada 2026 · División Luis Castillo · Temporada 9ª</div>
+</footer>
+
+</body>
+</html>
