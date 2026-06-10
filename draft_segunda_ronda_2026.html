@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft de Novatos 2026 — Segunda Ronda | Liga Fantasy TVC Deportes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8C44A;
+    --gold-dim: #b09636;
+    --red: #C0392B;
+    --dark: #0D0D0D;
+    --dark2: #161616;
+    --dark3: #1F1F1F;
+    --card: #242424;
+    --border: #2e2e2e;
+    --text: #E8E8E8;
+    --muted: #888;
+    --green: #27AE60;
+    --blue: #2980B9;
+    --orange: #E67E22;
+    --purple: #8E44AD;
+    --teal: #1ABC9C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0D0D0D 0%, #001a12 50%, #0D0D0D 100%);
+    border-bottom: 3px solid var(--teal);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(26,188,156,0.1) 0%, transparent 70%);
+  }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; position: relative; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 9vw, 96px); letter-spacing: 2px; line-height: 0.95; color: #fff; position: relative; }
+  .hero h1 span { color: var(--teal); }
+  .hero-sub { margin-top: 16px; font-size: 15px; font-weight: 300; color: var(--muted); position: relative; }
+  .hero-badge { display: inline-block; margin-top: 24px; background: var(--teal); color: var(--dark); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; position: relative; }
+  .hero-round-tag { display: inline-block; margin-top: 10px; border: 1px solid var(--teal); color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; position: relative; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: var(--teal); margin-bottom: 6px; }
+  h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; letter-spacing: 1px; margin-bottom: 4px; }
+  .section-lead { font-size: 12px; color: var(--muted); margin-bottom: 32px; text-transform: uppercase; letter-spacing: 2px; }
+  p { margin-bottom: 14px; color: #ccc; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── TRADE ALERT ── */
+  .trade-alert {
+    background: linear-gradient(135deg, rgba(231,76,60,0.12), rgba(231,76,60,0.04));
+    border: 1px solid rgba(231,76,60,0.5);
+    border-left: 4px solid #e74c3c;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  .trade-alert-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #e74c3c; letter-spacing: 1px; margin-bottom: 10px; }
+  .trade-flow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; }
+  .trade-team { background: var(--dark3); border: 1px solid var(--border); padding: 12px 16px; flex: 1; min-width: 160px; }
+  .trade-team-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--gold); margin-bottom: 6px; }
+  .trade-team-gets { font-size: 12px; color: #aaa; }
+  .trade-team-gets strong { color: #fff; display: block; margin-top: 3px; }
+  .trade-arrow { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: #e74c3c; }
+
+  /* ── PICK BOARD ── */
+  .pick-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 32px; }
+  .pick-card { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--pos-color); padding: 18px 20px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .pick-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .pick-card.highlight-card { border: 1px solid rgba(26,188,156,0.4); border-top: 3px solid var(--teal); background: linear-gradient(135deg, #1e2e2a, #242424); }
+  .pick-num { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--muted); margin-bottom: 6px; }
+  .pick-player { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .pick-pos-team { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .pos-badge { color: #000; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; }
+  .nfl-team { font-size: 12px; color: var(--muted); font-style: italic; }
+  .pick-desc { font-size: 12px; color: #aaa; margin-bottom: 8px; }
+  .pick-owner { font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
+  .pick-owner strong { color: var(--teal); }
+  .pick-grade { position: absolute; top: 16px; right: 16px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1; }
+  .grade-a { color: #2ecc71; }
+  .grade-b { color: #3498db; }
+  .grade-c { color: var(--gold); }
+  .grade-d { color: #e74c3c; }
+  .trade-stamp { position: absolute; top: 14px; right: 14px; background: #e74c3c; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 3px 7px; text-transform: uppercase; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout-box { background: linear-gradient(135deg, rgba(192,57,43,0.12), rgba(192,57,43,0.04)); border: 1px solid rgba(192,57,43,0.35); border-left: 4px solid var(--red); padding: 22px 26px; margin: 28px 0; }
+  .callout-box.teal-box { background: linear-gradient(135deg, rgba(26,188,156,0.1), rgba(26,188,156,0.03)); border: 1px solid rgba(26,188,156,0.3); border-left: 4px solid var(--teal); }
+  .callout-box.gold-box { background: linear-gradient(135deg, rgba(232,196,74,0.1), rgba(232,196,74,0.03)); border: 1px solid rgba(232,196,74,0.3); border-left: 4px solid var(--gold); }
+  .callout-box.green-box { background: linear-gradient(135deg, rgba(39,174,96,0.1), rgba(39,174,96,0.03)); border: 1px solid rgba(39,174,96,0.3); border-left: 4px solid var(--green); }
+  .callout-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 8px; }
+
+  /* ── RANKINGS TABLE ── */
+  .rankings-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+  .rankings-table th { background: var(--dark3); color: var(--teal); font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 1px; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--teal); }
+  .rankings-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: #ccc; vertical-align: middle; }
+  .rankings-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .rankings-table .rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--teal); width: 50px; }
+  .rankings-table .player-name { font-weight: 600; color: #fff; }
+  .rankings-table .match { color: #2ecc71; font-weight: 700; }
+  .rankings-table .drop { color: #e74c3c; }
+  .rankings-table .rise { color: #3498db; }
+  .rankings-table tr.traded-row td { background: rgba(231,76,60,0.06); }
+
+  /* ── TEAMS GRID ── */
+  .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
+  .team-grade-card { background: var(--card); border: 1px solid var(--border); padding: 20px; }
+  .team-grade-card.mvp-card { border-color: var(--teal); background: linear-gradient(135deg, #1a2e2b, #242424); }
+  .tg-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; }
+  .team-div { font-size: 11px; color: var(--muted); }
+  .tg-grade { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; }
+  .picks-list { font-size: 12px; color: #aaa; margin-top: 10px; }
+  .picks-list li { padding: 3px 0; list-style: none; border-bottom: 1px solid var(--border); }
+  .picks-list li:last-child { border: none; }
+  .picks-list .p-pos { display: inline-block; width: 30px; font-weight: 700; }
+  .tg-analysis { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; }
+  .mvp-badge { background: var(--teal); color: #000; font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; display: inline-block; margin-top: 6px; }
+
+  /* ── DONUT + LEYENDA ── */
+  .chart-wrapper { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 28px; }
+  .donut-legend { flex: 1; min-width: 200px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-count { font-weight: 700; margin-left: auto; color: #fff; }
+
+  /* ── BAR CHART ── */
+  .bar-chart { margin-top: 32px; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 12px; gap: 12px; }
+  .bar-label { width: 160px; font-size: 12px; font-weight: 600; color: #ccc; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; background: var(--dark3); height: 28px; position: relative; }
+  .bar-fill { height: 100%; background: var(--bar-color); display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 700; color: #000; }
+  .bar-note { width: 60px; font-size: 11px; color: var(--muted); }
+
+  /* ── PICKS ACUMULADOS POR EQUIPO ── */
+  .acum-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+  .acum-table th { background: var(--dark3); color: var(--teal); font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--teal); }
+  .acum-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 12px; color: #ccc; }
+  .acum-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .acum-table .total-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--teal); }
+  .acum-bar { height: 8px; background: var(--dark3); margin-top: 4px; }
+  .acum-bar-fill { height: 100%; background: var(--teal); }
+
+  /* ── TIER STRIP ── */
+  .tier-strip { display: flex; gap: 0; margin: 28px 0; overflow: hidden; border: 1px solid var(--border); }
+  .tier-cell { flex: 1; padding: 16px 12px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); }
+  .tier-cell:last-child { border-right: none; }
+  .tier-label { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--muted); letter-spacing: 2px; margin-bottom: 8px; }
+  .tier-players span { display: block; font-size: 11px; color: #ccc; line-height: 1.9; }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 40px 20px; background: var(--dark2); color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+  .footer strong { color: var(--teal); }
+
+  @media (max-width: 600px) {
+    .pick-board { grid-template-columns: 1fr; }
+    .bar-label { width: 110px; font-size: 11px; }
+    .tier-strip { flex-direction: column; }
+    .trade-flow { flex-direction: column; }
+    .trade-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Liga Fantasy TVC Deportes · Análisis Periodístico</div>
+  <h1>Draft de <span>Novatos</span><br>2026</h1>
+  <div class="hero-sub">Análisis completo de la Segunda Ronda — 12 selecciones, profundidad y estrategia</div>
+  <div class="hero-badge">29 de Mayo, 2026</div>
+  <div style="margin-top:8px;"><span class="hero-round-tag">Segunda Ronda · Picks 2.01 – 2.12</span></div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="container">
+    <h2>El Caos Ordenado de la Segunda Ronda</h2>
+    <div class="section-lead">Profundidad, negociaciones y la fábrica de Los Pollos Hermanos</div>
+    <p>Si la primera ronda fue el territorio de los seguros y los intocables, la segunda es donde se construyen las dinastías con paciencia e inteligencia. La ronda estuvo marcada por dos fenómenos imposibles de ignorar: <strong>Los Pollos Hermanos</strong> acapararon cuatro selecciones en doce picks, convirtiendo el draft en su sala de reclutamiento personal, y <strong>The Bulleggs</strong> ejecutaron la movida más audaz de la jornada — intercambiando el pick de Delfines de Tabasco que tenían en posesión por un veterano de valor y usándolo para llevarse a Nick Singleton.</p>
+    <p>La segunda ronda de 2026 es, en esencia, un mercado de potencial: receivers con situaciones favorables, corredores con caminos a titulares a mediano plazo, y ninguna garantía. Quien lea mejor este caos, gana.</p>
+
+    <div class="callout-box teal-box">
+      <div class="callout-title">📋 La Ronda en Números</div>
+      <p>12 selecciones · 8 WR · 3 RB · 1 WR/zona roja · <strong>Los Pollos Hermanos: 4 picks en la ronda</strong> (2.01, 2.03, 2.09, 2.12) · <strong>1 trade ejecutado en vivo</strong> (pick Delfines → Seahawkmania → Bulleggs) · Solo 2 equipos no tuvieron pick en esta ronda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRADE ALERT -->
+<section>
+  <div class="container">
+    <h2>La Jugada del Draft</h2>
+    <div class="section-lead">El intercambio que movió el tablero</div>
+
+    <p>La movida más comentada de la jornada no fue una selección — fue la negociación que precedió al pick 2.04. <strong>The Bulleggs</strong>, campeones vigentes, tenían en su poder el pick de Delfines de Tabasco correspondiente a la segunda ronda. En lugar de usarlo ellos mismos o guardarlo, lo convirtieron en moneda de cambio para obtener al veterano <strong>Jacoby Meyers</strong> cediendo ese pick a Seahawkmania, quien lo activó para llevarse a Nicholas Singleton.</p>
+
+    <div class="trade-alert">
+      <div class="trade-alert-title">🔄 TRADE EN VIVO — PICK 2.04</div>
+      <div class="trade-flow">
+        <div class="trade-team">
+          <div class="trade-team-name">🥚 The Bulleggs</div>
+          <div class="trade-team-gets">Entregan: Pick 2.04 (de Delfines)<br>Reciben: <strong>Jacoby Meyers (WR veterano)</strong></div>
+        </div>
+        <div class="trade-arrow">⇌</div>
+        <div class="trade-team">
+          <div class="trade-team-name">🦅 Seahawkmania</div>
+          <div class="trade-team-gets">Entrega: Jacoby Meyers<br>Recibe: <strong>Pick 2.04 → Nicholas Singleton (RB)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <p>El análisis del trade es polarizante. Los Bulleggs apuestan por un receptor con experiencia inmediata para competir en 2026; Seahawkmania apuesta por el futuro con Singleton. El tiempo dirá quién leyó mejor el momento.</p>
+  </div>
+</section>
+
+<!-- TABLERO COMPLETO -->
+<section>
+  <div class="container">
+    <h2>El Tablero Completo</h2>
+    <div class="section-lead">Segunda Ronda — Picks 2.01 al 2.12</div>
+    <div class="pick-board">
+
+      <!-- 2.01 -->
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.01 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Chris Bell</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Miami Dolphins</span>
+        </div>
+        <p class="pick-desc">Potencial de WR1 absoluto según múltiples analistas. Su caída al pick #94 del NFL Draft se explica por un desgarre de LCA a finales de temporada. Si llega sano a la Semana 1, puede ser el mejor valor de toda la segunda ronda. En Miami tiene el sistema y el QB para explotar.</p>
+        <div class="pick-grade grade-a">A+</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(1ª pick R2)</em></div>
+      </div>
+
+      <!-- 2.02 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.02 · HIJOS DEL SALARIO MÍNIMO</div>
+        <div class="pick-player">Germie Bernard</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Pittsburgh Steelers</span>
+        </div>
+        <p class="pick-desc">Receptor #3 de Pittsburgh en 2026 con techo de #2. Situación competitiva pero con volumen de targets potencial al lado de receptores establecidos. Hijos del Salario Mínimo construyen una dupla Tate + Bernard en el mismo backfield NFL: coordinación estratégica.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Hijos del Salario Mínimo</strong></div>
+      </div>
+
+      <!-- 2.03 -->
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.03 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Elijah Sarratt</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Baltimore Ravens</span>
+        </div>
+        <p class="pick-desc">Pick proyectado entre 2ª y 3ª ronda por analistas. En Baltimore hay oportunidades reales de minutos como receptor joven con potencial de slot. Segundo WR de los Pollos en dos picks consecutivos. La acumulación de talento joven de este equipo ya es un fenómeno en sí mismo.</p>
+        <div class="pick-grade grade-c">B−</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(2ª pick R2)</em></div>
+      </div>
+
+      <!-- 2.04 TRADE -->
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="trade-stamp">⇌ VÍA TRADE</div>
+        <div class="pick-num">PICK 2.04 · SEAHAWKMANIA (orig. Delfines → Bulleggs)</div>
+        <div class="pick-player">Nicholas Singleton</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;">RB</span>
+          <span class="nfl-team">Tennessee Titans</span>
+        </div>
+        <p class="pick-desc">Ex Penn State, 5 estrellas. Pollard y Spears salen como agentes libres en 2027 — Singleton podría heredar el backfield completo. Perfil de three-down back con capacidad de recepción probada. Seahawkmania cedió a Meyers por este pick y no se equivocó en cuanto a valor futuro.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong> <em>(pick adquirido vía trade)</em></div>
+      </div>
+
+      <!-- 2.05 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.05 · IRON CHEF DYNASTY</div>
+        <div class="pick-player">Antonio Williams</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Washington Commanders</span>
+        </div>
+        <p class="pick-desc">Seleccionado en el pick #71 del NFL Draft. "Cayó un poco" en el Draft pero llegó al lugar correcto según varios analistas — Washington es una ofensiva en ascenso con targets disponibles. Excelente capacidad de crear tras la recepción. El consenso lo tiene como riser post-draft.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Iron Chef Dynasty</strong></div>
+      </div>
+
+      <!-- 2.06 -->
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 2.06 · THE BULLEGGS</div>
+        <div class="pick-player">Emmett Johnson</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;">RB</span>
+          <span class="nfl-team">Kansas City Chiefs</span>
+        </div>
+        <p class="pick-desc">Nebraska. Los Chiefs, con Mahomes, garantizan que cualquier RB que atrape pases tiene valor. Su perfil de corredor entre tackles con capacidad receptora lo hace ideal para el sistema de Reid. El campeón apuesta al futuro — ya canjeo el pick de Delfines por Meyers y aún se lleva un RB con upside real.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>The Bulleggs</strong> <em>(campeones)</em></div>
+      </div>
+
+      <!-- 2.07 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.07 · GARROBOS DE HIERRO</div>
+        <div class="pick-player">De'Zhaun Stribling</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">San Francisco 49ers</span>
+        </div>
+        <p class="pick-desc">La gran sorpresa del NFL Draft: el pick #33 (2ª ronda NFL) catapultó su valor en dynasty. Sobrino de la leyenda de lucha libre Don "The Rock" Muraco. En SF compite en un cuarto WR, pero Evans y Pearsall son propensos a lesiones. El capital de draft habla más que el film en este caso.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Garrobos de Hierro</strong></div>
+      </div>
+
+      <!-- 2.08 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.08 · TUMBAPATOS FC</div>
+        <div class="pick-player">Ja'Kobi Lane</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Baltimore Ravens</span>
+        </div>
+        <p class="pick-desc">Receptor con físico imponente y amenaza en zona roja. En Baltimore puede disputar el rol #2 junto a Sarratt (también de los Pollos). Coincidencia o estrategia: Tumbapatos y Los Pollos tienen receptores en la misma franquicia NFL. Potencial de complemento en bloques de la misma ofensiva.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Tumbapatos FC</strong></div>
+      </div>
+
+      <!-- 2.09 -->
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.09 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Malachi Fields</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">New York Giants</span>
+        </div>
+        <p class="pick-desc">6'4", 218 lbs. Arma de zona roja con potencial explosivo en 2026, especialmente con Malik Nabers fuera por LCA. Virginia + Notre Dame. Pick #74 del NFL Draft. Si Nabers tarda en regresar, Fields puede tener una temporada de novato histórica en targets de TD. Tercer WR de los Pollos en esta ronda.</p>
+        <div class="pick-grade grade-a">A−</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(3ª pick R2)</em></div>
+      </div>
+
+      <!-- 2.10 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.10 · SEAHAWKMANIA</div>
+        <div class="pick-player">Ted Hurst</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Tampa Bay Buccaneers</span>
+        </div>
+        <p class="pick-desc">6'4", 206 lbs. All-Sun Belt 2025. Georgia State → Tampa Bay, pick #84. Seahawkmania construye la ronda más variada: cedió el pick de Delfines para obtener Singleton vía trade, y cierra con Hurst como segundo novato. Dos picks, dos filosofías: futuro con Singleton y potencial con Hurst en TB.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong></div>
+      </div>
+
+      <!-- 2.11 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.11 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">Chris Brazzell II</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Carolina Panthers</span>
+        </div>
+        <p class="pick-desc">Mismatch problem: talla y velocidad para ser diferencial. En Carolina puede disputar el rol #2 desde su temporada de novato. Backfield Penetration complementa a Denzel Boston (pick 1.09, Cleveland) con otro receptor de perfil X. Dos WRs en diferentes situaciones: el riesgo está diversificado.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong></div>
+      </div>
+
+      <!-- 2.12 -->
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 2.12 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Skyler Bell</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;">WR</span>
+          <span class="nfl-team">Buffalo Bills</span>
+        </div>
+        <p class="pick-desc">El pick de cierre. Bills = ofensiva con Josh Allen perpetuamente atractiva. Skyler Bell cierra la segunda ronda de Los Pollos Hermanos con su cuarto receptor de la ronda. En Buffalo hay targets disponibles para receptores jóvenes que puedan ganarse un rol. Apuesta de largo plazo con buena franquicia.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(4ª pick R2)</em></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOS POLLOS PHENOMENON -->
+<section>
+  <div class="container">
+    <h2>El Fenómeno Pollos</h2>
+    <div class="section-lead">4 picks en una ronda — la sala de novatos más grande del draft</div>
+
+    <div class="callout-box gold-box">
+      <div class="callout-title">🐔 Los Pollos Hermanos: La Franquicia del Draft 2026</div>
+      <p>Con cuatro selecciones en la segunda ronda (2.01, 2.03, 2.09, 2.12) más Fernando Mendoza en la primera (1.11), Los Pollos Hermanos terminan la primera mitad del draft con <strong>5 novatos seleccionados</strong>. Ningún otro equipo de la liga se acerca. Chris Bell (si se mantiene sano) es el activo individual más valioso de esta ronda. Malachi Fields es el pick más interesante por situación inmediata. El riesgo es la gestión: cinco rookies jóvenes en el mismo roster exigen una hoja de ruta clara de desarrollo.</p>
+    </div>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Los Pollos Hermanos</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;--bar-color:#1ABC9C;">Bell · Sarratt · Fields · S.Bell + Mendoza (R1)</div></div>
+        <div class="bar-note">5 picks</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Seahawkmania</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;--bar-color:#3498DB;">Singleton (trade) + Hurst</div></div>
+        <div class="bar-note">2 picks</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">The Bulleggs</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;--bar-color:#E8C44A;">Emmett Johnson + Meyers (trade)</div></div>
+        <div class="bar-note">2 picks</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Hijos Sal. Mínimo</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;--bar-color:#27AE60;">Germie Bernard</div></div>
+        <div class="bar-note">1 pick</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Iron Chef Dynasty</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;--bar-color:#8E44AD;">Antonio Williams</div></div>
+        <div class="bar-note">1 pick</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Garrobos de Hierro</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;--bar-color:#E67E22;">De'Zhaun Stribling</div></div>
+        <div class="bar-note">1 pick</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Tumbapatos FC</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;--bar-color:#C0392B;">Ja'Kobi Lane</div></div>
+        <div class="bar-note">1 pick</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Backfield Penetration</div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;--bar-color:#95A5A6;">Chris Brazzell II</div></div>
+        <div class="bar-note">1 pick</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSICIONES -->
+<section>
+  <div class="container">
+    <h2>Distribución por Posición</h2>
+    <div class="section-lead">Los WR son aún más dominantes en la segunda ronda</div>
+    <div class="chart-wrapper">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#1e1e1e" stroke-width="28"/>
+        <!-- WR 8/12 = 66.7% → 2π×70×0.667 ≈ 293 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#3498DB" stroke-width="28"
+          stroke-dasharray="293 146" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+        <!-- RB 3/12 = 25% → 110 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#27AE60" stroke-width="28"
+          stroke-dasharray="110 329" stroke-dashoffset="-293" transform="rotate(-90 100 100)"/>
+        <!-- trade/vet 1 = 8.3% → 37 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#E8C44A" stroke-width="28"
+          stroke-dasharray="37 402" stroke-dashoffset="-403" transform="rotate(-90 100 100)"/>
+        <text x="100" y="95" text-anchor="middle" font-family="Bebas Neue" font-size="28" fill="white">12</text>
+        <text x="100" y="113" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#888">PICKS</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#3498DB;"></div><span>Wide Receiver (WR)</span><span class="legend-count">8</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27AE60;"></div><span>Running Back (RB)</span><span class="legend-count">3</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E8C44A;"></div><span>Trade (Vet. Meyers)</span><span class="legend-count">1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIER STRIP -->
+<section>
+  <div class="container">
+    <h2>Clasificación por Niveles</h2>
+    <div class="section-lead">Jerarquía de valor dynasty 1QB — Segunda Ronda</div>
+    <div class="tier-strip">
+      <div class="tier-cell" style="background:rgba(39,174,96,0.12);">
+        <div class="tier-label" style="color:#2ecc71;">JOYA</div>
+        <div class="tier-players">
+          <span>Chris Bell*</span>
+          <span style="font-size:10px;color:var(--muted);">*si llega sano</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="background:rgba(52,152,219,0.1);">
+        <div class="tier-label" style="color:#3498db;">ALTO</div>
+        <div class="tier-players">
+          <span>Malachi Fields</span>
+          <span>Antonio Williams</span>
+          <span>De'Zhaun Stribling</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="background:rgba(232,196,74,0.1);">
+        <div class="tier-label" style="color:var(--gold);">SÓLIDO</div>
+        <div class="tier-players">
+          <span>Nick Singleton</span>
+          <span>Emmett Johnson</span>
+          <span>Germie Bernard</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="background:rgba(231,76,60,0.08);">
+        <div class="tier-label" style="color:#e74c3c;">ESPECULATIVO</div>
+        <div class="tier-players">
+          <span>Elijah Sarratt</span>
+          <span>Ja'Kobi Lane</span>
+          <span>Ted Hurst</span>
+          <span>C. Brazzell II</span>
+          <span>Skyler Bell</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVA RANKINGS -->
+<section>
+  <div class="container">
+    <h2>Liga vs. Consenso del Mercado</h2>
+    <div class="section-lead">Segunda Ronda — ¿Quién robó, quién pagó bien y quién sobrepagó?</div>
+
+    <table class="rankings-table">
+      <thead>
+        <tr>
+          <th>Pick</th>
+          <th>Jugador</th>
+          <th>Pos.</th>
+          <th>Equipo Fantasy</th>
+          <th>Rank Consenso 1QB</th>
+          <th>Veredicto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-num">2.01</td>
+          <td class="player-name">Chris Bell</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#13–18 (lesión)</td>
+          <td class="rise">↑ Robo si está sano</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.02</td>
+          <td class="player-name">Germie Bernard</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Hijos del Salario Mínimo</td>
+          <td>#16–17</td>
+          <td class="match">✓ Valor correcto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.03</td>
+          <td class="player-name">Elijah Sarratt</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#28–35</td>
+          <td class="drop">↓ Ligero sobrepago</td>
+        </tr>
+        <tr class="traded-row">
+          <td class="rank-num">2.04</td>
+          <td class="player-name">Nick Singleton <em style="font-size:10px;color:var(--red);">[TRADE]</em></td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Seahawkmania</td>
+          <td>#20–24</td>
+          <td class="rise">↑ Buen valor futuro</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.05</td>
+          <td class="player-name">Antonio Williams</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Iron Chef Dynasty</td>
+          <td>#11 (riser)</td>
+          <td class="rise">↑ Gran robo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.06</td>
+          <td class="player-name">Emmett Johnson</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>The Bulleggs</td>
+          <td>#22–23</td>
+          <td class="match">✓ Valor justo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.07</td>
+          <td class="player-name">De'Zhaun Stribling</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Garrobos de Hierro</td>
+          <td>#25 (riser)</td>
+          <td class="rise">↑ Capital de draft habla</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.08</td>
+          <td class="player-name">Ja'Kobi Lane</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Tumbapatos FC</td>
+          <td>#24–45</td>
+          <td class="match">≈ Razonable</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.09</td>
+          <td class="player-name">Malachi Fields</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#13–16</td>
+          <td class="rise">↑ Robo en 2.09</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.10</td>
+          <td class="player-name">Ted Hurst</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Seahawkmania</td>
+          <td>#22–26</td>
+          <td class="match">✓ Precio correcto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.11</td>
+          <td class="player-name">Chris Brazzell II</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Backfield Penetration</td>
+          <td>#18–21</td>
+          <td class="rise">↑ Ligero robo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">2.12</td>
+          <td class="player-name">Skyler Bell</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#27–32</td>
+          <td class="match">✓ Valor correcto</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CALIFICACIÓN POR EQUIPO -->
+<section>
+  <div class="container">
+    <h2>Calificación por Equipo — Segunda Ronda</h2>
+    <div class="section-lead">¿Quién ganó el turno?</div>
+
+    <div class="teams-grid">
+
+      <div class="team-grade-card mvp-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Los Pollos Hermanos</div>
+            <div class="team-div">Div. Alberto Bernard</div>
+            <span class="mvp-badge">MVP DEL DRAFT</span>
+          </div>
+          <div class="tg-grade grade-a">A</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.01 · Chris Bell (MIA)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.03 · Elijah Sarratt (BAL)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.09 · Malachi Fields (NYG)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.12 · Skyler Bell (BUF)</li>
+        </ul>
+        <div class="tg-analysis">Cuatro picks, cuatro WR. Bell + Fields son los activos de alto potencial. Sarratt y S. Bell son apuestas de largo plazo. La salud de Bell es la variable que puede definir la temporada.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Iron Chef Dynasty</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-a">A</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.05 · Antonio Williams (WSH)</li>
+        </ul>
+        <div class="tg-analysis">Un solo pick pero el mejor valor relativo de la ronda junto a Fields. Williams cayó en el NFL Draft pero aterrizó perfecto. Eficiencia máxima: una bala, un blanco.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Seahawkmania</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-b">B+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 2.04 · Nick Singleton (TEN) <em style="color:var(--red);font-size:10px;">[trade]</em></li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.10 · Ted Hurst (TB)</li>
+        </ul>
+        <div class="tg-analysis">Cedió a Meyers y obtuvo uno de los RBs con mejor camino a titular en 2027. Singleton es la apuesta, Hurst es el complemento. Ronda bien administrada.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">The Bulleggs</div>
+            <div class="team-div">Div. Alberto Bernard · 🏆 Campeones</div>
+          </div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#E8C44A;">TRADE</span> Jacoby Meyers (WR vet)</li>
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 2.06 · Emmett Johnson (KC)</li>
+        </ul>
+        <div class="tg-analysis">El campeón juega en dos tiempos: Meyers para ganar ya, Johnson para construir el futuro. La dualidad del equipo titular es su marca de identidad.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Garrobos de Hierro</div>
+            <div class="team-div">Div. Gerardo Velázquez</div>
+          </div>
+          <div class="tg-grade grade-b">B+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.07 · De'Zhaun Stribling (SF)</li>
+        </ul>
+        <div class="tg-analysis">El capital de draft NFL (pick #33) transforma a Stribling en un activo valioso. En SF hay ruta a targets. Los Garrobos siguen construyendo su WR room con paciencia.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Hijos del Salario Mínimo</div>
+            <div class="team-div">Div. Alberto Bernard</div>
+          </div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.02 · Germie Bernard (PIT)</li>
+        </ul>
+        <div class="tg-analysis">Carnell Tate (R1) + Germie Bernard: dos Steelers en el mismo equipo fantasy. Si Pittsburgh tiene buena temporada ofensiva, Hijos del Salario Mínimo capitalizan doble.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Backfield Penetration</div>
+            <div class="team-div">Div. Luis Castillo</div>
+          </div>
+          <div class="tg-grade grade-b">B−</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.11 · Chris Brazzell II (CAR)</li>
+        </ul>
+        <div class="tg-analysis">Ligero robo según el consenso. Brazzell en Carolina tiene camino real al rol #2. Complementa bien a Denzel Boston (1.09). Dos WR con situaciones distintas es buena diversificación.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div>
+            <div class="team-name">Tumbapatos FC</div>
+            <div class="team-div">Div. Luis Castillo</div>
+          </div>
+          <div class="tg-grade grade-c">C+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 2.08 · Ja'Kobi Lane (BAL)</li>
+        </ul>
+        <div class="tg-analysis">Lane aterriza en la misma franquicia que Sarratt (Pollos). Amenaza de zona roja real, pero el consenso lo tiene en posición baja. El pick más especulativo del bloque central.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACUMULADO DOS RONDAS -->
+<section>
+  <div class="container">
+    <h2>Capital de Draft Acumulado</h2>
+    <div class="section-lead">Balance de los dos primeros turnos — ¿Quién tiene más activos novatos?</div>
+
+    <table class="acum-table">
+      <thead>
+        <tr>
+          <th>Equipo</th>
+          <th>Picks R1</th>
+          <th>Picks R2</th>
+          <th>Total</th>
+          <th>Volumen relativo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600;color:#1ABC9C;">Los Pollos Hermanos</td>
+          <td>1 (Mendoza)</td>
+          <td>4 (Bell, Sarratt, Fields, S.Bell)</td>
+          <td class="total-num">5</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Delfines de Tabasco</td>
+          <td>3 (Price, Sadiq, Cooper)</td>
+          <td>0</td>
+          <td class="total-num">3</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:60%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Tumbapatos FC</td>
+          <td>2 (Lemon, Coleman)</td>
+          <td>1 (Lane)</td>
+          <td class="total-num">3</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:60%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Seahawkmania</td>
+          <td>1 (Stowers)</td>
+          <td>2 (Singleton, Hurst)</td>
+          <td class="total-num">3</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:60%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Hijos del Salario Mínimo</td>
+          <td>1 (Tate)</td>
+          <td>1 (Bernard)</td>
+          <td class="total-num">2</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:40%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Garrobos de Hierro</td>
+          <td>1 (Concepción)</td>
+          <td>1 (Stribling)</td>
+          <td class="total-num">2</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:40%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">The Bulleggs 🏆</td>
+          <td>0</td>
+          <td>2 (E.Johnson + Meyers)</td>
+          <td class="total-num">2</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:40%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Iron Chef Dynasty</td>
+          <td>1 (Tyson)</td>
+          <td>1 (A.Williams)</td>
+          <td class="total-num">2</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:40%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Backfield Penetration</td>
+          <td>1 (Boston)</td>
+          <td>1 (Brazzell)</td>
+          <td class="total-num">2</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:40%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Zorritos Jr</td>
+          <td>1 (Love)</td>
+          <td>0</td>
+          <td class="total-num">1</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:20%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Los Pollos Hermanos</td>
+          <td>1 (Mendoza)</td>
+          <td>—</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;color:var(--muted);">Los Médulas</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="total-num" style="color:var(--muted);">0</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:0%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;color:var(--muted);">Espejitos FFT</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="total-num" style="color:var(--muted);">0</td>
+          <td><div class="acum-bar"><div class="acum-bar-fill" style="width:0%;"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout-box green-box" style="margin-top:28px;">
+      <div class="callout-title">📊 Balance Final de Dos Rondas</div>
+      <p><strong>Los Pollos Hermanos</strong> son la franquicia del draft con 5 activos novatos. <strong>Iron Chef Dynasty</strong> es el equipo con mejor eficiencia por pick (Tyson en R1 + Williams en R2 como posibles robos). <strong>The Bulleggs</strong> juegan el doble rol campeón-constructor con maestría. Los equipos sin picks en dos rondas deberán moverse en waivers o trades para no quedarse atrás en el ciclo de juventud.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Liga Fantasy TVC Deportes</strong> · Draft de Novatos 2026 · Segunda Ronda</p>
+  <p style="margin-top:8px;">Análisis basado en FantasyPros, CBS Sports, NFL Mock Draft Database, DraftSharks, WalterFootball · Mayo 2026</p>
+</div>
+
+</body>
+</html>
