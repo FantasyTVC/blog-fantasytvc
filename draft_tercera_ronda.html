@@ -1,412 +1,597 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crónica de la Tercera Ronda: El Mercado de Pulgas del Talento - Liga Fantasy TVC Deportes</title>
-    <style>
-        :root {
-            --primary-navy: #0f172a;
-            --secondary-blue: #1e3a8a;
-            --accent-gold: #b45309;
-            --text-dark: #334155;
-            --bg-paper: #f8fafc;
-            --border-slate: #cbd5e1;
-            --success-green: #15803d;
-        }
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.8;
-            color: var(--text-dark);
-            background-color: #f1f5f9;
-            margin: 0;
-            padding: 40px 20px;
-        }
-        .newspaper-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-slate);
-        }
-        .header {
-            text-align: center;
-            border-bottom: 4px double var(--primary-navy);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .league-title {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 0.85rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--accent-gold);
-            margin-bottom: 10px;
-        }
-        h1 {
-            font-size: 2.8rem;
-            line-height: 1.1;
-            color: var(--primary-navy);
-            margin: 10px 0;
-            font-weight: 900;
-        }
-        .editorial-sub {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #64748b;
-            margin-top: 10px;
-        }
-        .date-line {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            border-top: 1px solid var(--border-slate);
-            border-bottom: 1px solid var(--border-slate);
-            padding: 5px 0;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        .lead-text {
-            font-size: 1.25rem;
-            color: #1e293b;
-            line-height: 1.7;
-            margin-bottom: 30px;
-            font-style: normal;
-        }
-        .lead-text::first-letter {
-            float: left;
-            font-size: 4.5rem;
-            line-height: 0.8;
-            padding-top: 4px;
-            padding-right: 8px;
-            padding-left: 3px;
-            font-weight: bold;
-            color: var(--primary-navy);
-        }
-        h2 {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 1.5rem;
-            color: var(--secondary-blue);
-            border-bottom: 2px solid var(--primary-navy);
-            padding-bottom: 5px;
-            margin-top: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        p {
-            text-align: justify;
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-        .blockquote-editorial {
-            font-style: italic;
-            border-left: 4px solid var(--accent-gold);
-            padding-left: 20px;
-            margin: 30px 10px;
-            color: #475569;
-        }
-        
-        /* Contenedores de Visualización Gráfica */
-        .grid-visuals {
-            display: flex;
-            gap: 20px;
-            margin: 35px 0;
-            flex-wrap: wrap;
-        }
-        .chart-box {
-            flex: 1;
-            min-width: 300px;
-            background: var(--bg-paper);
-            border: 1px solid var(--border-slate);
-            padding: 20px;
-            border-radius: 4px;
-            text-align: center;
-        }
-        .chart-title {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            color: var(--primary-navy);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft de Novatos 2026 — Tercera Ronda | Liga Fantasy TVC Deportes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #E8C44A;
+    --gold-dim: #b09636;
+    --red: #C0392B;
+    --dark: #0D0D0D;
+    --dark2: #161616;
+    --dark3: #1F1F1F;
+    --card: #242424;
+    --border: #2e2e2e;
+    --text: #E8E8E8;
+    --muted: #888;
+    --green: #27AE60;
+    --blue: #2980B9;
+    --orange: #E67E22;
+    --purple: #8E44AD;
+    --teal: #1ABC9C;
+  }
 
-        /* Gráfico SVG de barras para volumen por equipo */
-        .svg-chart {
-            width: 100%;
-            height: 200px;
-        }
-        .bar {
-            fill: var(--secondary-blue);
-            transition: fill 0.3s;
-        }
-        .bar:hover {
-            fill: var(--accent-gold);
-        }
-        .bar-label {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 10px;
-            fill: var(--text-dark);
-        }
-        .bar-value {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 10px;
-            font-weight: bold;
-            fill: #ffffff;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
 
-        /* Tabla Crónica de Selección */
-        .draft-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 0.9rem;
-        }
-        .draft-table th {
-            background-color: var(--primary-navy);
-            color: #ffffff;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            padding: 12px;
-            text-align: left;
-        }
-        .draft-table td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border-slate);
-        }
-        .draft-table tr:nth-child(even) {
-            background-color: var(--bg-paper);
-        }
-        .team-badge {
-            font-weight: bold;
-            color: var(--secondary-blue);
-        }
-        .pos-badge {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-        .pos-rb { background-color: #10b981; }
-        .pos-wr { background-color: #3b82f6; }
-        .pos-te { background-color: #8b5cf6; }
-        .pos-qb { background-color: #f59e0b; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-        .footer-note {
-            margin-top: 5px;
-            border-top: 1px solid var(--border-slate);
-            padding-top: 20px;
-            font-size: 0.85rem;
-            color: #64748b;
-            text-align: center;
-        }
-    </style>
+  /* HEADER SECT */
+  .hero-header {
+    background: linear-gradient(180deg, var(--dark2) 0%, var(--dark) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .logo-container {
+    max-width: 180px;
+    margin: 0 auto 24px auto;
+  }
+
+  .logo-container img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 4px 12px rgba(232, 196, 74, 0.15));
+  }
+
+  .league-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    line-height: 0.95;
+    color: #FFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
+  /* CONTAINER GRID */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* CRONICA */
+  .cronica-section {
+    padding: 40px 0;
+  }
+
+  .lead-p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #FFF;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--gold);
+    padding-left: 16px;
+  }
+
+  p {
+    color: #CCCCCC;
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-align: justify;
+  }
+
+  strong { color: #FFF; font-weight: 600; }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin: 40px 0 16px 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  /* CALLOUTS */
+  .callout-box {
+    background: var(--card);
+    border-left: 4px solid var(--muted);
+    padding: 20px;
+    margin: 24px 0;
+    border-radius: 4px;
+  }
+  .gold-box { border-left-color: var(--gold); }
+  .green-box { border-left-color: var(--green); }
+
+  .callout-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  /* TABLAS */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 30px 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--dark2);
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  th {
+    background: var(--dark3);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: var(--gold);
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: #DDD;
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFF;
+  }
+  .bg-rb { background: var(--green); }
+  .bg-wr { background: var(--blue); }
+  .bg-te { background: var(--purple); }
+  .bg-qb { background: var(--orange); }
+
+  .market-status {
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+  .status-robo { color: #2ecc71; }
+  .status-reach { color: #e67e22; }
+  .status-justo { color: #3498db; }
+
+  /* GRAFICOS NATIVOS */
+  .chart-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 32px 0;
+  }
+
+  .chart-main-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: #FFF;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .bar-label {
+    width: 180px;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+  }
+
+  .bar-track {
+    flex: 1;
+    background: var(--dark3);
+    height: 24px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #FFF;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  .bar-note {
+    width: 60px;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    padding-left: 10px;
+  }
+
+  /* ACUMULADO GRID */
+  .acumulado-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  .acum-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 50px;
+    align-items: center;
+    background: var(--dark2);
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .acum-team { font-size: 0.9rem; font-weight: 600; }
+  
+  .dot-container {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .acum-count {
+    text-align: right;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding: 40px 20px;
+    text-align: center;
+    background: var(--dark2);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
 </head>
 <body>
 
-<div class="newspaper-container">
-    <div class="header">
-        <div class="league-title">Liga Fantasy TVC Deportes — Órgano Oficial de Análisis</div>
-        <h1>El Mercado de Pulgas del Talento: Acumulación de Activos e Hipotecas de Futuro en la Tercera Ronda</h1>
-        <div class="editorial-sub">Crónica analítica sobre la gestión de rosters a largo plazo y la pesca de profundidad en el Draft de Novatos.</div>
-    </div>
+<header class="hero-header">
+  <div class="logo-container">
+    <img src="Logo premium TVC.png" alt="Logo TVC Deportes Premium">
+  </div>
+  <div class="league-tag">Liga Fantasy TVC Deportes — Reporte de Scouting</div>
+  <h1>La Tercera Ronda del Draft</h1>
+  <div class="subtitle">Auditoría de Mercado: Caza de Talento Oculto, Análisis comparativo de ADP y el Acumulado tras 36 Selecciones.</div>
+</header>
 
-    <div class="date-line">
-        <div>Sección: Análisis Técnico de Oficinistas</div>
-        <div>Temporada de Auditoría: 2026</div>
-        <div>Estatus: Oficial</div>
-    </div>
-
-    <p class="lead-text">
-        La verdadera competencia en una liga de formato Dynasty no se define en las luces de gala de la primera ronda, donde los nombres obvios se seleccionan solos bajo el amparo de los Max Points. El carácter, el estudio de mercado y la visión de supervivencia se demuestran en la densa niebla de la tercera ronda. En este espacio, donde los activos están destinados a madurar en el anonimato del Taxi Squad por hasta dos temporadas, algunas gerencias decidieron sobrepoblar sus granjas, mientras que los campeones históricos observaron en un silencio sepulcral.
+<div class="container">
+  <section class="cronica-section">
+    <p class="lead-p">
+      El tablero del Draft de Novatos 2026 empieza a perder el brillo de los nombres estelares de primera ronda. Entramos oficialmente a la zona profunda de la Dynasty, el terreno gris donde la diferencia entre un mánager promedio y un estratega radica en el cruce de información algorítmica y la proyección de profundidad.
     </p>
 
-    <h2>El Monopolio de las Aves y la Voracidad del Corral</h2>
     <p>
-        El comportamiento bursátil más agresivo de la ronda corrió por cuenta de <strong>Los Pollos Hermanos</strong>. La gerencia del corral polemizador no se conformó con participar; ejecutó una estrategia de saturación de volumen al acaparar tres selecciones completas (3.01, 3.08 y 3.11). Abriendo la ronda con el corredor Kaytron Allen, asegurando más tarde al ala cerrada Oscar Delp y cerrando con el receptor Bryce Lance, apostaron a que la probabilidad pura dicte que al menos uno de sus tres dardos se convierta en una pieza de intercambio rentable en el mercado secundario.
+      Tras dos rondas marcadas por la agresividad en el volumen de <strong>Delfines de Tabasco</strong> y la paciencia táctica de los campeones defensores, la tercera ronda se convirtió en una pasarela de apuestas de largo plazo destinadas estrictamente a poblar el <i>Taxi Squad</i>. Con la banca expandida a 19 espacios para la pretemporada y las exigentes reglas de waivers, asegurar valor real frente al mercado abierto es la única opción de supervivencia.
     </p>
 
-    <div class="blockquote-editorial">
-        "En esta liga, acumular talento joven en posiciones de impacto inmediato como receptores y alas cerradas equivale a imprimir capital de cobertura para el invierno de lesiones." — Notas de la Comisión de Fair Play.
-    </div>
-
-    <h2>Anatomía de la Ronda: Gráficos de Gestión</h2>
-    
-    <div class="grid-visuals">
-        <!-- Gráfico 1: Volumen de Selección por Franquicia -->
-        <div class="chart-box">
-            <div class="chart-title">Volumen de Selecciones en Ronda 3</div>
-            <svg class="svg-chart" viewBox="0 0 400 200">
-                <!-- Barras -->
-                <rect x="20" y="50" width="40" height="120" class="bar" />
-                <rect x="90" y="90" width="40" height="80" class="bar" />
-                <rect x="160" y="90" width="40" height="80" class="bar" />
-                <rect x="230" y="130" width="40" height="40" class="bar" />
-                <rect x="300" y="130" width="40" height="40" class="bar" />
-                
-                <!-- Valores numéricos arriba de las barras -->
-                <text x="40" y="40" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">3</text>
-                <text x="110" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">2</text>
-                <text x="180" y="80" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">2</text>
-                <text x="250" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">1</text>
-                <text x="320" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">1</text>
-                
-                <!-- Etiquetas de Equipos -->
-                <text x="40" y="185" text-anchor="middle" class="bar-label">Pollos H.</text>
-                <text x="110" y="185" text-anchor="middle" class="bar-label">Iron Chef</text>
-                <text x="180" y="185" text-anchor="middle" class="bar-label">Delfines</text>
-                <text x="250" y="185" text-anchor="middle" class="bar-label">Hijos SM</text>
-                <text x="320" y="185" text-anchor="middle" class="bar-label">Otros (4)</text>
-            </svg>
-        </div>
-
-        <!-- Gráfico 2: Diversificación por Posición de Roster -->
-        <div class="chart-box">
-            <div class="chart-title">Balance de Posiciones Reclutadas</div>
-            <svg class="svg-chart" viewBox="0 0 400 200">
-                <!-- Anillos / Barras horizontales de proporción -->
-                <text x="20" y="40" class="bar-label" font-weight="bold">WR (Receptores) - 4 picks</text>
-                <rect x="20" y="45" width="240" height="12" fill="#3b82f6" rx="3" />
-                
-                <text x="20" y="80" class="bar-label" font-weight="bold">TE (Alas Cerradas) - 4 picks</text>
-                <rect x="20" y="85" width="240" height="12" fill="#8b5cf6" rx="3" />
-                
-                <text x="20" y="120" class="bar-label" font-weight="bold">RB (Corredores) - 3 picks</text>
-                <rect x="20" y="125" width="180" height="12" fill="#10b981" rx="3" />
-                
-                <text x="20" y="160" class="bar-label" font-weight="bold">QB (Mariscales) - 1 pick</text>
-                <rect x="20" y="165" width="60" height="12" fill="#f59e0b" rx="3" />
-            </svg>
-        </div>
-    </div>
-
-    <h2>La Resistencia de las Trincheras y las Apuestas de Tráfico</h2>
+    <h2>Análisis de Asignaciones y Comparativa de ADP (vs Consenso Global)</h2>
     <p>
-        En la acera de enfrente, tanto <strong>Iron Chef Dynasty</strong> como los <strong>Delfines de Tabasco</strong> operaron con una precisión de cirujano de puerto, tomando dos activos cada uno. Los del gorro de cocina se enfocaron en asegurar el futuro de su juego aéreo y complementaron su estructura con el único mariscal de campo de la ronda, Ty Simpson en el turno 3.05, tras haber amarrado previamente a Max Klare. 
-    </p>
-    <p>
-        Por su parte, los cetáceos de los pantanos utilizaron sus turnos para inyectar velocidad pura a su ofensiva mediante Zach Branch (3.04) y el músculo terrestre de Kaelon Black (3.06). Ambos equipos entienden perfectamente el artículo 5 del reglamento de la liga: la banca activa es de 16 espacios, y gestionar el talento con paciencia separa a las franquicias de postemporada de los eternos competidores del perdedor Toilet Bowl.
+      Para medir objetivamente si las franquicias de la TVC realizaron selecciones justificadas o ejecutaron un "reach" antes de tiempo, cruzamos los 12 movimientos de la ronda contra el **ADP** promedio de los rankings consolidados de <strong>FantasyPros</strong> y <strong>DraftSharks</strong> para ligas Dynasty PPR Rookies. Los resultados revelan disparidades abismales entre la evaluación local y el consenso de la industria.
     </p>
 
-    <h2>Bitácora Oficial de Asignación - Tercera Ronda</h2>
-    <table class="draft-table">
+    <div class="table-responsive">
+      <table>
         <thead>
-            <tr>
-                <th>Pick</th>
-                <th>Franquicia Adquirente</th>
-                <th>Jugador Seleccionado</th>
-                <th>Posición</th>
-                <th>Destino de Roster Recomendado</th>
-            </tr>
+          <tr>
+            <th>Pick</th>
+            <th>Equipo TVC</th>
+            <th>Jugador</th>
+            <th>Pos</th>
+            <th>Consenso ADP</th>
+            <th>Evaluación de Mercado (vs ADP Global)</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>3.01</td>
-                <td class="team-badge">Los Pollos Hermanos</td>
-                <td>Kaytron Allen</td>
-                <td><span class="pos-badge pos-rb">RB</span></td>
-                <td>Banca Activa / Cobertura</td>
-            </tr>
-            <tr>
-                <td>3.02</td>
-                <td class="team-badge">Hijos del Salario Mínimo</td>
-                <td>Mike Washington</td>
-                <td><span class="pos-badge pos-wr">WR</span></td>
-                <td>Taxi Squad - Año 1</td>
-            </tr>
-            <tr>
-                <td>3.03</td>
-                <td class="team-badge">Iron Chef Dynasty</td>
-                <td>Max Klare</td>
-                <td><span class="pos-badge pos-te">TE</span></td>
-                <td>Desarrollo a Largo Plazo</td>
-            </tr>
-            <tr>
-                <td>3.04</td>
-                <td class="team-badge">Delfines de Tabasco</td>
-                <td>Zach Branch</td>
-                <td><span class="pos-badge pos-wr">WR</span></td>
-                <td>Taxi Squad - Retorno de Patadas</td>
-            </tr>
-            <tr>
-                <td>3.05</td>
-                <td class="team-badge">Iron Chef Dynasty</td>
-                <td>Ty Simpson</td>
-                <td><span class="pos-badge pos-qb">QB</span></td>
-                <td>Reserva Estratégica</td>
-            </tr>
-            <tr>
-                <td>3.06</td>
-                <td class="team-badge">Delfines de Tabasco</td>
-                <td>Kaelon Black</td>
-                <td><span class="pos-badge pos-rb">RB</span></td>
-                <td>Banca Inmediata</td>
-            </tr>
-            <tr>
-                <td>3.07</td>
-                <td class="team-badge">Los Médulas</td>
-                <td>Adam Randall</td>
-                <td><span class="pos-badge pos-wr">WR</span></td>
-                <td>Taxi Squad - Maduración</td>
-            </tr>
-            <tr>
-                <td>3.08</td>
-                <td class="team-badge">Los Pollos Hermanos</td>
-                <td>Oscar Delp</td>
-                <td><span class="pos-badge pos-te">TE</span></td>
-                <td>Desarrollo de Ala Cerrada</td>
-            </tr>
-            <tr>
-                <td>3.09</td>
-                <td class="team-badge">Espejitos FFT</td>
-                <td>Demond Claiborne</td>
-                <td><span class="pos-badge pos-rb">RB</span></td>
-                <td>Especulación de Mercado</td>
-            </tr>
-            <tr>
-                <td>3.10</td>
-                <td class="team-badge">Seahawkmania</td>
-                <td>Eli Raridon</td>
-                <td><span class="pos-badge pos-te">TE</span></td>
-                <td>Profundidad Médica</td>
-            </tr>
-            <tr>
-                <td>3.11</td>
-                <td class="team-badge">Los Pollos Hermanos</td>
-                <td>Bryce Lance</td>
-                <td><span class="pos-badge pos-wr">WR</span></td>
-                <td>Taxi Squad - Año 1</td>
-            </tr>
-            <tr>
-                <td>3.12</td>
-                <td class="team-badge">Zorritos Jr</td>
-                <td>Justin Joly</td>
-                <td><span class="pos-badge pos-te">TE</span></td>
-                <td>Resguardo Inicial de Emergencia</td>
-            </tr>
+          <tr>
+            <td><strong>3.01</strong></td>
+            <td>Los Pollos Hermanos</td>
+            <td><strong>Kaytron Allen</strong></td>
+            <td><span class="badge bg-rb">RB</span></td>
+            <td>2.08</td>
+            <td><span class="market-status status-robo">🟢 ROBO (-5 puestos de ventaja)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.02</strong></td>
+            <td>Hijos del Salario Mínimo</td>
+            <td><strong>Mike Washington</strong></td>
+            <td><span class="badge bg-wr">WR</span></td>
+            <td>3.04</td>
+            <td><span class="market-status status-justo">🔵 VALOR JUSTO (Pick de Manual)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.03</strong></td>
+            <td>Iron Chef Dynasty</td>
+            <td><strong>Max Klare</strong></td>
+            <td><span class="badge bg-te">TE</span></td>
+            <td>3.11</td>
+            <td><span class="market-status status-robo">🟢 VALOR DISPONIBLE (+8 de margen)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.04</strong></td>
+            <td>Delfines de Tabasco</td>
+            <td><strong>Zach Branch</strong></td>
+            <td><span class="badge bg-wr">WR</span></td>
+            <td>2.11</td>
+            <td><span class="market-status status-robo">🟢 ROBO SEVERO (Caída de Tablero)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.05</strong></td>
+            <td>Iron Chef Dynasty</td>
+            <td><strong>Ty Simpson</strong></td>
+            <td><span class="badge bg-qb">QB</span></td>
+            <td>4.02</td>
+            <td><span class="market-status status-reach">🟠 REACH SEVERO (Apuesta por Necesidad)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.06</strong></td>
+            <td>Delfines de Tabasco</td>
+            <td><strong>Kaelon Black</strong></td>
+            <td><span class="badge bg-rb">RB</span></td>
+            <td>3.05</td>
+            <td><span class="market-status status-justo">🔵 VALOR CORRECTO</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.07</strong></td>
+            <td>Los Médulas</td>
+            <td><strong>Adam Randall</strong></td>
+            <td><span class="badge bg-wr">WR</span></td>
+            <td>3.06</td>
+            <td><span class="market-status status-justo">🔵 BALANCEADO</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.08</strong></td>
+            <td>Los Pollos Hermanos</td>
+            <td><strong>Oscar Delp</strong></td>
+            <td><span class="badge bg-te">TE</span></td>
+            <td>3.02</td>
+            <td><span class="market-status status-robo">🟢 ROBO MODERADO</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.09</strong></td>
+            <td>Espejitos FFT</td>
+            <td><strong>Demond Claiborne</strong></td>
+            <td><span class="badge bg-rb">RB</span></td>
+            <td>3.07</td>
+            <td><span class="market-status status-justo">🔵 AJUSTADO A RANKINGS</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.10</strong></td>
+            <td>Seahawkmania</td>
+            <td><strong>Eli Raridon</strong></td>
+            <td><span class="badge bg-te">TE</span></td>
+            <td>4.05</td>
+            <td><span class="market-status status-reach">🟠 REACH DE VALOR (Sobreprecio)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.11</strong></td>
+            <td>Los Pollos Hermanos</td>
+            <td><strong>Bryce Lance</strong></td>
+            <td><span class="badge bg-wr">WR</span></td>
+            <td>3.12</td>
+            <td><span class="market-status status-justo">🔵 VALOR DE CIERRE</span></td>
+          </tr>
+          <tr>
+            <td><strong>3.12</strong></td>
+            <td>Zorritos Jr</td>
+            <td><strong>Justin Joly</strong></td>
+            <td><span class="badge bg-te">TE</span></td>
+            <td>3.10</td>
+            <td><span class="market-status status-justo">🔵 VALOR LÍMITE</span></td>
+          </tr>
         </tbody>
-    </table>
-
-    <h2>El Silencio del Imperio</h2>
-    <p>
-        Es imperativo notar una omisión flagrante en esta lista de transacciones: los pentacampeones e históricos tiranos de la división Gerardo Velázquez de León, los <strong>Garrobos de Hierro</strong>, no registraron un solo movimiento de capital en este periodo. Mientras el resto de la liga intercambiaba febrilmente para adquirir prospectos de bajo costo, la gerencia de la iguana constructora prefirió mantener sus activos intactos para el periodo regular de waivers diarios a las 10:00 AM, guardando su presupuesto de $1,000 FAAB para piezas probadas en lugar de proyectos de fe.
-    </p>
-    <p>
-        Las reglas son severas y el mercado es frío. La tercera ronda ha concluido oficialmente; ahora queda en manos de la suerte de la NFL real determinar si estas firmas se convertirán en pilares de campeonato o en carne de cañón directo a la lista de cortes antes de la semana 1.
-    </p>
-
-    <div class="footer-note">
-        Documento Emitido bajo la Jurisprudencia de la Comisaría de la Liga Fantasy TVC Deportes. Todos los derechos reservados 2026.
+      </table>
     </div>
+
+    <h2>Análisis de Tendencias: La Distribución de Posiciones</h2>
+    <p>
+      A diferencia de las primeras dos rondas, donde los receptores dominaron el ecosistema de selección de forma casi exclusiva, la tercera vuelta vio una explosión de interés por la posición de **TE**. Cuatro alas cerradas fueron reclutados en esta tanda de doce, un claro reflejo de la urgencia de la liga por encontrar profundidad aprovechando el formato PPR.
+    </p>
+
+    <div class="chart-container">
+      <div class="chart-main-title">Distribución por Posición en la Ronda 3</div>
+      
+      <div class="bar-row">
+        <div class="bar-label">WR (Receptores)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 33.3%; background: var(--blue);">4 Picks</div>
+        </div>
+        <div class="bar-note">33.3%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">TE (Alas Cerradas)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 33.3%; background: var(--purple);">4 Picks</div>
+        </div>
+        <div class="bar-note">33.3%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">RB (Corredores)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 25%; background: var(--green);">3 Picks</div>
+        </div>
+        <div class="bar-note">25.0%</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">QB (Mariscales)</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: 8.3%; background: var(--orange);">1 Pick</div>
+        </div>
+        <div class="bar-note">8.4%</div>
+      </div>
+    </div>
+
+    <h2>El Balance Consolidado: Monopolio contra Austeridad</h2>
+    <p>
+      Cuando conectamos este comportamiento con la información acumulada de las rondas previas, el panorama estratégico se vuelve radicalmente evidente. **Los Pollos Hermanos** salieron dedicados a acaparar el volumen del Draft 2026. Con las tres selecciones añadidas en esta ronda (3.01, 3.08, 3.11), la granja suma un total impresionante de **6 novatos incorporados en apenas 36 picks totales**. Es una estrategia pura de acumular activos.
+    </p>
+    <p>
+      En contraste absoluto, los históricos monarcas de la liga, los <strong>Garrobos de Hierro</strong>, se mantuvieron completamente al margen de la tercera ronda. Con apenas un jugador seleccionado en todo el proceso hasta ahora (Ronda 1), su oficina prefiere salvaguardar los valiosos espacios de su roster de 30 y apostar por la estabilidad de su base campeona o guardar presupuesto para la temporada regular.
+    </p>
+
+    <div class="callout-box gold-box">
+      <div class="callout-title">📈 Conclusiones del Tablero de Control (3 Rondas)</div>
+      <p>
+        1. <strong>Los Robos de la Ronda:</strong> El desplome de **Zach Branch** al pick 3.04 (Delfines) y **Kaytron Allen** al 3.01 (Pollos) representan un valor masivo comparado con el **ADP** global. Ambos debieron salir a finales de la segunda ronda según el mercado general.
+      </p>
+      <p>
+        2. <strong>Estrategias de Profundidad (Handcuff):</strong> Con la adquisición de corredores en estas instancias tardías, equipos como Delfines o Pollos Hermanos buscan asegurar ese *handcuff* estratégico ideal en sus backfields, blindando la producción de sus titulares ante cualquier contratiempo o lesión durante el año comercial.
+      </p>
+    </div>
+
+    <h2>Volumen de Reclutamiento Acumulado (Rondas 1 a 3)</h2>
+    <p>
+      A continuación, se detalla el número neto de prospectos adquiridos por cada oficina tras la conclusión de las primeras tres fases del Draft 2026:
+    </p>
+
+    <div class="acumulado-grid">
+      <div class="acum-row">
+        <div class="acum-team">Los Pollos Hermanos</div>
+        <div class="dot-container">
+          <div class="dot" style="background: var(--gold);"></div>
+          <div class="dot" style="background: var(--gold);"></div>
+          <div class="dot" style="background: var(--gold);"></div>
+          <div class="dot" style="background: var(--gold);"></div>
+          <div class="dot" style="background: var(--gold);"></div>
+          <div class="dot" style="background: var(--gold);"></div>
+        </div>
+        <div class="acum-count">6</div>
+      </div>
+
+      <div class="acum-row">
+        <div class="acum-team">Delfines de Tabasco</div>
+        <div class="dot-container">
+          <div class="dot" style="background: var(--teal);"></div>
+          <div class="dot" style="background: var(--teal);"></div>
+          <div class="dot" style="background: var(--teal);"></div>
+          <div class="dot" style="background: var(--teal);"></div>
+          <div class="dot" style="background: var(--teal);"></div>
+        </div>
+        <div class="acum-count">5</div>
+      </div>
+
+      <div class="acum-row">
+        <div class="acum-team">Iron Chef Dynasty</div>
+        <div class="dot-container">
+          <div class="dot" style="background: var(--purple);"></div>
+          <div class="dot" style="background: var(--purple);"></div>
+          <div class="dot" style="background: var(--purple);"></div>
+          <div class="dot" style="background: var(--purple);"></div>
+        </div>
+        <div class="acum-count">4</div>
+      </div>
+
+      <div class="acum-row">
+        <div class="acum-team">Zorritos Jr</div>
+        <div class="dot-container">
+          <div class="dot" style="background: var(--blue);"></div>
+          <div class="dot" style="background: var(--blue);"></div>
+          <div class="dot" style="background: var(--blue);"></div>
+        </div>
+        <div class="acum-count">3</div>
+      </div>
+
+      <div class="acum-row">
+        <div class="acum-team">Otras Franquicias (Consolidado)</div>
+        <div class="dot-container">
+          <div class="dot" style="background: var(--muted);"></div>
+          <div class="dot" style="background: var(--muted);"></div>
+          <div class="dot" style="background: var(--muted);"></div>
+        </div>
+        <div class="acum-count">1-2 c/u</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 30px;">
+      El draft avanza a sus rondas finales. Los rosters empiezan a llenarse y el margen de error se reduce. Las cartas estratégicas están sobre la mesa, y el transcurrir de la temporada determinará quién construyó valor real y quién desperdició sus selecciones en las apuestas del offseason.
+    </p>
+  </section>
 </div>
+
+<footer class="footer">
+  <p><strong>Liga Fantasy TVC Deportes</strong> · Órgano de Control Estadístico Oficial 2026</p>
+  <p style="margin-top: 6px; color: var(--muted);">Todos los análisis e indicadores de ADP están respaldados por las bases de datos de FantasyPros y DraftSharks.</p>
+</footer>
 
 </body>
 </html>
