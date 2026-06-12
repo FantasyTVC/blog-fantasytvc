@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Draft de Novatos 2026 — Tercera Ronda | Liga Fantasy TVC Deportes</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap\" rel=\"stylesheet\">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #E8C44A;
@@ -141,4 +141,218 @@
     color: var(--gold);
     margin-bottom: 20px;
     border-left: 4px solid var(--gold);
-    padding-left: 12
+    padding-left: 12px;
+    letter-spacing: 1px;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+    margin-bottom: 20px;
+  }
+
+  .tvc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+
+  .tvc-table th {
+    background: var(--dark3);
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .tvc-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .tvc-table tbody tr:hover {
+    background: rgba(232, 196, 74, 0.02);
+  }
+
+  .pick-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    background: var(--dark3);
+    color: var(--text);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    display: inline-block;
+    font-size: 1.05rem;
+  }
+
+  .team-name {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .player-name {
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .player-pos {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-left: 5px;
+    color: #fff;
+  }
+
+  .pos-rb { background: var(--blue); }
+  .pos-wr { background: var(--green); }
+  .pos-qb { background: var(--red); }
+  .pos-te { background: var(--orange); }
+
+  .total-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .acum-bar {
+    background: var(--dark3);
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid var(--border);
+  }
+
+  .acum-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim) 0%, var(--gold) 100%);
+    box-shadow: 0 0 8px rgba(232,196,74,0.3);
+    border-radius: 6px;
+  }
+
+  .analysis-block {
+    margin-top: 15px;
+  }
+
+  .analysis-title {
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .callout-box {
+    background: var(--dark2);
+    border-left: 4px solid var(--muted);
+    padding: 15px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+  }
+
+  .gold-box { border-left-color: var(--gold); background: rgba(232,196,74,0.03); }
+  .green-box { border-left-color: var(--green); background: rgba(39,174,96,0.03); }
+
+  .callout-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .bar-label {
+    width: 160px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .bar-track {
+    flex: 1;
+    background: var(--dark3);
+    height: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    border: 1px solid var(--border);
+  }
+
+  .bar-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .bar-note {
+    width: 60px;
+    text-align: right;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 5px;
+  }
+
+  /* ESTILOS DEL BOTÓN COMPACTO REAJUSTADO */
+  .btn-container-tvc {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .btn-compact-tvc {
+    display: inline-block;
+    background: #161616;
+    color: #E8C44A !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    padding: 10px 24px;
+    border: 1.5px solid #E8C44A;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(232, 196, 74, 0.05);
+    transition: background 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+  }
+
+  /* Efecto Hover */
+  .btn-compact-tvc:hover {
+    background: rgba(232, 196, 74, 0.1);
+  }
+
+  /* Animación de clic */
