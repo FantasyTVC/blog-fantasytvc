@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #E8C44A;
-    --gold-dim: #b09636;
-    --red: #C0392B;
+    --accent: #9B59B6;
+    --accent-dim: #7d3f96;
+    --accent-glow: rgba(155,89,182,0.15);
     --dark: #0D0D0D;
     --dark2: #161616;
     --dark3: #1F1F1F;
@@ -17,708 +17,862 @@
     --border: #2e2e2e;
     --text: #E8E8E8;
     --muted: #888;
+    --gold: #E8C44A;
     --green: #27AE60;
-    --blue: #2980B9;
+    --blue: #3498DB;
     --orange: #E67E22;
-    --purple: #8E44AD;
+    --red: #E74C3C;
     --teal: #1ABC9C;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    line-height: 1.6;
-    padding-bottom: 60px;
-  }
+  body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.65; }
 
-  .header-bg {
-    background: linear-gradient(135deg, #050505 0%, #161616 100%);
-    border-bottom: 3px solid var(--gold);
-    padding: 40px 20px;
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0D0D0D 0%, #130a1a 50%, #0D0D0D 100%);
+    border-bottom: 3px solid var(--accent);
+    padding: 60px 20px 50px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-
-  .header-bg::after {
+  .hero::before {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 3px;
-    background: var(--gold);
-    box-shadow: 0 0 15px var(--gold);
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(155,89,182,0.12) 0%, transparent 70%);
   }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; position: relative; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 9vw, 96px); letter-spacing: 2px; line-height: 0.95; color: #fff; position: relative; }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { margin-top: 16px; font-size: 15px; font-weight: 300; color: var(--muted); position: relative; }
+  .hero-badge { display: inline-block; margin-top: 24px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; position: relative; }
+  .hero-round-tag { display: inline-block; margin-top: 10px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; position: relative; }
 
-  .logo-container {
-    margin-bottom: 15px;
-  }
+  /* ── NAV RONDAS ── */
+  .nav-rounds { background: var(--dark2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .nav-pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; }
+  .nav-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
 
-  .logo-img {
-    max-height: 100px;
-    width: auto;
-  }
+  /* ── LAYOUT ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
+  .section-lead { font-size: 12px; color: var(--muted); margin-bottom: 32px; text-transform: uppercase; letter-spacing: 2px; }
+  p { margin-bottom: 14px; color: #ccc; }
+  p:last-child { margin-bottom: 0; }
 
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.5rem;
-    color: var(--gold);
-    letter-spacing: 2px;
-    line-height: 1;
-    margin-bottom: 5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-  }
+  /* ── STAT BAR HEADER ── */
+  .stat-bar { display: flex; gap: 0; border: 1px solid var(--border); margin: 28px 0; overflow: hidden; flex-wrap: wrap; }
+  .stat-item { flex: 1; min-width: 120px; padding: 20px 16px; text-align: center; border-right: 1px solid var(--border); background: var(--dark3); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--accent); }
+  .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+  .stat-sub { font-size: 11px; color: #aaa; margin-top: 5px; }
 
-  .subtitle {
-    font-size: 1.1rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 400;
-  }
+  /* ── PICK BOARD ── */
+  .pick-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 32px; }
+  .pick-card { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--pos-color, var(--accent)); padding: 18px 20px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .pick-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .pick-card.highlight-card { border: 1px solid rgba(155,89,182,0.4); background: linear-gradient(135deg, #1c1226, #242424); }
+  .pick-card.sleeper-card { border: 1px solid rgba(39,174,96,0.4); }
+  .pick-num { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--muted); margin-bottom: 6px; }
+  .pick-player { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .pick-pos-team { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .pos-badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; }
+  .nfl-team { font-size: 12px; color: var(--muted); font-style: italic; }
+  .pick-desc { font-size: 12px; color: #aaa; margin-bottom: 8px; }
+  .pick-owner { font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
+  .pick-owner strong { color: var(--accent); }
+  .pick-grade { position: absolute; top: 16px; right: 16px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1; }
+  .grade-a  { color: #2ecc71; }
+  .grade-b  { color: #3498db; }
+  .grade-c  { color: var(--gold); }
+  .grade-d  { color: #e74c3c; }
+  .nfl-capital { font-size: 10px; background: var(--dark3); border: 1px solid var(--border); padding: 2px 6px; color: var(--muted); }
 
-  .container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
+  /* ── CALLOUT BOXES ── */
+  .callout-box { background: var(--accent-glow); border: 1px solid rgba(155,89,182,0.3); border-left: 4px solid var(--accent); padding: 22px 26px; margin: 28px 0; }
+  .callout-box.gold-box  { background: rgba(232,196,74,0.06);  border: 1px solid rgba(232,196,74,0.3);  border-left: 4px solid var(--gold);  }
+  .callout-box.green-box { background: rgba(39,174,96,0.06);   border: 1px solid rgba(39,174,96,0.3);   border-left: 4px solid var(--green); }
+  .callout-box.red-box   { background: rgba(231,76,60,0.06);   border: 1px solid rgba(231,76,60,0.3);   border-left: 4px solid var(--red);   }
+  .callout-box.blue-box  { background: rgba(52,152,219,0.06);  border: 1px solid rgba(52,152,219,0.3);  border-left: 4px solid var(--blue);  }
+  .callout-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 8px; }
 
-  .nav-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-    overflow-x: auto;
-  }
+  /* ── RANKINGS TABLE ── */
+  .rankings-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+  .rankings-table th { background: var(--dark3); color: var(--accent); font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 1px; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--accent-dim); }
+  .rankings-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: #ccc; vertical-align: middle; }
+  .rankings-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .rankings-table .rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--accent); width: 55px; }
+  .rankings-table .player-name { font-weight: 600; color: #fff; }
+  .rankings-table .match  { color: #2ecc71; font-weight: 700; }
+  .rankings-table .drop   { color: #e74c3c; }
+  .rankings-table .rise   { color: #3498db; }
+  .rankings-table .sleeper { color: var(--gold); font-weight: 700; }
 
-  .nav-tab {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    padding: 8px 18px;
-    color: var(--muted);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--dark2);
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
+  /* ── TIER STRIP ── */
+  .tier-strip { display: flex; margin: 28px 0; overflow: hidden; border: 1px solid var(--border); }
+  .tier-cell { flex: 1; padding: 18px 12px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); }
+  .tier-cell:last-child { border-right: none; }
+  .tier-label { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--muted); letter-spacing: 2px; margin-bottom: 10px; }
+  .tier-players span { display: block; font-size: 11px; color: #ccc; line-height: 2; }
 
-  .nav-tab:hover {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
+  /* ── TEAM GRADE CARDS ── */
+  .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
+  .team-grade-card { background: var(--card); border: 1px solid var(--border); padding: 20px; }
+  .team-grade-card.mvp-card { border-color: var(--accent); background: linear-gradient(135deg, #1a0e22, #242424); }
+  .team-grade-card.sleeper-team { border-color: rgba(39,174,96,0.4); }
+  .team-grade-card.highlight-card { border: 1px solid rgba(155,89,182,0.4); background: linear-gradient(135deg, #1c1226, #242424); }
+  .tg-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; }
+  .team-div { font-size: 11px; color: var(--muted); }
+  .tg-grade { font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; }
+  .picks-list { font-size: 12px; color: #aaa; margin-top: 10px; }
+  .picks-list li { padding: 3px 0; list-style: none; border-bottom: 1px solid var(--border); }
+  .picks-list li:last-child { border: none; }
+  .picks-list .p-pos { display: inline-block; width: 36px; font-weight: 700; }
+  .tg-analysis { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: italic; }
+  .badge-small { background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; display: inline-block; margin-top: 5px; }
+  .badge-green { background: var(--green); }
 
-  .nav-tab.active {
-    color: var(--dark);
-    background: var(--gold);
-    border-color: var(--gold);
-  }
+  /* ── BAR CHART ── */
+  .bar-chart { margin-top: 28px; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 11px; gap: 12px; }
+  .bar-label { width: 170px; font-size: 12px; font-weight: 600; color: #ccc; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; background: var(--dark3); height: 26px; position: relative; }
+  .bar-fill { height: 100%; display: flex; align-items: center; padding-left: 10px; font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.8); }
 
-  .grid-main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+  /* ── ACUMULADO ── */
+  .acum-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+  .acum-table th { background: var(--dark3); color: var(--accent); font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--accent-dim); }
+  .acum-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 12px; color: #ccc; }
+  .acum-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .acum-num { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--accent); }
+  .micro-bar { height: 8px; background: var(--dark3); margin-top: 4px; border-radius: 1px; overflow: hidden; }
+  .micro-fill { height: 100%; background: var(--accent); }
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-    margin-bottom: 25px;
-  }
+  /* ── DONUT ── */
+  .chart-wrapper { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 28px; }
+  .donut-legend { flex: 1; min-width: 200px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-count { font-weight: 700; margin-left: auto; color: #fff; }
 
-  h2.section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    border-left: 4px solid var(--gold);
-    padding-left: 12px;
-    letter-spacing: 1px;
-  }
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 40px 20px; background: var(--dark2); color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+  .footer strong { color: var(--accent); }
 
-  .intro-text {
-    font-size: 1.1rem;
-    color: #f0f0f0;
-    margin-bottom: 20px;
-  }
-
-  .tvc-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 0.95rem;
-  }
-
-  .tvc-table th {
-    background: var(--dark3);
-    color: var(--gold);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    padding: 12px;
-    text-align: left;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .tvc-table td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
-
-  .tvc-table tbody tr:hover {
-    background: rgba(232, 196, 74, 0.02);
-  }
-
-  .pick-badge {
-    font-family: 'Bebas Neue', sans-serif;
-    background: var(--dark3);
-    color: var(--text);
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    display: inline-block;
-    font-size: 1.05rem;
-  }
-
-  .team-name {
-    font-weight: 600;
-    color: #fff;
-  }
-
-  .player-name {
-    font-weight: 700;
-    color: var(--gold);
-  }
-
-  .player-pos {
-    font-size: 0.8rem;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-weight: 700;
-    margin-left: 5px;
-    color: #fff;
-  }
-
-  .pos-rb { background: var(--blue); }
-  .pos-wr { background: var(--green); }
-  .pos-qb { background: var(--red); }
-  .pos-te { background: var(--orange); }
-
-  .total-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    text-align: center;
-    font-weight: 700;
-  }
-
-  .acum-bar {
-    background: var(--dark3);
-    height: 12px;
-    border-radius: 6px;
-    overflow: hidden;
-    width: 100%;
-    border: 1px solid var(--border);
-  }
-
-  .acum-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold-dim) 0%, var(--gold) 100%);
-    box-shadow: 0 0 8px rgba(232,196,74,0.3);
-    border-radius: 6px;
-  }
-
-  .analysis-block {
-    margin-top: 15px;
-  }
-
-  .analysis-title {
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .callout-box {
-    background: var(--dark2);
-    border-left: 4px solid var(--muted);
-    padding: 15px;
-    border-radius: 0 6px 6px 0;
-    margin: 20px 0;
-  }
-
-  .gold-box { border-left-color: var(--gold); background: rgba(232,196,74,0.03); }
-  .green-box { border-left-color: var(--green); background: rgba(39,174,96,0.03); }
-
-  .callout-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    color: #fff;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-  }
-
-  .bar-chart {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 20px 0;
-  }
-
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .bar-label {
-    width: 160px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--muted);
-  }
-
-  .bar-track {
-    flex: 1;
-    background: var(--dark3);
-    height: 24px;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    border: 1px solid var(--border);
-  }
-
-  .bar-fill {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    transition: width 0.5s ease-in-out;
-  }
-
-  .bar-note {
-    width: 60px;
-    text-align: right;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    color: var(--gold);
-  }
-
-  .footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-    font-size: 0.85rem;
-    border-top: 1px solid var(--border);
-    margin-top: 5px;
-  }
-
-  /* ESTILOS DEL BOTÓN COMPACTO REAJUSTADO */
-  .btn-container-tvc {
-    text-align: center;
-    margin: 25px 0;
-  }
-
-  .btn-compact-tvc {
-    display: inline-block;
-    background: #161616;
-    color: #E8C44A !important;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none !important;
-    padding: 10px 24px;
-    border: 1.5px solid #E8C44A;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(232, 196, 74, 0.05);
-    transition: background 0.2s ease, transform 0.1s ease;
-    cursor: pointer;
-  }
-
-  .btn-compact-tvc:hover {
-    background: rgba(232, 196, 74, 0.1);
-  }
-
-  .btn-compact-tvc:active {
-    transform: scale(0.96);
-    background: rgba(232, 196, 74, 0.15);
-  }
-
-  @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    .tvc-table th:nth-child(5), .tvc-table td:nth-child(5) { display: none; }
-    .bar-row { flex-direction: column; align-items: flex-start; gap: 5px; }
-    .bar-label { width: 100%; }
-    .bar-note { width: 100%; text-align: left; }
-  }
-
-  @media (max-width: 480px) {
-    .btn-compact-tvc {
-      display: block;
-      width: 100%;
-    }
+  @media (max-width: 640px) {
+    .pick-board { grid-template-columns: 1fr; }
+    .tier-strip { flex-direction: column; }
+    .stat-bar { flex-direction: column; }
+    .bar-label { width: 120px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
-<div class="header-bg">
-  <div class="logo-container">
-    <img src="Logo premium TVC.png" alt="Liga Fantasy TVC Deportes" class="logo-img">
-  </div>
-  <h1>DRAFT DE NOVATOS 2026</h1>
-  <div class="subtitle">Reporte Oficial — Tercera Ronda</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Liga Fantasy TVC Deportes · Análisis Periodístico</div>
+  <h1>Draft de <span>Novatos</span><br>2026</h1>
+  <div class="hero-sub">Análisis completo de la Tercera Ronda — 12 picks, territorio de sleepers y especulación</div>
+  <div class="hero-badge">29 de Mayo, 2026</div>
+  <div style="margin-top:8px;"><span class="hero-round-tag">Tercera Ronda · Picks 3.01 – 3.12</span></div>
 </div>
 
-<div class="container">
-  
-  <div class="nav-tabs">
-    <a href="draft_primera_ronda_tvc_2026.html" class="nav-tab">Ronda 1</a>
-    <a href="draft_segunda_ronda_2026.html" class="nav-tab">Ronda 2</a>
-    <a href="draft_tercera_ronda.html" class="nav-tab active">Ronda 3</a>
+<!-- NAV -->
+<nav class="nav-rounds">
+  <a class="nav-pill" href="https://fantasytvc.github.io/blog-fantasytvc/draft_primera_ronda_2026.html">1ª Ronda</a>
+  <a class="nav-pill" href="https://fantasytvc.github.io/blog-fantasytvc/draft_segunda_ronda_2026.html">2ª Ronda</a>
+  <a class="nav-pill active" href="#">3ª Ronda</a>
+</nav>
+
+<!-- INTRO -->
+<section>
+  <div class="container">
+    <h2>Bienvenidos al País de los Sleepers</h2>
+    <div class="section-lead">La ronda donde los analistas se dividen y los valientes apuestan</div>
+
+    <p>La tercera ronda del Draft de Novatos 2026 de la Liga Fantasy TVC Deportes es, por definición, la ronda de la fe. Los jugadores que llegan aquí no tienen el consenso a su favor ni el capital de draft NFL que blinda un perfil — lo que tienen es potencial, situación o una historia que contar. Y en dynasty, a veces eso es suficiente.</p>
+    <p>Esta ronda estuvo marcada por la aparición de dos equipos que hasta entonces habían sido silenciosos: <strong>Los Médulas</strong> rompen su sequía con Adam Randall, y <strong>Espejitos FFT</strong> entran al tablero con Demond Claiborne. Mientras tanto, <strong>Los Pollos Hermanos</strong> siguen su ofensiva acumuladora con dos picks más (3.01 y 3.08), e <strong>Iron Chef Dynasty</strong> ejecuta una jugada doble que llama la atención del analista: Max Klare <em>y</em> Ty Simpson en la misma ronda, ambos en los Rams.</p>
+
+    <div class="stat-bar">
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Selecciones</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">WR</div>
+        <div class="stat-sub">Branch, Randall*, Lance, etc.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">RB</div>
+        <div class="stat-sub">Allen, Black, Claiborne, Washington</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">TE</div>
+        <div class="stat-sub">Klare, Delp, Raridon, Joly</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">QB</div>
+        <div class="stat-sub">Ty Simpson</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--accent);">2</div>
+        <div class="stat-label">Equipos Nuevos</div>
+        <div class="stat-sub">Médulas · Espejitos</div>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);">* Adam Randall (BAL) clasificado como WR/RB híbrido por los analistas tras su conversión de posición.</p>
   </div>
+</section>
 
-  <div class="grid-main">
-    
-    <section class="card">
-      <h2 class="section-title">La Ronda de los Ajustes Fundamentales</h2>
-      <p class="intro-text">La tercera ronda del Draft de Novatos 2026 marcó el punto donde las proyecciones teóricas chocaron con las crudas necesidades operativas de las plantillas. Lejos del glamour de las superestrellas inmediatas, aquí se sellaron las valiosas <strong>esposas</strong> (esos corredores de respaldo listos para asumir el control ante una lesión) y las apuestas profundas de especialización táctica. Con las mesas de negociación ardiendo, los mánagers buscaron asegurar valor sustancial explotando las desviaciones de la Posición de Draft Promedio.</p>
+<!-- PICK BOARD -->
+<section>
+  <div class="container">
+    <h2>El Tablero Completo</h2>
+    <div class="section-lead">Tercera Ronda — Picks 3.01 al 3.12</div>
+    <div class="pick-board">
 
-      <table class="tvc-table">
-        <thead>
-          <tr>
-            <th style="width: 80px;">Pick</th>
-            <th>Franquicia</th>
-            <th>Jugador Seleccionado</th>
-            <th style="width: 80px; text-align: center;">Pos</th>
-            <th>Análisis de Impacto Táctico</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="pick-badge">3.01</span></td>
-            <td class="team-name">Los Pollos Hermanos</td>
-            <td><span class="player-name">Jaylen Wright</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-rb">RB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🏈 Perfil de Respaldo Estratégico</div>
-                <p>Una selección de pizarrón puro. Wright aterriza en un esquema terrestre dinámico, convirtiéndose de inmediato en una de las <strong>esposas</strong> de mayor valor latente de este draft.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.02</span></td>
-            <td class="team-name">Hijos del Salario Mínimo</td>
-            <td><span class="player-name">Adonai Mitchell</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-wr">WR</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">📈 Valor Frente a la Posición Promedio</div>
-                <p>Una caída estrepitosa en comparación con su Posición de Draft Promedio original. Su perfil físico ofrece un techo vertical inmenso.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.03</span></td>
-            <td class="team-name">Tumbapatos FC</td>
-            <td><span class="player-name">Ben Sinnott</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-te">TE</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">⏳ Desarrollo a Largo Plazo</div>
-                <p>Alineado perfectamente con la paciencia requerida en el formato Dynasty. Sinnott posee rasgos de receptor híbrido que tardarán un año en madurar.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.04</span></td>
-            <td class="team-name">Zorritos Jr</td>
-            <td><span class="player-name">Drake Maye</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-qb">QB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🛡️ Cobertura en la Central</div>
-                <p>Conseguir un mariscal de campo con capital de draft de primera ronda real al inicio de la tercera vuelta es un triunfo matemático absoluto.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.05</span></td>
-            <td class="team-name">Los Médulas</td>
-            <td><span class="player-name">MarShawn Lloyd</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-rb">RB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🔑 Activación por Desgaste</div>
-                <p>Otra pieza clave que encaja en la categoría de <strong>esposas</strong> de impacto inmediato. Lloyd cuenta con las herramientas físicas para adueñarse de las situaciones de línea de gol.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.06</span></td>
-            <td class="team-name">Seahawkmania</td>
-            <td><span class="player-name">Troy Franklin</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-wr">WR</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">⚡ Química Preexistente</div>
-                <p>Aprovecha la caída del receptor en la Posición de Draft Promedio para reunirlo con su mariscal de la universidad. Apuesta inteligente.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.07</span></td>
-            <td class="team-name">The Bulleggs</td>
-            <td><span class="player-name">Jalen McMillan</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-wr">WR</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🎯 Especialista de Zona Intermedia</div>
-                <p>Técnico excelso corriendo rutas que operará libre de marcas pesadas. Un pick de alta eficiencia enfocado en sumar puntos estables.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.08</span></td>
-            <td class="team-name">Madero FFT</td>
-            <td><span class="player-name">Ray Davis</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-rb">RB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🔨 Fuerza y Choque Contundente</div>
-                <p>Corredor maduro y robusto seleccionado para añadir potencia de impacto directo. Estilo idóneo para suplir ausencias imprevistas.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.09</span></td>
-            <td class="team-name">Garrobos de Hierro</td>
-            <td><span class="player-name">Bucky Irving</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-rb">RB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🔄 Cambio de Ritmo Elástico</div>
-                <p>Excelente complemento terrestre con notable habilidad para atrapar pases saliendo del 'backfield'. Encaja con naturalidad quirúrgica.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.10</span></td>
-            <td class="team-name">Delfines de Tabasco</td>
-            <td><span class="player-name">Javon Baker</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-wr">WR</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🎙️ Mentalidad Alfa en las Laterales</div>
-                <p>Receptor agresivo en el punto de recepción más alto. Añade profundidad física a un cuerpo de pasadores que buscaba refrescar sus opciones.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.11</span></td>
-            <td class="team-name">Espejitos FFT</td>
-            <td><span class="player-name">Audric Estimé</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-rb">RB</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">🛡️ Seguro contra Lesiones</div>
-                <p>Un corredor clásico de poder absoluto. Su inclusión representa una adición de protección sólida al actuar como una de las <strong>esposas</strong> prioritarias.</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="pick-badge">3.12</span></td>
-            <td class="team-name">Iron Chef Dynasty</td>
-            <td><span class="player-name">Ja'Tavion Sanders</span></td>
-            <td style="text-align: center;"><span class="player-pos pos-te">TE</span></td>
-            <td>
-              <div class="analysis-block">
-                <div class="analysis-title">💎 Proyecto de Alta Flexibilidad</div>
-                <p>Cierre de ronda de lujo con un ala cerrada sumamente atlético. Ideal para resguardar en la banca de desarrollo.</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="callout-box gold-box">
-        <div class="callout-title">💡 Conclusión General de la Ronda 3</div>
-        <p>Los mánagers que priorizaron asegurar **esposas** estratégicas compraron un seguro de vida invaluable para la exigente temporada de la Liga TVC Deportes. Por otro lado, quienes capitalizaron el talento rezagado respecto a la Posición de Draft Promedio se llevan promesas de alto impacto.</p>
+      <!-- 3.01 -->
+      <div class="pick-card highlight-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 3.01 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Kaytron Allen</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;color:#000;">RB</span>
+          <span class="nfl-team">Washington Commanders</span>
+          <span class="nfl-capital">Pick #187 NFL</span>
+        </div>
+        <p class="pick-desc">Penn State. Corredor histórico de los Nittany Lions con 1,303 yardas y 15 TDs en su último año (6.2 YPC). Cayó al Día 3 por falta de producción en el juego de pase. Washington tiene el backfield más abierto de la conferencia — Croskey-Merritt y White no son paredes infranqueables. Su techo: RB2 inmediato, RB1 potencial si roba el rol.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(1ª pick R3)</em></div>
       </div>
 
-      <div class="btn-container-tvc">
-        <a href="https://fantasytvc.github.io/blog-fantasytvc/draft_tercera_ronda.html" target="_blank" class="btn-compact-tvc">
-          Ve el reporte aquí
-        </a>
+      <!-- 3.02 -->
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 3.02 · HIJOS DEL SALARIO MÍNIMO</div>
+        <div class="pick-player">Mike Washington Jr.</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;color:#000;">RB</span>
+          <span class="nfl-team">Las Vegas Raiders</span>
+          <span class="nfl-capital">Pick #122 NFL</span>
+        </div>
+        <p class="pick-desc">Gran combine. El problema es uno solo pero es mayúsculo: se llama Ashton Jeanty. El RB franquicia de los Raiders cierra toda vía hacia targets significativos. Valor de handcuff puro en 2026. La apuesta es que Jeanty se lastime — posibilidad real en una posición de alto riesgo de lesión.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Hijos del Salario Mínimo</strong></div>
       </div>
-    </section>
 
-    <section class="card" id="volumen">
-      <h2 class="section-title">Volumen de Reclutamiento Acumulado (Rondas 1 a 3)</h2>
-      <p class="intro-text">El conteo real de la reconstrucción y la inyección de juventud. Completadas tres rondas íntegras, el tablero registra de manera exacta los **36 picks totales** realizados en el draft de la Liga Fantasy TVC Deportes:</p>
+      <!-- 3.03 -->
+      <div class="pick-card sleeper-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 3.03 · IRON CHEF DYNASTY</div>
+        <div class="pick-player">Max Klare</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span>
+          <span class="nfl-team">Los Angeles Rams</span>
+          <span class="nfl-capital">Pick #61 NFL</span>
+        </div>
+        <p class="pick-desc">Ohio State. Seleccionado en el pick 61 del NFL Draft — capital de 2ª ronda NFL que respalda su perfil. Con los Rams tiene un camino interesante al rol de TE2/TE1 a mediano plazo. La línea de tiempo es 2027-2028, pero el capital de draft es el argumento más sólido a su favor.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Iron Chef Dynasty</strong> <em>(1ª pick R3)</em></div>
+      </div>
 
-      <table class="tvc-table">
-        <thead>
-          <tr>
-            <th>Franquicia</th>
-            <th style="text-align: center; width: 60px;">R1</th>
-            <th style="text-align: center; width: 60px;">R2</th>
-            <th style="text-align: center; width: 60px;">R3</th>
-            <th class="total-num" style="width: 80px;">Total</th>
-            <th>Distribución Visual del Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="team-name">Los Pollos Hermanos</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">4</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: var(--gold);">6</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 100%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Delfines de Tabasco</td>
-            <td style="text-align: center;">3</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">5</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 83.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Garrobos de Hierro</td>
-            <td style="text-align: center;">2</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">4</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 66.6%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Zorritos Jr</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">3</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 50%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">The Bulleggs</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">3</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 50%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Iron Chef Dynasty</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">3</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 50%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Tumbapatos FC</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Hijos del Salario Mínimo</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Los Médulas</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Madero FFT</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Seahawkmania</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-          <tr>
-            <td class="team-name">Espejitos FFT</td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center;">1</td>
-            <td class="total-num" style="color: #fff;">2</td>
-            <td><div class="acum-bar"><div class="acum-bar-fill" style="width: 33.3%;"></div></div></td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- 3.04 -->
+      <div class="pick-card sleeper-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 3.04 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Zachariah Branch</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span>
+          <span class="nfl-team">Atlanta Falcons</span>
+          <span class="nfl-capital">Pick #79 NFL</span>
+        </div>
+        <p class="pick-desc">USC → Georgia. Ganador del Jet Award en 2023 — mismo premio que ganó Tyreek Hill. 4.35 segundos en el 40, 38 pulgadas de salto vertical. 5'9" pero explosivo como pocos. En Atlanta hay targets disponibles detrás de Drake London. Los Delfines continúan acumulando talento de velocidad.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(4ª pick total del draft)</em></div>
+      </div>
 
-      <div style="margin-top: 35px;">
-        <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 15px;">Balance Agrupado por Divisiones</h3>
-        <div class="bar-chart">
-          <div class="bar-row">
-            <div class="bar-label">Div. Alberto Bernard</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: 100%; background: var(--green);">Pollos + Bulleggs + Hijos + Médulas</div>
-            </div>
-            <div class="bar-note">13 picks</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">Div. Gerardo Velázquez</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: 92.3%; background: var(--blue);">Garrobos + Zorritos + Iron + Seahawk</div>
-            </div>
-            <div class="bar-note">12 picks</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">Div. Luis Castillo</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: 84.6%; background: var(--purple);">Delfines + Tumbapatos + Madero + Espejitos</div>
-            </div>
-            <div class="bar-note">11 picks</div>
-          </div>
+      <!-- 3.05 -->
+      <div class="pick-card" style="--pos-color:#E67E22;">
+        <div class="pick-num">PICK 3.05 · IRON CHEF DYNASTY</div>
+        <div class="pick-player">Ty Simpson</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#E67E22;color:#fff;">QB</span>
+          <span class="nfl-team">Los Angeles Rams</span>
+          <span class="nfl-capital">Pick #13 NFL</span>
+        </div>
+        <p class="pick-desc">Heredero de Matthew Stafford en Los Ángeles. Seleccionado #13 overall — capital de 1ª ronda NFL en una franquicia de primer nivel. Es un proyecto a largo plazo, pero en dynasty no se compra el presente, se compra el futuro. Iron Chef tiene a Tyson (R1) + Simpson (R3) en la misma ronda del draft.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Iron Chef Dynasty</strong> <em>(2ª pick R3)</em></div>
+      </div>
+
+      <!-- 3.06 -->
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 3.06 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Kaelon Black</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;color:#000;">RB</span>
+          <span class="nfl-team">San Francisco 49ers</span>
+          <span class="nfl-capital">Pick #90 NFL</span>
+        </div>
+        <p class="pick-desc">Encaja perfectamente en el esquema de zona de los 49ers. El obstáculo es el más conocido del fantasy moderno: McCaffrey sigue siendo el rey mientras esté sano, y el backfield está repleto. Pero si CMC falta semanas — probabilidad estadística alta dado su historial — Black puede ser diferencial inmediato. Los Delfines lo saben.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(5ª pick total del draft)</em></div>
+      </div>
+
+      <!-- 3.07 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 3.07 · LOS MÉDULAS</div>
+        <div class="pick-player">Adam Randall</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;color:#fff;">WR/RB</span>
+          <span class="nfl-team">Baltimore Ravens</span>
+          <span class="nfl-capital">Pick #174 NFL</span>
+        </div>
+        <p class="pick-desc">Ex receptor que los Ravens reposicionaron. Único prospecto notable para el backfield de Baltimore como respaldo de Derrick Henry. Perfil híbrido con valor situacional en el slot si Baltimore decide usarlo como pieza de pase. Primera selección de Los Médulas en el draft 2026.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Médulas</strong> <em>(1er pick del draft)</em></div>
+      </div>
+
+      <!-- 3.08 -->
+      <div class="pick-card highlight-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 3.08 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Oscar Delp</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span>
+          <span class="nfl-team">New Orleans Saints</span>
+          <span class="nfl-capital">Pick #73 NFL</span>
+        </div>
+        <p class="pick-desc">Pick 73 del NFL Draft para un TE que ya comparte franquicia con Jordyn Tyson — también de los Pollos. En Nueva Orleans hay oportunidad real: el sistema de los Saints usa al TE como arma primaria. Dos novatos de los Pollos en la misma ofensiva NFL. Estrategia o accidente, el resultado puede ser extraordinario.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(2ª pick R3)</em></div>
+      </div>
+
+      <!-- 3.09 -->
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 3.09 · ESPEJITOS FFT</div>
+        <div class="pick-player">Demond Claiborne</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#27AE60;color:#000;">RB</span>
+          <span class="nfl-team">Minnesota Vikings</span>
+          <span class="nfl-capital">Pick #198 NFL</span>
+        </div>
+        <p class="pick-desc">Wake Forest. 5'10", 188 lbs. Especialista en recepciones que puede desplazar a un Aaron Jones que empieza a mostrar el paso de los años en el rol de back de terceras downs. Los Vikings tienen necesidad real en ese rol. Primera selección de Espejitos FFT en el draft — debut estratégico y de bajo riesgo.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Espejitos FFT</strong> <em>(1er pick del draft)</em></div>
+      </div>
+
+      <!-- 3.10 -->
+      <div class="pick-card sleeper-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 3.10 · SEAHAWKMANIA</div>
+        <div class="pick-player">Eli Raridon</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span>
+          <span class="nfl-team">New England Patriots</span>
+          <span class="nfl-capital">Pick #95 NFL</span>
+        </div>
+        <p class="pick-desc">CBS Sports lo tiene en el puesto #27 general de toda la clase. New England es un destino ideal para un TE joven en un equipo en reconstrucción — los Patriots le darán tiempo para crecer sin presión de contender. Si Drake Maye progresa como QB, Raridon puede convertirse en su arma de confianza. El sleeper más atractivo de la ronda.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong> <em>(3ª pick total del draft)</em></div>
+      </div>
+
+      <!-- 3.11 -->
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 3.11 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Bryce Lance</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span>
+          <span class="nfl-team">New Orleans Saints</span>
+        </div>
+        <p class="pick-desc">Receptor #3 de Nueva Orleans detrás de Olave y Tyson — ¡pero Tyson también es de los Pollos! Tres novatos de Los Pollos Hermanos en la misma franquicia NFL: Tyson (R1), Delp (R3) y Lance (R3). Si los Saints juegan bien, este equipo se lleva una parte enorme del pastel de puntos. El riesgo es proporcional a la recompensa.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(3ª pick R3)</em></div>
+      </div>
+
+      <!-- 3.12 -->
+      <div class="pick-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 3.12 · ZORRITOS JR</div>
+        <div class="pick-player">Justin Joly</div>
+        <div class="pick-pos-team">
+          <span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span>
+          <span class="nfl-team">Denver Broncos</span>
+        </div>
+        <p class="pick-desc">Top 35-43 de la clase según varios rankings. Denver es franquicia atractiva para novatos con Bo Nix en desarrollo. El debate en la comunidad dynasty es si Joly tiene el atletismo para prosperar en la NFL moderna — algunos analistas lo ven limitado. Zorritos Jr ya tienen a Jeremiyah Love (R1) y cierran con una apuesta larga a futuro.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Zorritos Jr</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EL FENÓMENO POLLOS PARTE III -->
+<section>
+  <div class="container">
+    <h2>Pollos de Nuevo. Y de Nuevo.</h2>
+    <div class="section-lead">Tres rondas, una franquicia saturada de novatos propios</div>
+
+    <div class="callout-box">
+      <div class="callout-title">🐔 Los Pollos Hermanos: La Fábrica del Draft 2026</div>
+      <p>Con Kaytron Allen (3.01), Oscar Delp (3.08) y Bryce Lance (3.11), Los Pollos Hermanos cierran tres rondas con <strong>8 novatos seleccionados</strong> en total. El dato más llamativo es la concentración en los Saints: Jordyn Tyson (R1), Oscar Delp y Bryce Lance comparten franquicia en Nueva Orleans. Si la ofensiva de los Saints da un salto, este equipo tiene tres piezas. Si no, tienen tres apuestas fallidas en el mismo mercado.</p>
+    </div>
+
+    <div class="callout-box red-box">
+      <div class="callout-title">⚠️ El Riesgo de la Concentración</div>
+      <p>Tener tres novatos en los mismos Saints implica que el destino de tres picks está ligado a <em>una sola franquicia</em>. Si el coordinador ofensivo de Nueva Orleans cambia, si Olave rompe su techo, o si el equipo reduce el volumen de pase, los tres pierden valor simultáneamente. En dynasty, la diversificación no es sugerencia — es supervivencia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IRON CHEF DOUBLE DOWN -->
+<section>
+  <div class="container">
+    <h2>Iron Chef: La Doble Jugada</h2>
+    <div class="section-lead">Max Klare + Ty Simpson — dos picks, una franquicia NFL, dos apuestas al futuro</div>
+
+    <div class="callout-box blue-box">
+      <div class="callout-title">🍳 Iron Chef Dynasty — La Estrategia de Los Ángeles</div>
+      <p>Picks 3.03 y 3.05 de la misma ronda, ambos en los Rams. Max Klare (TE, pick NFL #61) y Ty Simpson (QB, pick NFL #13) comparten franquicia. Es una apuesta doble: si los Rams construyen una ofensiva sólida post-Stafford con Simpson como señalero, Klare como TE joven podría ser su receptor de confianza con el tiempo. El riesgo es la misma lógica de concentración que afecta a los Pollos — pero a menor escala y con mejor capital de draft NFL como respaldo.</p>
+    </div>
+
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Capital NFL — Simpson</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:#E67E22;">Pick #13 — Capital de 1ª ronda NFL</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Capital NFL — Klare</div>
+        <div class="bar-track"><div class="bar-fill" style="width:58%;background:#8E44AD;">Pick #61 — Capital de 2ª ronda NFL</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Capital NFL — Raridon</div>
+        <div class="bar-track"><div class="bar-fill" style="width:52%;background:#3498DB;">Pick #95 — Capital de 3ª ronda NFL</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Capital NFL — Branch</div>
+        <div class="bar-track"><div class="bar-fill" style="width:50%;background:#1ABC9C;">Pick #79 — Capital de 3ª ronda NFL</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Capital NFL — Allen</div>
+        <div class="bar-track"><div class="bar-fill" style="width:12%;background:#27AE60;">Pick #187 — Capital de 6ª ronda NFL</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISTRIBUCIÓN DE POSICIÓN -->
+<section>
+  <div class="container">
+    <h2>Distribución por Posición</h2>
+    <div class="section-lead">La tercera ronda es más diversa — los RBs vuelven a la conversación</div>
+    <div class="chart-wrapper">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#1e1e1e" stroke-width="28"/>
+        <!-- WR 4/12 = 33% → 146 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#3498DB" stroke-width="28"
+          stroke-dasharray="146 293" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+        <!-- RB 4/12 = 33% → 146 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#27AE60" stroke-width="28"
+          stroke-dasharray="146 293" stroke-dashoffset="-146" transform="rotate(-90 100 100)"/>
+        <!-- TE 3/12 = 25% → 110 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#8E44AD" stroke-width="28"
+          stroke-dasharray="110 329" stroke-dashoffset="-292" transform="rotate(-90 100 100)"/>
+        <!-- QB 1/12 = 8.3% → 37 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#E67E22" stroke-width="28"
+          stroke-dasharray="37 402" stroke-dashoffset="-402" transform="rotate(-90 100 100)"/>
+        <text x="100" y="95" text-anchor="middle" font-family="Bebas Neue" font-size="28" fill="white">12</text>
+        <text x="100" y="113" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#888">PICKS</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#3498DB;"></div><span>Wide Receiver (WR)</span><span class="legend-count">4</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27AE60;"></div><span>Running Back (RB)</span><span class="legend-count">4</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8E44AD;"></div><span>Tight End (TE)</span><span class="legend-count">3</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E67E22;"></div><span>Quarterback (QB)</span><span class="legend-count">1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="container">
+    <h2>Clasificación por Niveles</h2>
+    <div class="section-lead">Jerarquía de valor dynasty 1QB — Tercera Ronda</div>
+    <div class="tier-strip">
+      <div class="tier-cell" style="background:rgba(52,152,219,0.1);">
+        <div class="tier-label" style="color:#3498db;">DESTACADOS</div>
+        <div class="tier-players">
+          <span>Zachariah Branch</span>
+          <span>Eli Raridon</span>
         </div>
       </div>
-
-    </section>
+      <div class="tier-cell" style="background:rgba(155,89,182,0.1);">
+        <div class="tier-label" style="color:var(--accent);">SÓLIDOS</div>
+        <div class="tier-players">
+          <span>Kaytron Allen</span>
+          <span>Max Klare</span>
+          <span>Oscar Delp</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="background:rgba(232,196,74,0.08);">
+        <div class="tier-label" style="color:var(--gold);">SITUACIONALES</div>
+        <div class="tier-players">
+          <span>Kaelon Black</span>
+          <span>Ty Simpson</span>
+          <span>Demond Claiborne</span>
+        </div>
+      </div>
+      <div class="tier-cell" style="background:rgba(231,76,60,0.08);">
+        <div class="tier-label" style="color:var(--red);">ESPECULATIVOS</div>
+        <div class="tier-players">
+          <span>Adam Randall</span>
+          <span>Mike Washington</span>
+          <span>Bryce Lance</span>
+          <span>Justin Joly</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
+<!-- LIGA VS CONSENSO -->
+<section>
+  <div class="container">
+    <h2>Liga vs. Consenso del Mercado</h2>
+    <div class="section-lead">Tercera Ronda — Posición en rankings vs. posición de selección</div>
+
+    <table class="rankings-table">
+      <thead>
+        <tr>
+          <th>Pick</th>
+          <th>Jugador</th>
+          <th>Pos.</th>
+          <th>Equipo Fantasy</th>
+          <th>Rank 1QB (consenso)</th>
+          <th>Veredicto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-num">3.01</td>
+          <td class="player-name">Kaytron Allen</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#28–35</td>
+          <td class="match">✓ Valor correcto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.02</td>
+          <td class="player-name">Mike Washington Jr.</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Hijos del Salario Mínimo</td>
+          <td>#19–29</td>
+          <td class="drop">↓ Situación destruye el valor</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.03</td>
+          <td class="player-name">Max Klare</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Iron Chef Dynasty</td>
+          <td>#18–33</td>
+          <td class="rise">↑ Pick #61 NFL avala el upside</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.04</td>
+          <td class="player-name">Zachariah Branch</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Delfines de Tabasco</td>
+          <td>#14–21</td>
+          <td class="sleeper">★ Robo de la ronda</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.05</td>
+          <td class="player-name">Ty Simpson</td>
+          <td><span class="pos-badge" style="background:#E67E22;color:#fff;font-size:10px;padding:2px 6px;">QB</span></td>
+          <td>Iron Chef Dynasty</td>
+          <td>#26</td>
+          <td class="match">✓ Correcto (capital NFL #13)</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.06</td>
+          <td class="player-name">Kaelon Black</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Delfines de Tabasco</td>
+          <td>#32–40</td>
+          <td class="match">✓ Precio correcto</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.07</td>
+          <td class="player-name">Adam Randall</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR/RB</span></td>
+          <td>Los Médulas</td>
+          <td>#37–41</td>
+          <td class="match">≈ Pick de profundidad</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.08</td>
+          <td class="player-name">Oscar Delp</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#19–31</td>
+          <td class="rise">↑ Robo en 3.08</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.09</td>
+          <td class="player-name">Demond Claiborne</td>
+          <td><span class="pos-badge" style="background:#27AE60;color:#000;font-size:10px;padding:2px 6px;">RB</span></td>
+          <td>Espejitos FFT</td>
+          <td>#29–38</td>
+          <td class="match">✓ Valor razonable</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.10</td>
+          <td class="player-name">Eli Raridon</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Seahawkmania</td>
+          <td>#27–40</td>
+          <td class="sleeper">★ Gran valor en 3.10</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.11</td>
+          <td class="player-name">Bryce Lance</td>
+          <td><span class="pos-badge" style="background:#3498DB;color:#fff;font-size:10px;padding:2px 6px;">WR</span></td>
+          <td>Los Pollos Hermanos</td>
+          <td>#34–49</td>
+          <td class="match">≈ Pick de largo plazo</td>
+        </tr>
+        <tr>
+          <td class="rank-num">3.12</td>
+          <td class="player-name">Justin Joly</td>
+          <td><span class="pos-badge" style="background:#8E44AD;color:#fff;font-size:10px;padding:2px 6px;">TE</span></td>
+          <td>Zorritos Jr</td>
+          <td>#35–43</td>
+          <td class="match">✓ Precio final de ronda</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout-box gold-box" style="margin-top:24px;">
+      <div class="callout-title">★ Los Dos Robos de la Tercera Ronda</div>
+      <p><strong>Zachariah Branch (3.04)</strong> es el pick más valorado según varios consensos — algunos rankings lo ubican en el puesto #14 general de toda la clase. Los Delfines se llevaron potencial de receptor #2 de Atlanta con capital NFL de 3ª ronda. <strong>Eli Raridon (3.10)</strong> aparece cerca del #27 general en CBS Sports — un TE con situación favorable en New England y potencial de relación larga con Drake Maye. Seahawkmania encontró su mejor pick de la ronda al final del turno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALIFICACIÓN POR EQUIPO -->
+<section>
+  <div class="container">
+    <h2>Calificación por Equipo — Tercera Ronda</h2>
+    <div class="section-lead">¿Quién movió mejor sus fichas en el territorio de los sleepers?</div>
+    <div class="teams-grid">
+
+      <div class="team-grade-card sleeper-team">
+        <div class="tg-header">
+          <div><div class="team-name">Delfines de Tabasco</div><div class="team-div">Div. Luis Castillo</div><span class="badge-small badge-green">MVP R3</span></div>
+          <div class="tg-grade grade-a">A−</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 3.04 · Zachariah Branch (ATL)</li>
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 3.06 · Kaelon Black (SF)</li>
+        </ul>
+        <div class="tg-analysis">Branch es el mejor pick individual de la ronda. Black es una apuesta inteligente a la situación en SF. Los Delfines terminan el draft con 5 selecciones totales y siguen siendo el equipo más activo del ciclo.</div>
+      </div>
+
+      <div class="team-grade-card mvp-card">
+        <div class="tg-header">
+          <div><div class="team-name">Iron Chef Dynasty</div><div class="team-div">Div. Gerardo Velázquez</div><span class="badge-small">Los Rams x2</span></div>
+          <div class="tg-grade grade-b">B</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 3.03 · Max Klare (LAR)</li>
+          <li><span class="p-pos" style="color:#E67E22;">QB</span> 3.05 · Ty Simpson (LAR)</li>
+        </ul>
+        <div class="tg-analysis">La apuesta más audaz de la ronda: dos novatos en los mismos Rams. El capital de draft de Simpson (#13) da credibilidad al plan. Si Los Ángeles construye algo serio post-Stafford, Iron Chef tiene dos fichas en esa mesa.</div>
+      </div>
+
+      <div class="team-grade-card highlight-card">
+        <div class="tg-header">
+          <div><div class="team-name">Los Pollos Hermanos</div><div class="team-div">Div. Alberto Bernard</div><span class="badge-small">8 novatos total</span></div>
+          <div class="tg-grade grade-b">B−</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 3.01 · Kaytron Allen (WSH)</li>
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 3.08 · Oscar Delp (NO)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 3.11 · Bryce Lance (NO)</li>
+        </ul>
+        <div class="tg-analysis">Allen vale, Delp vale — Lance es el pick de riesgo. La concentración en los Saints se vuelve problema sistémico. 8 novatos en total tras tres rondas: nunca visto en la liga. El roster joven más profundo, con todos los riesgos que eso implica.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div><div class="team-name">Seahawkmania</div><div class="team-div">Div. Gerardo Velázquez</div></div>
+          <div class="tg-grade grade-b">B+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 3.10 · Eli Raridon (NE)</li>
+        </ul>
+        <div class="tg-analysis">Un solo pick y es el segundo mejor valor de la ronda. Seahawkmania cierra tres rondas con una estrategia clara: Singleton (RB futuro), Hurst (WR largo plazo), Raridon (TE con Drake Maye). Visión de construcción, no de contender inmediato.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div><div class="team-name">Zorritos Jr</div><div class="team-div">Div. Gerardo Velázquez</div></div>
+          <div class="tg-grade grade-c">C+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 3.12 · Justin Joly (DEN)</li>
+        </ul>
+        <div class="tg-analysis">Tienen a Jeremiyah Love (A+ en R1). Joly es apuesta de largo plazo con interrogantes atléticos reales. La franquicia tiene su estrella — el resto del roster es secundario por ahora.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div><div class="team-name">Los Médulas</div><div class="team-div">Div. Alberto Bernard</div><span class="badge-small" style="background:#888;">Debut en el draft</span></div>
+          <div class="tg-grade grade-c">C</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR/RB</span> 3.07 · Adam Randall (BAL)</li>
+        </ul>
+        <div class="tg-analysis">Primera selección del draft, perfil híbrido en Baltimore. No es un pick mal ejecutado — es el primer paso de un roster que necesita reconstruirse. Correcto al precio correcto, sin excelencia ni error.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div><div class="team-name">Espejitos FFT</div><div class="team-div">Div. Luis Castillo</div><span class="badge-small" style="background:#888;">Debut en el draft</span></div>
+          <div class="tg-grade grade-c">C+</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 3.09 · Demond Claiborne (MIN)</li>
+        </ul>
+        <div class="tg-analysis">Primer pick del draft para Espejitos. Claiborne como receptor de terceras downs en Minnesota tiene camino real si desplaza a Aaron Jones en ese rol. Debut discreto pero inteligente.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header">
+          <div><div class="team-name">Hijos del Salario Mínimo</div><div class="team-div">Div. Alberto Bernard</div></div>
+          <div class="tg-grade grade-d">D</div>
+        </div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 3.02 · Mike Washington Jr. (LV)</li>
+        </ul>
+        <div class="tg-analysis">El pick más difícil de defender en esta ronda. Washington cae detrás de Ashton Jeanty con poco margen de oportunidad. Salvo lesión del RB franquicia, este pick no produce nada en 2026 ni 2027. Un slot de Taxi Squad es la única esperanza.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACUMULADO 3 RONDAS -->
+<section>
+  <div class="container">
+    <h2>Capital de Draft Acumulado — Tres Rondas</h2>
+    <div class="section-lead">El balance completo de los 36 picks del draft 2026</div>
+
+    <table class="acum-table">
+      <thead>
+        <tr>
+          <th>Equipo</th>
+          <th>R1</th>
+          <th>R2</th>
+          <th>R3</th>
+          <th>Total</th>
+          <th>Volumen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;color:var(--accent);">🐔 Los Pollos Hermanos</td>
+          <td>1</td><td>4</td><td>3</td>
+          <td class="acum-num">8</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:100%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🐬 Delfines de Tabasco</td>
+          <td>3</td><td>0</td><td>2</td>
+          <td class="acum-num">5</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:62%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🦅 Seahawkmania</td>
+          <td>1</td><td>2</td><td>1</td>
+          <td class="acum-num">4</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:50%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🍳 Iron Chef Dynasty</td>
+          <td>1</td><td>1</td><td>2</td>
+          <td class="acum-num">4</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:50%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🥅 Tumbapatos FC</td>
+          <td>2</td><td>1</td><td>0</td>
+          <td class="acum-num">3</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:37%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">💰 Hijos del Salario Mínimo</td>
+          <td>1</td><td>1</td><td>1</td>
+          <td class="acum-num">3</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:37%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">⚙️ Garrobos de Hierro</td>
+          <td>1</td><td>1</td><td>0</td>
+          <td class="acum-num">2</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:25%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🏁 Backfield Penetration</td>
+          <td>1</td><td>1</td><td>0</td>
+          <td class="acum-num">2</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:25%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🥚 The Bulleggs 🏆</td>
+          <td>0</td><td>2</td><td>0</td>
+          <td class="acum-num">2</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:25%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">⭐ Zorritos Jr</td>
+          <td>1</td><td>0</td><td>1</td>
+          <td class="acum-num">2</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:25%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🪨 Los Médulas</td>
+          <td>0</td><td>0</td><td>1</td>
+          <td class="acum-num">1</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:12%;"></div></div></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">🪞 Espejitos FFT</td>
+          <td>0</td><td>0</td><td>1</td>
+          <td class="acum-num">1</td>
+          <td><div class="micro-bar"><div class="micro-fill" style="width:12%;"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout-box green-box" style="margin-top:28px;">
+      <div class="callout-title">📊 Veredicto Final — Tres Rondas</div>
+      <p><strong>Los Pollos Hermanos</strong> terminan el draft con 8 selecciones — nunca antes visto en tres rondas de la liga. La concentración en los Saints es su mayor riesgo. <strong>Delfines de Tabasco</strong> cierra con 5 picks entre los más variados en posición y situación. <strong>Iron Chef Dynasty</strong> tiene el portafolio más coherente de tres rondas: Tyson (WR1 R1), Williams (WR riser R2), Klare + Simpson (apuesta doble en LAR). <strong>Los Médulas y Espejitos FFT</strong> debutan con picks únicas — ambos necesitarán ser agresivos en waivers para cerrar la brecha con los equipos más activos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <div class="footer">
   <p><strong>Liga Fantasy TVC Deportes</strong> · Draft de Novatos 2026 · Tercera Ronda</p>
-  <p style="margin-top:8px; color: var(--muted);">Análisis de Dinastía Cerrado — Todos los Derechos Reservados © 2026</p>
+  <p style="margin-top:8px;">Análisis basado en CBS Sports, FantasyPros, NFL Mock Draft Database, WalterFootball, DraftSharks, PFF, Athlon Sports · Mayo 2026</p>
 </div>
 
 </body>
