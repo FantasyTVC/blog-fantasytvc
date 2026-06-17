@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft de Novatos 2026 — Rondas 4 y 5 (Final) | Liga Fantasy TVC Deportes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1ABC9C;
+    --accent-dim: #138a73;
+    --accent-glow: rgba(26,188,156,0.12);
+    --dark: #0D0D0D;
+    --dark2: #161616;
+    --dark3: #1F1F1F;
+    --card: #242424;
+    --border: #2e2e2e;
+    --text: #E8E8E8;
+    --muted: #888;
+    --gold: #E8C44A;
+    --green: #27AE60;
+    --blue: #3498DB;
+    --orange: #E67E22;
+    --red: #E74C3C;
+    --purple: #9B59B6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero { background: linear-gradient(135deg, #0D0D0D 0%, #061a16 50%, #0D0D0D 100%); border-bottom: 3px solid var(--gold); padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(232,196,74,0.12) 0%, transparent 70%); }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; position: relative; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(46px, 8vw, 88px); letter-spacing: 2px; line-height: 0.95; color: #fff; position: relative; }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub { margin-top: 16px; font-size: 15px; font-weight: 300; color: var(--muted); position: relative; }
+  .hero-badge { display: inline-block; margin-top: 24px; background: var(--gold); color: var(--dark); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 18px; position: relative; }
+  .hero-round-tag { display: inline-block; margin-top: 10px; border: 1px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; position: relative; }
+
+  /* ── NAV ── */
+  .nav-rounds { background: var(--dark2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .nav-pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: 0.2s; }
+  .nav-pill.active { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+  .nav-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1px; color: var(--gold); margin-bottom: 6px; }
+  .section-lead { font-size: 12px; color: var(--muted); margin-bottom: 32px; text-transform: uppercase; letter-spacing: 2px; }
+  p { margin-bottom: 14px; color: #ccc; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── STAT BAR ── */
+  .stat-bar { display: flex; gap: 0; border: 1px solid var(--border); margin: 28px 0; overflow: hidden; flex-wrap: wrap; }
+  .stat-item { flex: 1; min-width: 110px; padding: 18px 14px; text-align: center; border-right: 1px solid var(--border); background: var(--dark3); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; color: var(--gold); }
+  .stat-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+  .stat-sub { font-size: 10px; color: #aaa; margin-top: 4px; }
+
+  /* ── PICK BOARD ── */
+  .round-header { display: flex; align-items: center; gap: 14px; margin: 40px 0 18px; }
+  .round-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: #fff; letter-spacing: 1px; }
+  .round-header .rline { flex: 1; height: 1px; background: var(--border); }
+  .pick-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; margin-top: 18px; }
+  .pick-card { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--pos-color, var(--gold)); padding: 16px 18px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .pick-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.5); }
+  .pick-card.story-card { border: 1px solid rgba(232,196,74,0.4); background: linear-gradient(135deg, #211d0c, #242424); }
+  .pick-card.undrafted-card { border: 1px dashed rgba(231,76,60,0.5); }
+  .pick-num { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 2px; color: var(--muted); margin-bottom: 5px; }
+  .pick-player { font-family: 'Bebas Neue', sans-serif; font-size: 23px; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .pick-pos-team { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .pos-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; }
+  .nfl-team { font-size: 11px; color: var(--muted); font-style: italic; }
+  .nfl-capital { font-size: 9px; background: var(--dark3); border: 1px solid var(--border); padding: 1px 5px; color: var(--muted); }
+  .undrafted-tag { font-size: 9px; background: var(--red); color: #fff; padding: 1px 6px; font-weight: 700; letter-spacing: 1px; }
+  .pick-desc { font-size: 11.5px; color: #aaa; margin-bottom: 6px; }
+  .pick-owner { font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 8px; margin-top: 8px; }
+  .pick-owner strong { color: var(--gold); }
+  .pick-grade { position: absolute; top: 14px; right: 14px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; line-height: 1; }
+  .grade-a { color: #2ecc71; } .grade-b { color: #3498db; } .grade-c { color: var(--gold); } .grade-d { color: #e74c3c; }
+
+  /* ── CALLOUTS ── */
+  .callout-box { background: rgba(232,196,74,0.06); border: 1px solid rgba(232,196,74,0.3); border-left: 4px solid var(--gold); padding: 22px 26px; margin: 28px 0; }
+  .callout-box.teal-box { background: rgba(26,188,156,0.07); border: 1px solid rgba(26,188,156,0.3); border-left: 4px solid var(--accent); }
+  .callout-box.red-box { background: rgba(231,76,60,0.06); border: 1px solid rgba(231,76,60,0.3); border-left: 4px solid var(--red); }
+  .callout-box.green-box { background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.3); border-left: 4px solid var(--green); }
+  .callout-box.purple-box { background: rgba(155,89,182,0.06); border: 1px solid rgba(155,89,182,0.3); border-left: 4px solid var(--purple); }
+  .callout-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 8px; }
+
+  /* ── UNDRAFTED SECTION ── */
+  .undrafted-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 24px; }
+  .undrafted-card { background: var(--dark3); border: 1px dashed rgba(231,76,60,0.4); padding: 18px; }
+  .ud-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; margin-bottom: 4px; }
+  .ud-meta { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .ud-story { font-size: 12px; color: #ccc; }
+
+  /* ── RANKINGS TABLE ── */
+  .rankings-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 12.5px; }
+  .rankings-table th { background: var(--dark3); color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1px; padding: 9px 12px; text-align: left; border-bottom: 2px solid var(--gold-dim); }
+  .rankings-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: #ccc; vertical-align: middle; }
+  .rankings-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .rankings-table .rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); width: 50px; }
+  .rankings-table .player-name { font-weight: 600; color: #fff; }
+  .rankings-table .match { color: #2ecc71; font-weight: 700; }
+  .rankings-table .drop { color: #e74c3c; }
+  .rankings-table .rise { color: #3498db; }
+  .rankings-table .sleeper { color: var(--gold); font-weight: 700; }
+
+  /* ── TIER STRIP ── */
+  .tier-strip { display: flex; margin: 28px 0; overflow: hidden; border: 1px solid var(--border); }
+  .tier-cell { flex: 1; padding: 16px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); }
+  .tier-cell:last-child { border-right: none; }
+  .tier-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 1.5px; margin-bottom: 8px; }
+  .tier-players span { display: block; font-size: 10px; color: #ccc; line-height: 1.9; }
+
+  /* ── TEAMS GRID ── */
+  .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 28px; }
+  .team-grade-card { background: var(--card); border: 1px solid var(--border); padding: 18px; }
+  .team-grade-card.mvp-card { border-color: var(--gold); background: linear-gradient(135deg, #211d0c, #242424); }
+  .tg-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .team-name { font-family: 'Bebas Neue', sans-serif; font-size: 19px; color: #fff; }
+  .team-div { font-size: 10px; color: var(--muted); }
+  .tg-grade { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; }
+  .picks-list { font-size: 11px; color: #aaa; margin-top: 8px; }
+  .picks-list li { padding: 3px 0; list-style: none; border-bottom: 1px solid var(--border); }
+  .picks-list li:last-child { border: none; }
+  .picks-list .p-pos { display: inline-block; width: 32px; font-weight: 700; }
+  .tg-analysis { font-size: 11px; color: var(--muted); margin-top: 8px; font-style: italic; }
+  .badge-small { background: var(--gold); color: var(--dark); font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; display: inline-block; margin-top: 5px; }
+
+  /* ── ACUMULADO FINAL ── */
+  .acum-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 12.5px; }
+  .acum-table th { background: var(--dark3); color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 1px; padding: 9px 10px; text-align: left; border-bottom: 2px solid var(--gold-dim); }
+  .acum-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 11.5px; color: #ccc; }
+  .acum-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .acum-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); }
+  .micro-bar { height: 7px; background: var(--dark3); margin-top: 3px; border-radius: 1px; overflow: hidden; }
+  .micro-fill { height: 100%; background: var(--gold); }
+  .crown { color: var(--gold); }
+
+  /* ── DONUT ── */
+  .chart-wrapper { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 28px; }
+  .donut-legend { flex: 1; min-width: 200px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12.5px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-count { font-weight: 700; margin-left: auto; color: #fff; }
+
+  /* ── BAR ── */
+  .bar-chart { margin-top: 28px; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 10px; gap: 12px; }
+  .bar-label { width: 175px; font-size: 11.5px; font-weight: 600; color: #ccc; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; background: var(--dark3); height: 24px; position: relative; }
+  .bar-fill { height: 100%; display: flex; align-items: center; padding-left: 9px; font-size: 10.5px; font-weight: 700; color: rgba(0,0,0,0.8); }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 40px 20px; background: var(--dark2); color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+  .footer strong { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .pick-board { grid-template-columns: 1fr; }
+    .tier-strip { flex-direction: column; }
+    .stat-bar { flex-direction: column; }
+    .bar-label { width: 115px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Liga Fantasy TVC Deportes · Crónica de Cierre</div>
+  <h1>Draft de <span>Novatos</span><br>2026</h1>
+  <div class="hero-sub">Rondas Cuatro y Cinco — El cierre de un draft histórico, pick por pick</div>
+  <div class="hero-badge">29 de Mayo, 2026</div>
+  <div style="margin-top:8px;"><span class="hero-round-tag">Rondas 4 y 5 · Picks 4.01 – 5.12 · FINAL</span></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-rounds">
+  <a class="nav-pill" href="https://fantasytvc.github.io/blog-fantasytvc/draft_primera_ronda_2026.html">1ª Ronda</a>
+  <a class="nav-pill" href="https://fantasytvc.github.io/blog-fantasytvc/draft_segunda_ronda_2026.html">2ª Ronda</a>
+  <a class="nav-pill" href="https://fantasytvc.github.io/blog-fantasytvc/draft_tercera_ronda_2026.html">3ª Ronda</a>
+  <a class="nav-pill active" href="#">4ª y 5ª Ronda — Final</a>
+</nav>
+
+<!-- INTRO -->
+<section>
+  <div class="container">
+    <h2>El Telón Final</h2>
+    <div class="section-lead">Donde se cierran las apuestas y se escribe la historia completa</div>
+
+    <p>Veinticuatro picks. Dos rondas. Y el cierre definitivo de uno de los drafts de novatos más activos en la historia reciente de la Liga Fantasy TVC Deportes. Si las primeras tres rondas fueron territorio de estrellas, sleepers y apuestas calculadas, las rondas cuatro y cinco son la zona donde se separan los GMs pacientes de los desesperados — donde Zorritos Jr, con la genética competitiva de un zorro que se hace el muerto mientras acecha, decide que ya no quiere ser más el sótano de la división Gerardo Velázquez de León, y donde el imperio comercial de Los Pollos Hermanos sigue, pick tras pick, expandiendo fronteras.</p>
+    <p>Pero el protagonista silencioso de este cierre no fue una selección dentro del draft — fue lo que pasó fuera de él. Cuatro jugadores con producción universitaria real se quedaron sin equipo NFL. Y entre ellos, una historia que ningún guionista de Hollywood hubiera podido escribir mejor: un corredor de Indiana, ignorado por los 32 equipos de la NFL, firmando como agente libre con los Raiders para reunirse con el quarterback número uno overall del draft. Bienvenidos al final del Draft 2026.</p>
+
+    <div class="stat-bar">
+      <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Selecciones</div></div>
+      <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">No Drafteados</div><div class="stat-sub">Trigg, Taylor, Hemby, Mason</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--accent);">8</div><div class="stat-label">Total Pollos</div><div class="stat-sub">El líder histórico del draft</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">QBs Tomados</div><div class="stat-sub">Beck, Allar, Nussmeier</div></div>
+      <div class="stat-item"><div class="stat-num" style="color:var(--red);">#249</div><div class="stat-label">Caída Histórica</div><div class="stat-sub">Garrett Nussmeier, R7 NFL</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RONDA 4 -->
+<section>
+  <div class="container">
+    <div class="round-header"><h3>RONDA CUATRO</h3><div class="rline"></div><span style="font-size:12px;color:var(--muted);">Picks 4.01 – 4.12</span></div>
+    <p>Zorritos Jr abre la ronda con autoridad, repitiendo selección dos veces en los primeros tres picks. Es un mensaje claro: el equipo que ya tiene a Jeremiyah Love como ancla está construyendo profundidad agresivamente alrededor de su estrella. Mientras tanto, The Bulleggs, los campeones defensores, dan el primer golpe de teatro de la ronda con un QB que generó controversia en el propio Draft de la NFL.</p>
+
+    <div class="pick-board">
+
+      <div class="pick-card story-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 4.01 · ZORRITOS JR</div>
+        <div class="pick-player">Cyrus Allen</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Kansas City Chiefs</span><span class="nfl-capital">Pick #176 NFL</span></div>
+        <p class="pick-desc">Cincinnati. Aterrizar en el sistema de Mahomes y Reid es la lotería de cualquier receptor de día 3 — cualquiera que rompa con Mahomes es un activo de interés inmediato. Zorritos refuerza alrededor de Love con una apuesta de alto upside situacional.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Zorritos Jr</strong> <em>(2ª pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.02 · HIJOS DEL SALARIO MÍNIMO</div>
+        <div class="pick-player">Caleb Douglas</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Miami Dolphins</span></div>
+        <p class="pick-desc">Receptor de envergadura enorme con problemas de manos y fuerza según el scouting. Tendrá oportunidad real de empezar en Miami. Riesgo técnico, oportunidad real — el tipo de apuesta que define la ronda 4.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Hijos del Salario Mínimo</strong></div>
+      </div>
+
+      <div class="pick-card story-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.03 · ZORRITOS JR</div>
+        <div class="pick-player">Brenen Thompson</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">LA Chargers</span></div>
+        <p class="pick-desc">Elemento de velocidad vertical pura para una ofensiva de Justin Herbert que necesitaba explosividad. No será titular de tiempo completo, pero puede generar 2-4 targets explosivos por partido. Zorritos cierra su segunda selección consecutiva con otro perfil de espacio abierto.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Zorritos Jr</strong> <em>(3ª pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.04 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Eli Heidenreich</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Pittsburgh Steelers</span></div>
+        <p class="pick-desc">Probable conversión a receptor de slot en la NFL. Tiene el upside atlético para convertirse en titular de esa posición si perfecciona su ruteo. Pittsburgh, franquicia ya saturada de talento joven de los Delfines (recordemos a Germie Bernard de Hijos), suma otro novato a vigilar.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(6ª pick total)</em></div>
+      </div>
+
+      <div class="pick-card story-card" style="--pos-color:#E67E22;">
+        <div class="pick-num">PICK 4.05 · THE BULLEGGS 🏆</div>
+        <div class="pick-player">Carson Beck</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#E67E22;color:#fff;">QB</span><span class="nfl-team">Arizona Cardinals</span><span class="nfl-capital">Pick #65 NFL</span></div>
+        <p class="pick-desc">Pick que generó debate en el propio Draft de la NFL: muchos analistas calificaron la selección de Arizona como "desconcertante". Pero el contexto fantasy es otro — Beck cae a un roster de los Cardinals con Jeremiyah Love, Trey McBride y Marvin Harrison Jr. Si gana el puesto sobre Jacoby Brissett, el ecosistema de armas alrededor de él es de élite. El campeón vigente apuesta a que el contexto supere las dudas sobre el jugador.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>The Bulleggs</strong> <em>(campeón defensor)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 4.06 · SEAHAWKMANIA</div>
+        <div class="pick-player">Seth McGowan</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#27AE60;color:#000;">RB</span><span class="nfl-team">Indianapolis Colts</span><span class="nfl-capital">Pick #237 NFL</span></div>
+        <p class="pick-desc">Calificado como "el peor pick" de los Colts en su Draft NFL por varios analistas, pero corredor grande y poderoso que, si resuelve su problema de fumbles, puede ser complemento de short-yardage junto a Jonathan Taylor. Apuesta de profundidad de bajo riesgo y bajo costo para los doctores de Seahawkmania.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.07 · DELFINES DE TABASCO</div>
+        <div class="pick-player">C.J. Daniels</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Los Angeles Rams</span><span class="nfl-capital">Pick #197 NFL</span></div>
+        <p class="pick-desc">Miami. Aterriza en los Rams, la misma franquicia donde Iron Chef Dynasty ya apostó doble con Klare y Simpson. Daniels añade otro hilo narrativo a la trama de Los Ángeles. Volumen de targets incierto, pero el sistema de Sean McVay siempre encuentra formas de generar producción.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(7ª pick total — líder histórico de volumen)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 4.08 · SEAHAWKMANIA</div>
+        <div class="pick-player">Zavion Thomas</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Chicago Bears</span><span class="nfl-capital">Pick #89 NFL</span></div>
+        <p class="pick-desc">El "factor X" de los Bears según varios analistas. Corrió 4.28 segundos en el 40 en el Combine — velocidad pura de breakaway. Pequeño de estatura pero capaz de generar jugadas explosivas si su cuerpo aguanta el ritmo de la NFL. Capital de draft NFL de 3ª ronda respalda el perfil.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong> <em>(2ª pick R4)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.09 · ESPEJITOS FFT</div>
+        <div class="pick-player">Kevin Coleman Jr.</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Miami Dolphins</span><span class="nfl-capital">Pick #177 NFL</span></div>
+        <p class="pick-desc">Segundo receptor de los Dolphins seleccionado en este draft (junto a Caleb Douglas de los Hijos). El beduino de Espejitos negocia con paciencia, pero en este pick simplemente toma valor de profundidad en una ofensiva con preguntas abiertas en el WR2.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Espejitos FFT</strong> <em>(2ª pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 4.10 · GARROBOS DE HIERRO</div>
+        <div class="pick-player">Matthew Hibner</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span><span class="nfl-team">Baltimore Ravens</span><span class="nfl-capital">Pick #133 NFL</span></div>
+        <p class="pick-desc">SMU. Calificado por algunos analistas como TE3 sin mucho upside más allá de profundidad. Los Garrobos, el imperio histórico de la liga con 5 títulos, juegan con calma en esta ronda: pick de bajo riesgo para llenar un roster ya competitivo.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Garrobos de Hierro</strong> <em>(2ª pick total)</em></div>
+      </div>
+
+      <div class="pick-card story-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 4.11 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">Michael Trigg</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span><span class="nfl-team">Dallas Cowboys</span><span class="undrafted-tag">NO DRAFTEADO NFL</span></div>
+        <p class="pick-desc">El TE más interesante entre los no drafteados de toda la clase — algunos rankings de Superflex lo colocan en el top 2 de su posición a pesar de no haber sido seleccionado por ningún equipo NFL. Firma con Dallas como agente libre. Backfield Penetration, el equipo logístico más joven del circuito, entrega exactamente eso: una entrega de alto valor con descuento.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong></div>
+      </div>
+
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 4.12 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Deion Burks</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Indianapolis Colts</span><span class="nfl-capital">Pick #254 NFL</span></div>
+        <p class="pick-desc">Explosivo si logra forjar relación con cualquiera de los QBs de largo plazo de Indy. El comerciante queretano de Los Pollos cierra la ronda 4 con su novena selección total del draft — un número que ningún otro equipo de la liga se acerca a igualar.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(4ª pick R4-equivalente)</em></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RONDA 5 -->
+<section>
+  <div class="container">
+    <div class="round-header"><h3>RONDA CINCO</h3><div class="rline"></div><span style="font-size:12px;color:var(--muted);">Picks 5.01 – 5.12</span></div>
+    <p>La última ronda del draft es, tradicionalmente, el cementerio de la esperanza o el jardín secreto de la próxima sorpresa. Esta edición no fue la excepción: contiene la caída más dramática de todo el draft (Garrett Nussmeier, del Top-10 proyectado al pick #249 de la NFL), un trío de selecciones de kicker y TE de profundidad pura, y el cierre perfecto para Backfield Penetration y The Bulleggs.</p>
+
+    <div class="pick-board">
+
+      <div class="pick-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 5.01 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">Amari Taylor</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="undrafted-tag">NO DRAFTEADO NFL</span></div>
+        <p class="pick-desc">Segundo no drafteado de Backfield Penetration en dos rondas. El equipo más joven del circuito sigue su estrategia de coleccionar talento universitario de producción real sin importar el sello de aprobación de la NFL en el Día 3.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong> <em>(2ª pick R5)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#E67E22;">
+        <div class="pick-num">PICK 5.02 · HIJOS DEL SALARIO MÍNIMO</div>
+        <div class="pick-player">Taylen Green</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#E67E22;color:#fff;">QB</span><span class="nfl-team">Cleveland Browns</span><span class="nfl-capital">Pick #182 NFL</span></div>
+        <p class="pick-desc">El mejor workout de QB desde Anthony Richardson: 4.36 en el 40, salto vertical de 43.5", broad jump de 11'02" — todos percentil 99 según Mockdraftable. A 6'6" y 227 lbs, es pura arcilla atlética. Cleveland es un canvas en blanco. El bicampeonato histórico de Hijos sabe que aquí hay una apuesta de alto riesgo, alta recompensa.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Hijos del Salario Mínimo</strong> <em>(2ª pick R5)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#E67E22;">
+        <div class="pick-num">PICK 5.03 · SEAHAWKMANIA</div>
+        <div class="pick-player">Drew Allar</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#E67E22;color:#fff;">QB</span><span class="nfl-team">Pittsburgh Steelers</span><span class="nfl-capital">Pick #76 NFL</span></div>
+        <p class="pick-desc">El pick de capital más alto de la ronda 5. Penn State. Algunos analistas criticaron la selección de Pittsburgh por "falta de pulido", pero el brazo y la movilidad ofrecen techo real. Aterriza detrás de Aaron Rodgers en una transición generacional que puede llegar antes de lo esperado.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Seahawkmania</strong> <em>(3ª pick R4-5)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 5.04 · DELFINES DE TABASCO</div>
+        <div class="pick-player">Jam Miller</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#27AE60;color:#000;">RB</span><span class="nfl-team">New England Patriots</span><span class="nfl-capital">Pick #245 NFL</span></div>
+        <p class="pick-desc">Alabama. Capital de draft de 7ª ronda en una franquicia con backfield abierto tras la reconstrucción de Drake Maye. El emprendedor tabasqueño cierra su participación en el draft con su octava selección total — un volumen que define toda esta edición para los Delfines.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Delfines de Tabasco</strong> <em>(8ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 5.05 · IRON CHEF DYNASTY</div>
+        <div class="pick-player">Jack Endries</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span><span class="nfl-team">Cincinnati Bengals</span><span class="nfl-capital">Pick #221 NFL</span></div>
+        <p class="pick-desc">Texas. Uno de los perfiles más completos de la clase de TEs según varios scouts — manos fuertes, radio de catch amplio, ex atleta de tres deportes. Cincinnati con Joe Burrow es destino soñado para cualquier TE joven. Iron Chef cierra su draft con un total de cuatro selecciones bien distribuidas.</p>
+        <div class="pick-grade grade-b">B+</div>
+        <div class="pick-owner">Seleccionado por <strong>Iron Chef Dynasty</strong> <em>(4ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card story-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 5.06 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">Garrett Nussmeier</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#E67E22;color:#fff;">QB</span><span class="nfl-team">Kansas City Chiefs</span><span class="nfl-capital">Pick #249 NFL (Ronda 7)</span></div>
+        <p class="pick-desc">La caída del draft. LSU, hijo del coordinador ofensivo de los Saints. Llegó a la temporada 2025 con proyección de primera ronda NFL y terminó cayendo hasta el pick 249 tras una temporada irregular y una lesión que afectó su progresión. En Kansas City, detrás de Mahomes, su única vía de relevancia es una emergencia. Apuesta de Taxi Squad con cero presión de producir.</p>
+        <div class="pick-grade grade-d">D</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong> <em>(3ª pick total del draft)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 5.07 · LOS MÉDULAS</div>
+        <div class="pick-player">Roman Hemby</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#27AE60;color:#000;">RB</span><span class="nfl-team">Las Vegas Raiders</span><span class="undrafted-tag">NO DRAFTEADO NFL</span></div>
+        <p class="pick-desc">La historia más bonita del draft. Líder absoluto de los Hoosiers campeones nacionales con 1,120 yardas en 2025 — y aun así ningún equipo lo seleccionó en los siete rondas del Draft NFL. Las Vegas lo firmó como agente libre para reunirlo con su quarterback de Indiana: Fernando Mendoza, el pick número uno overall. El oftalmólogo metalero de Los Médulas encuentra valor donde la NFL no lo vio — corredor fuerte, seguro con el balón, con la conexión más narrativa de todo el draft.</p>
+        <div class="pick-grade grade-b">B</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Médulas</strong> <em>(2ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card highlight-card" style="--pos-color:#3498DB;">
+        <div class="pick-num">PICK 5.08 · LOS POLLOS HERMANOS</div>
+        <div class="pick-player">Malik Benson</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#3498DB;color:#fff;">WR</span><span class="nfl-team">Las Vegas Raiders</span><span class="nfl-capital">Pick #195 NFL</span></div>
+        <p class="pick-desc">4.37 en el 40 — top 10 entre todos los receptores del Combine. Líder de Oregon en yardas en 2025 con 716 yardas y 16.7 por recepción. Reportes de minicamp ya lo destacan generando jugadas explosivas detrás de la secundaria rival. Los Pollos cierran su draft histórico con diez selecciones totales — un número sin precedente en la liga.</p>
+        <div class="pick-grade grade-c">C+</div>
+        <div class="pick-owner">Seleccionado por <strong>Los Pollos Hermanos</strong> <em>(décima y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#27AE60;">
+        <div class="pick-num">PICK 5.09 · ESPEJITOS FFT</div>
+        <div class="pick-player">Max Klein</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#27AE60;color:#000;">RB</span><span class="nfl-team">No confirmado / agente libre</span></div>
+        <p class="pick-desc">Selección de profundidad pura sin gran cobertura de scouting nacional. Espejitos cierra su negociación de draft con paciencia — el beduino siempre corre el riesgo en busca de la pieza barata que algún día pague dividendos.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Espejitos FFT</strong> <em>(3ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#95A5A6;">
+        <div class="pick-num">PICK 5.10 · GARROBOS DE HIERRO</div>
+        <div class="pick-player">T. Smack (Kicker)</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#95A5A6;color:#000;">K</span><span class="nfl-team">Posición de kicker</span></div>
+        <p class="pick-desc">El imperio histórico de la liga cierra con la selección más conservadora posible: un kicker. Sin riesgo, sin gloria — pero los Garrobos no necesitan glamour en la ronda 5 para mantener su trono de cinco títulos.</p>
+        <div class="pick-grade grade-c">C</div>
+        <div class="pick-owner">Seleccionado por <strong>Garrobos de Hierro</strong> <em>(3ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 5.11 · BACKFIELD PENETRATION</div>
+        <div class="pick-player">B. Sharp (TE)</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span><span class="nfl-team">Tampa Bay Buccaneers</span></div>
+        <p class="pick-desc">Cierre de profundidad para Backfield Penetration, que termina el draft con un total de cinco selecciones — el equipo más activo fuera del trío de gigantes (Pollos, Delfines, Seahawkmania). Su filosofía de "tomar todo lo que la liga descarta" queda confirmada.</p>
+        <div class="pick-grade grade-d">D+</div>
+        <div class="pick-owner">Seleccionado por <strong>Backfield Penetration</strong> <em>(5ª y última pick total)</em></div>
+      </div>
+
+      <div class="pick-card story-card" style="--pos-color:#8E44AD;">
+        <div class="pick-num">PICK 5.12 · THE BULLEGGS 🏆</div>
+        <div class="pick-player">Lance Mason</div>
+        <div class="pick-pos-team"><span class="pos-badge" style="background:#8E44AD;color:#fff;">TE</span><span class="undrafted-tag">NO DRAFTEADO NFL</span></div>
+        <p class="pick-desc">El campeón cierra el draft completo de la liga con la última selección general. Sin equipo NFL confirmado al momento de la redacción, es la apuesta más especulativa del día — pero el toro fortificado de The Bulleggs ya demostró con Meyers y Beck que sabe construir un roster ganador con piezas no convencionales.</p>
+        <div class="pick-grade grade-d">D</div>
+        <div class="pick-owner">Seleccionado por <strong>The Bulleggs</strong> <em>(última selección general del draft)</em></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOS NO DRAFTEADOS -->
+<section>
+  <div class="container">
+    <h2>Los Fantasmas del Draft NFL</h2>
+    <div class="section-lead">Cuatro jugadores, cero equipos NFL, cuatro apuestas de la liga</div>
+    <p>No todos los activos valiosos llegan con el sello de aprobación de un equipo de la NFL. Estos cuatro jugadores fueron ignorados en los siete rondas del Draft 2026, pero encontraron destino — y en algunos casos, una historia digna de crónica.</p>
+
+    <div class="undrafted-grid">
+      <div class="undrafted-card">
+        <div class="ud-name">Michael Trigg</div>
+        <div class="ud-meta">TE · Firma con Dallas Cowboys · Pick 4.11, Backfield Penetration</div>
+        <div class="ud-story">A pesar de no ser drafteado, algunos rankings de Superflex lo colocan en el Top 2 de TEs de toda la clase. El mayor desfase entre talento percibido y capital real de todo el draft.</div>
+      </div>
+      <div class="undrafted-card">
+        <div class="ud-name">Roman Hemby</div>
+        <div class="ud-meta">RB · Firma con Las Vegas Raiders · Pick 5.07, Los Médulas</div>
+        <div class="ud-story">Líder en yardas de los Hoosiers campeones nacionales 2025. La NFL lo ignoró siete rondas completas; los Raiders lo reunieron con su excompañero Fernando Mendoza, el pick #1 overall.</div>
+      </div>
+      <div class="undrafted-card">
+        <div class="ud-name">Amari Taylor</div>
+        <div class="ud-meta">WR · Agente libre · Pick 5.01, Backfield Penetration</div>
+        <div class="ud-story">Segundo no drafteado de Backfield Penetration. La estrategia del equipo logístico más joven de la liga es clara: producción universitaria por encima del sello NFL.</div>
+      </div>
+      <div class="undrafted-card">
+        <div class="ud-name">Lance Mason</div>
+        <div class="ud-meta">TE · Sin equipo confirmado · Pick 5.12, The Bulleggs</div>
+        <div class="ud-story">La última selección del draft general de la liga. El campeón defensor cierra con la apuesta más larga de todas — perfil de TE de Taxi Squad puro.</div>
+      </div>
+    </div>
+
+    <div class="callout-box red-box" style="margin-top:24px;">
+      <div class="callout-title">⚠️ El Valor Real de lo No Drafteado</div>
+      <p>En dynasty, ser ignorado por la NFL no equivale a no tener valor — equivale a no tener garantías. Sin capital de draft que blinde un roster spot, estos cuatro jugadores dependen enteramente de su desempeño en camp y preseason para sobrevivir el corte final a 53. Son las apuestas de mayor riesgo y, potencialmente, mayor retorno de toda la clase 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LA CAÍDA DE NUSSMEIER -->
+<section>
+  <div class="container">
+    <h2>La Caída Más Dramática del Draft</h2>
+    <div class="section-lead">Garrett Nussmeier: de proyección Top-10 a la séptima ronda NFL</div>
+
+    <div class="callout-box purple-box">
+      <div class="callout-title">📉 De Promesa a Pick #249</div>
+      <p>Garrett Nussmeier llegó a la temporada 2025 con proyección de poder colarse en la primera ronda del Draft NFL. Hijo del coordinador ofensivo de los Saints, con linaje futbolístico real. Una temporada irregular en LSU y dudas sobre su consistencia colapsaron su stock hasta la séptima ronda — el pick #249 overall, en manos de los Kansas City Chiefs. Backfield Penetration lo tomó en la quinta ronda de este draft de novatos (5.06), como la apuesta de "nada que perder" definitiva: detrás de Mahomes, su única vía de relevancia fantasy en el corto plazo es una lesión grave del titular.</p>
+    </div>
+
+    <div class="bar-chart">
+      <div class="bar-row"><div class="bar-label">Proyección preseason</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#2ecc71;">Top 10 — Primera ronda NFL (proyectado)</div></div></div>
+      <div class="bar-row"><div class="bar-label">Resultado final</div><div class="bar-track"><div class="bar-fill" style="width:8%;background:#e74c3c;">Pick #249 — Séptima ronda</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- POLLOS: EL CIERRE DEL IMPERIO -->
+<section>
+  <div class="container">
+    <h2>Los Pollos Hermanos: Diez Selecciones, Un Imperio</h2>
+    <div class="section-lead">El equipo que redefinió lo que significa "ser agresivo" en un draft de novatos</div>
+
+    <div class="callout-box teal-box">
+      <div class="callout-title">🐔 El Número Final: 10 Novatos en un Solo Draft</div>
+      <p>Con Deion Burks (4.12) y Malik Benson (5.08), Los Pollos Hermanos cierran el Draft de Novatos 2026 con <strong>diez selecciones totales</strong> — un volumen sin precedentes en la historia documentada de la liga. El comerciante queretano, descrito en la mitología de la liga como "adicto a realizar múltiples transacciones buscando siempre la pieza que lo catapulte a los trofeos", construyó este draft exactamente como predice su identidad narrativa: acumulación agresiva, concentración de riesgo en los Saints (Tyson, Delp, Lance) y ahora un roster de novatos tan profundo que necesitará una estrategia de gestión de Taxi Squad casi quirúrgica para no perder talento por falta de espacio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DISTRIBUCIÓN POSICIÓN R4-5 -->
+<section>
+  <div class="container">
+    <h2>Distribución por Posición — Rondas 4 y 5</h2>
+    <div class="section-lead">El cierre del draft es terreno de WR y piezas especiales</div>
+    <div class="chart-wrapper">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#1e1e1e" stroke-width="28"/>
+        <!-- WR 11/24 = 45.8% → 201 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#3498DB" stroke-width="28" stroke-dasharray="201 238" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+        <!-- RB 5/24 = 20.8% → 91 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#27AE60" stroke-width="28" stroke-dasharray="91 348" stroke-dashoffset="-201" transform="rotate(-90 100 100)"/>
+        <!-- QB 3/24 = 12.5% → 55 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#E67E22" stroke-width="28" stroke-dasharray="55 384" stroke-dashoffset="-292" transform="rotate(-90 100 100)"/>
+        <!-- TE 4/24 = 16.7% → 73 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#8E44AD" stroke-width="28" stroke-dasharray="73 366" stroke-dashoffset="-347" transform="rotate(-90 100 100)"/>
+        <!-- K 1/24 = 4.2% → 18 -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#95A5A6" stroke-width="28" stroke-dasharray="18 421" stroke-dashoffset="-420" transform="rotate(-90 100 100)"/>
+        <text x="100" y="95" text-anchor="middle" font-family="Bebas Neue" font-size="26" fill="white">24</text>
+        <text x="100" y="113" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#888">PICKS</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#3498DB;"></div><span>Wide Receiver (WR)</span><span class="legend-count">11</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#27AE60;"></div><span>Running Back (RB)</span><span class="legend-count">5</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8E44AD;"></div><span>Tight End (TE)</span><span class="legend-count">4</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#E67E22;"></div><span>Quarterback (QB)</span><span class="legend-count">3</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#95A5A6;"></div><span>Kicker (K)</span><span class="legend-count">1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="container">
+    <h2>Clasificación por Niveles</h2>
+    <div class="section-lead">Jerarquía de valor dynasty 1QB — Rondas 4 y 5</div>
+    <div class="tier-strip">
+      <div class="tier-cell" style="background:rgba(39,174,96,0.1);">
+        <div class="tier-label" style="color:#2ecc71;">RESCATES</div>
+        <div class="tier-players"><span>Roman Hemby</span><span>Michael Trigg</span></div>
+      </div>
+      <div class="tier-cell" style="background:rgba(52,152,219,0.1);">
+        <div class="tier-label" style="color:#3498db;">SÓLIDOS</div>
+        <div class="tier-players"><span>Malik Benson</span><span>Zavion Thomas</span><span>Jack Endries</span><span>Carson Beck</span></div>
+      </div>
+      <div class="tier-cell" style="background:rgba(232,196,74,0.08);">
+        <div class="tier-label" style="color:var(--gold);">DARDOS</div>
+        <div class="tier-players"><span>Drew Allar</span><span>Taylen Green</span><span>Cyrus Allen</span><span>Eli Heidenreich</span></div>
+      </div>
+      <div class="tier-cell" style="background:rgba(231,76,60,0.08);">
+        <div class="tier-label" style="color:var(--red);">LARGO PLAZO</div>
+        <div class="tier-players"><span>Garrett Nussmeier</span><span>Seth McGowan</span><span>Matthew Hibner</span><span>Resto de la R5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALIFICACIÓN POR EQUIPO -->
+<section>
+  <div class="container">
+    <h2>Calificación por Equipo — Rondas 4 y 5</h2>
+    <div class="section-lead">¿Quién supo cerrar bien su draft?</div>
+    <div class="teams-grid">
+
+      <div class="team-grade-card mvp-card">
+        <div class="tg-header"><div><div class="team-name">Los Pollos Hermanos</div><div class="team-div">Div. Alberto Bernard · 10 picks totales</div><span class="badge-small">CAMPEÓN DEL VOLUMEN</span></div><div class="tg-grade grade-b">B+</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.12 · Deion Burks (IND)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 5.08 · Malik Benson (LV)</li>
+        </ul>
+        <div class="tg-analysis">Cierran con dos receptores de profundidad razonable. El gran relato de Los Pollos no está en estos picks individuales sino en el volumen total: diez novatos es una clase entera por sí sola.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Zorritos Jr</div><div class="team-div">Div. Gerardo Velázquez</div></div><div class="tg-grade grade-b">B</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.01 · Cyrus Allen (KC)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.03 · Brenen Thompson (LAC)</li>
+        </ul>
+        <div class="tg-analysis">Dos receptores de techo especulativo alrededor de Jeremiyah Love. El zorro tabasqueño deja de fingirse muerto: esta clase de novatos busca acelerar la salida del sótano divisional.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Seahawkmania</div><div class="team-div">Div. Gerardo Velázquez</div></div><div class="tg-grade grade-b">B+</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 4.06 · Seth McGowan (IND)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.08 · Zavion Thomas (CHI)</li>
+          <li><span class="p-pos" style="color:#E67E22;">QB</span> 5.03 · Drew Allar (PIT)</li>
+        </ul>
+        <div class="tg-analysis">Los doctores de Ecatepec cierran el draft completo con seis selecciones totales. Thomas y Allar son los activos de mayor interés real; el roster de novatos de Seahawkmania es, junto a Pollos y Delfines, uno de los más profundos de la liga.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">The Bulleggs 🏆</div><div class="team-div">Div. Alberto Bernard · Campeón</div></div><div class="tg-grade grade-b">B</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#E67E22;">QB</span> 4.05 · Carson Beck (ARI)</li>
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 5.12 · Lance Mason (NA)</li>
+        </ul>
+        <div class="tg-analysis">El toro fortificado cierra con la jugada más audaz de las rondas finales: Beck rodeado de Love, McBride y Harrison Jr. El campeón defensor entiende algo que pocos GMs aprecian — el contexto a veces vale más que el prospecto.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Backfield Penetration</div><div class="team-div">Div. Luis Castillo</div><span class="badge-small">5 picks en R4-5</span></div><div class="tg-grade grade-c">C+</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 4.11 · Michael Trigg (DAL) <em style="color:var(--red);font-size:9px;">[UDFA]</em></li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 5.01 · Amari Taylor <em style="color:var(--red);font-size:9px;">[UDFA]</em></li>
+          <li><span class="p-pos" style="color:#27AE60;">QB</span> 5.06 · Garrett Nussmeier (KC)</li>
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 5.11 · B. Sharp (TB)</li>
+        </ul>
+        <div class="tg-analysis">El equipo logístico más joven del circuito entregó volumen puro en el cierre: cuatro picks, dos no drafteados, una apuesta de caída dramática. Trigg es la joya potencial de todo este lote.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Delfines de Tabasco</div><div class="team-div">Div. Luis Castillo · 8 picks totales</div></div><div class="tg-grade grade-b">B</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.04 · Eli Heidenreich (PIT)</li>
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.07 · C.J. Daniels (LAR)</li>
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 5.04 · Jam Miller (NE)</li>
+        </ul>
+        <div class="tg-analysis">El manatí cierra el draft completo de la liga con ocho selecciones totales — segundo lugar histórico solo detrás de Pollos. Volumen disperso en posición, pero coherente con su identidad de contendiente recurrente que entra y sale rápido de playoffs.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Espejitos FFT</div><div class="team-div">Div. Luis Castillo</div></div><div class="tg-grade grade-c">C</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.09 · Kevin Coleman Jr. (MIA)</li>
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 5.09 · Max Klein</li>
+        </ul>
+        <div class="tg-analysis">El beduino comerciante cierra con tres picks totales en todo el draft — debut discreto en volumen pero consistente con su filosofía de "una apuesta, un albur" en cada movimiento.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Hijos del Salario Mínimo</div><div class="team-div">Div. Alberto Bernard</div></div><div class="tg-grade grade-c">C+</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#3498DB;">WR</span> 4.02 · Caleb Douglas (MIA)</li>
+          <li><span class="p-pos" style="color:#E67E22;">QB</span> 5.02 · Taylen Green (CLE)</li>
+        </ul>
+        <div class="tg-analysis">El bicampeón histórico de la liga cierra con cinco selecciones totales. Green es el dardo más interesante: atletismo de elite en un QB con techo desconocido. Douglas necesita resolver sus problemas de manos para ser relevante.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Garrobos de Hierro</div><div class="team-div">Div. Gerardo Velázquez · El imperio</div></div><div class="tg-grade grade-c">C</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#8E44AD;">TE</span> 4.10 · Matthew Hibner (BAL)</li>
+          <li><span class="p-pos" style="color:#95A5A6;">K</span> 5.10 · T. Smack</li>
+        </ul>
+        <div class="tg-analysis">El gigante de los cinco títulos cierra su draft sin sobresaltos ni urgencia. Cuando ya eres el imperio, no necesitas ganar la ronda 4 — necesitas mantener la corona en la cancha.</div>
+      </div>
+
+      <div class="team-grade-card">
+        <div class="tg-header"><div><div class="team-name">Los Médulas</div><div class="team-div">Div. Alberto Bernard</div><span class="badge-small">La gran historia</span></div><div class="tg-grade grade-b">B+</div></div>
+        <ul class="picks-list">
+          <li><span class="p-pos" style="color:#27AE60;">RB</span> 5.07 · Roman Hemby (LV) <em style="color:var(--red);font-size:9px;">[UDFA]</em></li>
+        </ul>
+        <div class="tg-analysis">Solo dos picks en todo el draft, pero el oftalmólogo metalero se lleva la historia más narrable de toda la jornada: Hemby reunido con Mendoza en Las Vegas, sin haber sido drafteado por nadie. La elegancia educada de Los Médulas encontró su joya en el lugar menos esperado.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACUMULADO FINAL -->
+<section>
+  <div class="container">
+    <h2>El Veredicto Final — Las Cinco Rondas Completas</h2>
+    <div class="section-lead">Capital de draft acumulado total: el balance completo del Draft de Novatos 2026</div>
+
+    <table class="acum-table">
+      <thead><tr><th>Equipo</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>Total</th><th>Volumen</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;" class="crown">🐔 Los Pollos Hermanos</td><td>1</td><td>4</td><td>3</td><td>1</td><td>1</td><td class="acum-num">10</td><td><div class="micro-bar"><div class="micro-fill" style="width:100%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🐬 Delfines de Tabasco</td><td>3</td><td>0</td><td>2</td><td>2</td><td>1</td><td class="acum-num">8</td><td><div class="micro-bar"><div class="micro-fill" style="width:80%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🦅 Seahawkmania</td><td>1</td><td>2</td><td>1</td><td>2</td><td>1</td><td class="acum-num">7</td><td><div class="micro-bar"><div class="micro-fill" style="width:70%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🏁 Backfield Penetration</td><td>1</td><td>1</td><td>0</td><td>1</td><td>3</td><td class="acum-num">6</td><td><div class="micro-bar"><div class="micro-fill" style="width:60%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">⭐ Zorritos Jr</td><td>1</td><td>0</td><td>1</td><td>2</td><td>0</td><td class="acum-num">4</td><td><div class="micro-bar"><div class="micro-fill" style="width:40%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🍳 Iron Chef Dynasty</td><td>1</td><td>1</td><td>2</td><td>0</td><td>1</td><td class="acum-num">5</td><td><div class="micro-bar"><div class="micro-fill" style="width:50%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">💰 Hijos del Salario Mínimo</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="acum-num">5</td><td><div class="micro-bar"><div class="micro-fill" style="width:50%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🥚 The Bulleggs 🏆</td><td>0</td><td>2</td><td>0</td><td>1</td><td>1</td><td class="acum-num">4</td><td><div class="micro-bar"><div class="micro-fill" style="width:40%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🪞 Espejitos FFT</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="acum-num">3</td><td><div class="micro-bar"><div class="micro-fill" style="width:30%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">⚙️ Garrobos de Hierro</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td class="acum-num">4</td><td><div class="micro-bar"><div class="micro-fill" style="width:40%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🥅 Tumbapatos FC</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td class="acum-num">3</td><td><div class="micro-bar"><div class="micro-fill" style="width:30%;"></div></div></td></tr>
+        <tr><td style="font-weight:600;">🪨 Los Médulas</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="acum-num">2</td><td><div class="micro-bar"><div class="micro-fill" style="width:20%;"></div></div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout-box green-box" style="margin-top:28px;">
+      <div class="callout-title">🏆 Cinco Rondas Después: El Mapa de Poder de la Liga</div>
+      <p><strong>Los Pollos Hermanos</strong> cierran como el equipo definitorio de este draft con diez selecciones totales — un acto de acumulación que reescribe lo que significa "ser agresivo" en la liga, aunque su concentración de riesgo en los Saints exigirá paciencia y, probablemente, suerte con las lesiones de Olave. <strong>Delfines de Tabasco</strong> y <strong>Seahawkmania</strong> completan el podio de volumen con perfiles mucho más diversificados. <strong>Los Médulas</strong>, con apenas dos selecciones, se llevan el premio a la historia más memorable: un agente libre no drafteado reunido con el quarterback número uno overall. Y <strong>Tumbapatos FC y Garrobos de Hierro</strong>, contentos con su lugar en la tabla histórica, jugaron este draft con la calma de quien no necesita desesperarse.</p>
+    </div>
+
+    <div class="callout-box" style="margin-top:20px;">
+      <div class="callout-title">📋 Nota de Cierre Editorial</div>
+      <p>Con esto se cierra la cobertura completa del Draft de Novatos 2026 de la Liga Fantasy TVC Deportes — cinco rondas, sesenta selecciones, doce equipos, una sola pregunta abierta: ¿quién convertirá mejor el papel en producción real cuando arranque la temporada regular el 10 de febrero de 2026? Esa crónica, como siempre, se escribirá semana a semana.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Liga Fantasy TVC Deportes</strong> · Draft de Novatos 2026 · Cobertura Completa (Rondas 1–5)</p>
+  <p style="margin-top:8px;">Análisis basado en CBS Sports, FantasyPros, NFL Mock Draft Database, WalterFootball, DraftSharks, PFF, Yahoo Sports, Dynasty Nerds, RotoBaller · Mayo 2026</p>
+</div>
+
+</body>
+</html>
