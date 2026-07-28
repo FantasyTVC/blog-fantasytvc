@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de Waivers: El Camino de Vuelta | Liga Fantasy TVC Deportes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0D0D;
+    --bg-card:#161513;
+    --bg-card-2:#1D1B18;
+    --gold:#E8C44A;
+    --gold-soft:rgba(232,196,74,.14);
+    --text:#EDEAE2;
+    --text-dim:#A9A49A;
+    --line:#2A2825;
+    --add:#5FBF7A;
+    --add-bg:rgba(95,191,122,.12);
+    --watch:#E8C44A;
+    --watch-bg:rgba(232,196,74,.12);
+    --fade:#D9695C;
+    --fade-bg:rgba(217,105,92,.12);
+    --qb:#7FA8D9;
+    --rb:#5FBF7A;
+    --wr:#E8C44A;
+    --te:#C98BD9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% -10%, rgba(232,196,74,.08), transparent 40%),
+      radial-gradient(circle at 100% 10%, rgba(127,168,217,.06), transparent 35%),
+      var(--bg);
+    color:var(--text);
+    font-family:'DM Sans', sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px 80px;}
+  header.hero{
+    padding:56px 20px 40px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    margin-bottom:44px;
+  }
+  .kicker{
+    font-family:'DM Sans';
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--gold);
+    font-weight:700;
+  }
+  h1.title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(40px,7vw,74px);
+    letter-spacing:.02em;
+    margin:10px 0 6px;
+    line-height:.95;
+    color:#fff;
+  }
+  h1.title span{color:var(--gold);}
+  .subtitle{
+    max-width:640px;
+    margin:14px auto 0;
+    color:var(--text-dim);
+    font-size:16px;
+  }
+  .byline{
+    margin-top:22px;
+    font-size:13px;
+    color:var(--text-dim);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  h2.section-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:34px;
+    letter-spacing:.03em;
+    color:#fff;
+    margin:56px 0 6px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  h2.section-title .tag{
+    font-family:'DM Sans';
+    font-size:12px;
+    letter-spacing:.15em;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+    text-transform:uppercase;
+  }
+  .tag.qb{background:rgba(127,168,217,.16); color:var(--qb);}
+  .tag.rb{background:rgba(95,191,122,.16); color:var(--rb);}
+  .tag.wr{background:rgba(232,196,74,.16); color:var(--wr);}
+  .tag.te{background:rgba(201,139,217,.16); color:var(--te);}
+  .section-intro{color:var(--text-dim); font-size:15px; margin-bottom:26px; max-width:680px;}
+  p.lead{font-size:17px; color:var(--text);}
+  p{color:var(--text);}
+
+  .card{
+    background:linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:4px;
+  }
+  .card.qb::before{background:var(--qb);}
+  .card.rb::before{background:var(--rb);}
+  .card.wr::before{background:var(--wr);}
+  .card.te::before{background:var(--te);}
+
+  .card-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:10px;
+    margin-bottom:10px;
+  }
+  .player-name{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:26px;
+    letter-spacing:.02em;
+    color:#fff;
+  }
+  .player-meta{
+    font-size:12.5px;
+    color:var(--text-dim);
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .verdict{
+    font-family:'DM Sans';
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .verdict.add{background:var(--add-bg); color:var(--add); border:1px solid rgba(95,191,122,.35);}
+  .verdict.watch{background:var(--watch-bg); color:var(--watch); border:1px solid rgba(232,196,74,.35);}
+  .verdict.fade{background:var(--fade-bg); color:var(--fade); border:1px solid rgba(217,105,92,.35);}
+
+  .card p{font-size:15px; margin:8px 0;}
+  .card p.report{
+    background:rgba(255,255,255,.03);
+    border-left:3px solid var(--line);
+    padding:10px 14px;
+    border-radius:0 8px 8px 0;
+    font-size:14px;
+    color:var(--text-dim);
+    font-style:italic;
+  }
+
+  table.waiver-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:22px 0 10px;
+    font-size:14px;
+    background:var(--bg-card);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  table.waiver-table th{
+    background:rgba(232,196,74,.1);
+    color:var(--gold);
+    text-align:left;
+    padding:12px 14px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  table.waiver-table td{
+    padding:12px 14px;
+    border-top:1px solid var(--line);
+    color:var(--text);
+  }
+  table.waiver-table tr:nth-child(even) td{background:rgba(255,255,255,.015);}
+  .pill{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:14px;
+    letter-spacing:.05em;
+  }
+  .pill.alto{background:var(--add-bg); color:var(--add);}
+  .pill.medio{background:var(--watch-bg); color:var(--watch);}
+  .pill.bajo{background:var(--fade-bg); color:var(--fade);}
+
+  .callout{
+    background:var(--gold-soft);
+    border:1px solid rgba(232,196,74,.3);
+    border-radius:12px;
+    padding:18px 22px;
+    margin:30px 0;
+    font-size:15px;
+  }
+  .callout b{color:var(--gold);}
+
+  footer{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    color:var(--text-dim);
+    font-size:13px;
+    text-align:center;
+  }
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--line), transparent);
+    margin:50px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Liga Fantasy TVC Deportes · Especial de Verano 2026</div>
+    <h1 class="title">Radar de <span>Waivers</span></h1>
+    <p class="subtitle">El receso terminó. Los training camps de la NFL ya hablaron y la agencia libre de nuestra liga está llena de nombres que valen mucho más — o mucho menos — de lo que dice su ranking. Aquí va la guía para pujar con cabeza fría.</p>
+    <div class="byline">Reporte de Campamentos · Julio 2026</div>
+  </header>
+
+  <p class="lead">Después del receso de verano, doce roster ya deberían estar afinando sus prioridades para el sistema de puja ciega. El campo de batalla real no se define en una hoja de cálculo: se define en Latrobe, en Renton, en Flowery Branch y en todos los campamentos donde estos jugadores llevan semanas peleando por un lugar en la cancha. Repasamos lo más relevante de los reportes de camp battles para que tu presupuesto de WAB se gaste en la persona correcta, no en el nombre más conocido.</p>
+
+  <div class="callout">
+    <b>Nota editorial:</b> este análisis se construyó exclusivamente con reportes de entrenamiento, minicamps y previsualizaciones de temporada de fuentes como ESPN, Yahoo Sports, Steelers Depot, Hogs Haven, Buffalo Rumblings, SI.com y los sitios oficiales de cada franquicia. El valor de mercado de plataformas como KTC no fue parte del criterio de evaluación: aquí importa quién está ganando reps con el primer equipo, no quién tiene mejor ranking dinástico.
+  </div>
+
+  <!-- QUARTERBACKS -->
+  <h2 class="section-title"><span class="tag qb">QB</span> Mariscales de Campo</h2>
+  <p class="section-intro">En una liga de 1QB, estos nombres son casi exclusivamente apuestas especulativas o pólizas de seguro. Aun así, vale la pena saber en qué terreno pisa cada uno.</p>
+
+  <div class="card qb">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Mac Jones · SFO</div>
+        <div class="player-meta">QB2 · Backup de Brock Purdy</div>
+      </div>
+      <div class="verdict watch">Stash de emergencia</div>
+    </div>
+    <p>Jones firmó un contrato renegociado con San Francisco y entra a su segunda temporada como suplente de Purdy con la bendición pública de Kyle Shanahan y del propio Purdy, quien ha elogiado su presencia en el cuarto de mariscales.</p>
+    <p class="report">"Los 49ers tienen la mejor situación de backup QB de la NFL gracias a Mac Jones", resumió un analista de CBS Sports tras rankear los suplentes de los contendientes de la liga.</p>
+    <p>En un formato de 1QB no es un jugador para gastar presupuesto salvo que tu equipo dependa de Purdy en su bye o ante una lesión. Sí es la opción número uno si necesitas un QB de emergencia con piso alto.</p>
+  </div>
+
+  <div class="card qb">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Jalen Milroe · SEA</div>
+        <div class="player-meta">QB3 · Detrás de Sam Darnold y Drew Lock</div>
+      </div>
+      <div class="verdict fade">Cuidado</div>
+    </div>
+    <p>El talento atlético sigue ahí, pero los primeros reportes del camp 2026 no fueron amables. Radio local de Seattle señaló que la indecisión que lo caracterizó como rookie sigue presente en sus primeras prácticas del verano.</p>
+    <p class="report">"Si Jalen Milroe fuera forzado a entrar a un partido... el equipo podría verse obligado a correr el balón en cada jugada", se especuló en un análisis de Yahoo Sports sobre su primera práctica de camp.</p>
+    <p>Es una apuesta de dinastía a largo plazo, no un jugador para ocupar un espacio de roster esta temporada. Si tu equipo está en pleno rebuild y buscas un dardo gratuito, adelante — pero no gastes WAB relevante aquí.</p>
+  </div>
+
+  <!-- RUNNING BACKS -->
+  <div class="divider"></div>
+  <h2 class="section-title"><span class="tag rb">RB</span> Corredores</h2>
+  <p class="section-intro">La posición más escasa del draft trae dos historias muy distintas: un corredor que podría perder su lugar y otro que podría ganarlo por ausencia ajena.</p>
+
+  <div class="card rb">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Brashard Smith · KCC</div>
+        <div class="player-meta">RB4 · Detrás de Kenneth Walker III</div>
+      </div>
+      <div class="verdict fade">No es prioridad</div>
+    </div>
+    <p>Kansas City rehízo por completo su cuarto de corredores en la offseason, firmando a Kenneth Walker III y sumando a Emmett Johnson por draft. Smith, quien pasó de receptor a corredor, fue el único sobreviviente de la habitación original, pero varios analistas ya lo describen como candidato a ser cortado en dinastía.</p>
+    <p class="report">"Brashard Smith podría ser el que más tiene que perder" en el camp de los Chiefs, señaló un análisis de A to Z Sports sobre la presión de los jugadores ofensivos de Kansas City.</p>
+    <p>Su ranking dinástico todavía infla expectativas de cuando era la única opción joven en el roster. Hoy es, en el mejor de los casos, el cuarto corredor en la rotación. No merece un WAB alto.</p>
+  </div>
+
+  <div class="card rb">
+    <div class="card-head">
+      <div>
+        <div class="player-name">George Holani · SEA</div>
+        <div class="player-meta">RB2/3 · Detrás de Zach Charbonnet (PUP)</div>
+      </div>
+      <div class="verdict watch">Vigilar de cerca</div>
+    </div>
+    <p>Seattle colocó a Zach Charbonnet en la lista de Físicamente Incapacitado para Jugar (PUP) al arrancar el camp 2026, lo que le abre una ventana inmediata de repeticiones a Holani, un agente libre no drafteado que ya se ha ganado un lugar en el roster en años anteriores gracias al ojo de John Schneider para encontrar talento.</p>
+    <p>Mientras Charbonnet no vuelva a las prácticas de contacto, Holani es la apuesta lógica para absorber carga de trabajo en pretemporada. Vale la pena una puja moderada como seguro de manejo de casos.</p>
+  </div>
+
+  <!-- WIDE RECEIVERS -->
+  <div class="divider"></div>
+  <h2 class="section-title"><span class="tag wr">WR</span> Receptores Abiertos</h2>
+  <p class="section-intro">Aquí está el grueso del valor real de esta ventana de waivers: receptores en batallas de camp que están decidiendo roles titulares ahora mismo, no en agosto.</p>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Jahan Dotson · ATL</div>
+        <div class="player-meta">WR2 · Titular proyectado junto a Drake London</div>
+      </div>
+      <div class="verdict add">Prioridad alta</div>
+    </div>
+    <p>El ex primera ronda de Washington firmó con Atlanta buscando el reinicio que necesitaba, y todo indica que lo consiguió. Se proyecta como titular en el lado opuesto a Drake London bajo el nuevo cuerpo técnico de Kevin Stefanski, con Olamide Zaccheaus y el rookie Zachariah Branch compitiendo más por el slot que por su puesto en el exterior.</p>
+    <p class="report">"Me trajeron aquí para mostrarle a la gente lo que puedo hacer", declaró Dotson sobre la confianza que le ha dado la nueva directiva de los Falcons.</p>
+    <p>Es, sin discusión, el waiver más importante de esta ventana. Un receptor de primera ronda con QB de nivel probado (Tua Tagovailoa) y un rol titular claro que su ranking actual no refleja en absoluto.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Jaylin Lane · WAS</div>
+        <div class="player-meta">WR · Batalla directa vs. Luke McCaffrey</div>
+      </div>
+      <div class="verdict watch">Especulativo con upside</div>
+    </div>
+    <p>Washington reporta a Lane sano tras una temporada de novato interrumpida por lesión, con velocidad de clase mundial (4.34 en 40 yardas) que el nuevo coordinador ofensivo David Blough valora en su filosofía de "roster de basquetbol". Su gran duelo de camp es directamente contra Luke McCaffrey por minutos detrás de Terry McLaurin.</p>
+    <p class="report">"Luke McCaffrey y Jaylin Lane son ambos regresadores de calidad y receptores explosivos. ¿Cuál se ganará más tiempo de juego?", planteó un análisis de Hogs Haven sobre la batalla de camp.</p>
+    <p>Antonio Williams también se ha ganado elogios este verano, así que el techo de Lane depende de ganar esa batalla de tres bandas. Vale una puja moderada como apuesta de profundidad con upside de touchdown en regresos.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Dont'e Thornton Jr. · LVR</div>
+        <div class="player-meta">WR · Trabajando con el primer equipo</div>
+      </div>
+      <div class="verdict watch">Vigilar de cerca</div>
+    </div>
+    <p>El receptor de 6'5" y 4.30 de velocidad decepcionó como rookie (10 recepciones, 135 yardas), pero ha estado tomando repeticiones de primer equipo desde el minicamp obligatorio y sigue en la conversación como el receptor "X" prototípico de Las Vegas.</p>
+    <p class="report">"Thornton sigue entrando como la quinta opción (en el mejor de los casos) en el juego de pase", advirtió un análisis de Yardbarker, aunque reconoce que "hay un camino claro hacia minutos de juego" si aprovecha su tamaño.</p>
+    <p>Es un dardo de alto riesgo y alta recompensa: si conecta con Geno Smith en pelotas profundas, puede ser la sorpresa de la ofensiva de los Raiders. No es un "add" seguro, pero sí uno que vale la pena vigilar semana a semana en camp.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Tyquan Thornton · KCC</div>
+        <div class="player-meta">WR3 · Renovado por los Chiefs</div>
+      </div>
+      <div class="verdict watch">Depth confiable</div>
+    </div>
+    <p>Kansas City lo re-firmó en la offseason y lo mantiene como la tercera opción de receptor detrás de Rashee Rice y Xavier Worthy en las proyecciones de roster para 2026, un rol consolidado en una ofensiva que sigue siendo la de Patrick Mahomes.</p>
+    <p>No tiene el techo explosivo de otros nombres en esta lista, pero si buscas certeza de rol en una ofensiva de playoffs, aquí hay un WR3 con trabajo asegurado.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Roman Wilson · PIT</div>
+        <div class="player-meta">WR3 · Batalla directa vs. el rookie Germie Bernard</div>
+      </div>
+      <div class="verdict watch">Especulativo</div>
+    </div>
+    <p>El ex tercera ronda de Michigan finalmente ha mostrado destellos en prácticas de este verano tras dos años de frustración, pero la llegada de Michael Pittman Jr. y del rookie Germie Bernard hace que su camino a minutos reales sea más difícil que nunca.</p>
+    <p class="report">Un analista de radio de Pittsburgh lo calificó como el jugador que "tiene que estar en el tope de la lista de prioridades" del roster bubble de los Steelers.</p>
+    <p>Talento real, pero necesita ganar una batalla de camp genuina para que ese talento se traduzca en snaps bajo Aaron Rodgers y Mike McCarthy. Puja baja-media, solo si tienes espacio de sobra.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Xavier Hutchinson · HOU</div>
+        <div class="player-meta">WR6 · Detrás de Collins, Higgins, Dell y Noel</div>
+      </div>
+      <div class="verdict fade">Bajo prioridad</div>
+    </div>
+    <p>Sigue siendo un receptor sólido en prácticas, pero el roster de Houston es simplemente demasiado profundo. Nico Collins, Jayden Higgins, Tank Dell y Jaylin Noel están firmemente asegurados en el 53, dejando a Hutchinson peleando por un séptimo lugar.</p>
+    <p>Solo tiene sentido en ligas con bancas muy profundas o como watchlist ante una lesión en la posición.</p>
+  </div>
+
+  <div class="card wr">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Joshua Palmer · BUF</div>
+        <div class="player-meta">WR5 · En riesgo de perder su lugar</div>
+      </div>
+      <div class="verdict fade">Evitar</div>
+    </div>
+    <p>Tras una temporada de novato en Buffalo arruinada por lesiones (22 recepciones, 303 yardas, cero touchdowns), Palmer llega a un camp donde DJ Moore y el rookie Skyler Bell lo han empujado hacia abajo en el orgtablero, con Khalil Shakir y Keon Coleman también por delante.</p>
+    <p class="report">Un análisis de SI.com lo describió como en "riesgo significativo" de perder su lugar en el roster, salvo por el peso de su contrato en el cap.</p>
+    <p>No hay caso de uso claro este verano. Deja pasar este waiver salvo que necesites cuerpos de emergencia.</p>
+  </div>
+
+  <!-- TIGHT ENDS -->
+  <div class="divider"></div>
+  <h2 class="section-title"><span class="tag te">TE</span> Ala Cerrada</h2>
+  <p class="section-intro">Dos historias de ala cerrada con destinos opuestos: una oportunidad real por lesión ajena, y un veterano confiable pero de techo bajo.</p>
+
+  <div class="card te">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Luke Musgrave · GBP</div>
+        <div class="player-meta">TE1 interino · Mientras Tucker Kraft se recupera</div>
+      </div>
+      <div class="verdict watch">Especulativo condicionado</div>
+    </div>
+    <p>Musgrave podría abrir la temporada como titular si Tucker Kraft —quien se recupera de una ruptura de LCA sufrida en noviembre de 2025— no está listo para la Semana 1. El problema es que el propio Musgrave arrastró una lesión durante el minicamp de junio, y su historial de bloqueo y consistencia sigue generando dudas serias.</p>
+    <p class="report">"Musgrave ha sido tan grande una decepción como segunda ronda como Kraft ha sido una sorpresa como tercera", resumió un análisis de Packers Wire sobre la brecha de producción entre ambos.</p>
+    <p>Kraft, según todos los reportes, va en curso ideal para estar listo en la Semana 1. Musgrave es, en el mejor de los casos, un seguro de bajo costo mientras se resuelve esa carrera contra el calendario.</p>
+  </div>
+
+  <div class="card te">
+    <div class="card-head">
+      <div>
+        <div class="player-name">Dawson Knox · BUF</div>
+        <div class="player-meta">TE2 · Seguro confiable detrás de Dalton Kincaid</div>
+      </div>
+      <div class="verdict fade">Depth únicamente</div>
+    </div>
+    <p>Knox renegoció su contrato con Buffalo y es, según todos los reportes, un lugar asegurado en el roster gracias a su versatilidad como bloqueador y receptor de zona roja — es el líder histórico de touchdowns por recepción entre alas cerradas en la franquicia.</p>
+    <p class="report">"No va a ser All Pro, y tampoco es alguien que debas draftear en fantasy football", resumió sin rodeos un análisis de Buffalo Rumblings sobre su techo realista para 2026.</p>
+    <p>Útil solo si tu ala cerrada titular se lesiona y necesitas puntos de touchdown ocasionales. No es un jugador para invertir presupuesto real.</p>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="divider"></div>
+  <h2 class="section-title">📋 Guía Rápida de Presupuesto</h2>
+  <p class="section-intro">Un resumen para decidir cuánto de tu presupuesto de 1000 puntos vale la pena arriesgar en cada nombre, basado exclusivamente en su situación real de camp — no en su valor de mercado.</p>
+
+  <table class="waiver-table">
+    <thead>
+      <tr><th>Jugador</th><th>Equipo</th><th>Posición</th><th>Prioridad de puja</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Jahan Dotson</td><td>ATL</td><td>WR</td><td><span class="pill alto">Alta</span></td></tr>
+      <tr><td>Jaylin Lane</td><td>WAS</td><td>WR</td><td><span class="pill medio">Media</span></td></tr>
+      <tr><td>Dont'e Thornton Jr.</td><td>LVR</td><td>WR</td><td><span class="pill medio">Media</span></td></tr>
+      <tr><td>Tyquan Thornton</td><td>KCC</td><td>WR</td><td><span class="pill medio">Media</span></td></tr>
+      <tr><td>George Holani</td><td>SEA</td><td>RB</td><td><span class="pill medio">Media</span></td></tr>
+      <tr><td>Luke Musgrave</td><td>GBP</td><td>TE</td><td><span class="pill medio">Media</span></td></tr>
+      <tr><td>Roman Wilson</td><td>PIT</td><td>WR</td><td><span class="pill medio">Media-Baja</span></td></tr>
+      <tr><td>Mac Jones</td><td>SFO</td><td>QB</td><td><span class="pill bajo">Baja (seguro)</span></td></tr>
+      <tr><td>Xavier Hutchinson</td><td>HOU</td><td>WR</td><td><span class="pill bajo">Baja</span></td></tr>
+      <tr><td>Dawson Knox</td><td>BUF</td><td>TE</td><td><span class="pill bajo">Baja</span></td></tr>
+      <tr><td>Brashard Smith</td><td>KCC</td><td>RB</td><td><span class="pill bajo">Baja</span></td></tr>
+      <tr><td>Jalen Milroe</td><td>SEA</td><td>QB</td><td><span class="pill bajo">Baja / dinastía</span></td></tr>
+      <tr><td>Joshua Palmer</td><td>BUF</td><td>WR</td><td><span class="pill bajo">Evitar</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <b>El consejo del comisionado:</b> el presupuesto de WAB no se recupera hasta la próxima temporada. Antes de vaciar tu cuenta en un nombre reconocible, pregúntate si ese jugador está ganando reps con el primer equipo ahora mismo — no en octubre. Dotson es el único nombre de esta lista con un rol titular casi garantizado; todo lo demás es apuesta calculada sobre lo que decida cada camp en las próximas semanas.
+  </div>
+
+  <footer>
+    Liga Fantasy TVC Deportes · Reporte construido con fuentes de camp battles de ESPN, Yahoo Sports, SI.com, Steelers Depot, Hogs Haven, Buffalo Rumblings y sitios oficiales de la NFL — Julio 2026
+  </footer>
+
+</div>
+</body>
+</html>
