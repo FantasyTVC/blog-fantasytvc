@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVC Fantasy | Semana 2 - Crónica de la Jornada</title>
+<meta name="description" content="Crónica de la Semana 2 de TVC Fantasy 2026. Resultados, protagonistas, tragedias de banca y análisis de los seis enfrentamientos.">
+<style>
+:root{
+  --bg:#0b0e13; --panel:#121720; --panel2:#171d28; --line:#283140;
+  --text:#eef2f7; --muted:#9ba7b8; --gold:#d7ad55; --red:#d95555;
+  --green:#62c48b; --blue:#62a9e8; --white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at top,#18202d 0,#0b0e13 42%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+.hero{padding:72px 0 54px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero:after{content:"WEEK 02";position:absolute;right:-30px;top:30px;font-size:130px;font-weight:900;color:rgba(255,255,255,.025);letter-spacing:-8px}
+.kicker{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem}
+h1{font-size:clamp(2.6rem,7vw,5.7rem);line-height:.92;margin:12px 0 22px;letter-spacing:-4px;max-width:900px}
+.deck{font-size:1.2rem;color:#cbd3de;max-width:800px}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px}
+.pill{border:1px solid var(--line);background:rgba(255,255,255,.035);padding:9px 14px;border-radius:999px;color:#cbd3de;font-size:.88rem}
+nav{position:sticky;top:0;z-index:20;background:rgba(11,14,19,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.navin{display:flex;gap:18px;overflow:auto;padding:13px 0;white-space:nowrap}
+.navin a{color:var(--muted);font-size:.85rem;font-weight:700}
+.navin a:hover{color:var(--white)}
+section{padding:55px 0}
+.section-title{font-size:2rem;margin:0 0 10px;letter-spacing:-1px}
+.section-intro{color:var(--muted);max-width:800px;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:linear-gradient(145deg,var(--panel),#0f141c);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.stat{font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-label{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:1px;margin-top:7px}
+.lead-story{background:linear-gradient(135deg,#1a202b,#10151d);border:1px solid #343e4e;border-radius:24px;padding:34px;margin-bottom:28px}
+.matchup{border-top:1px solid var(--line);padding:28px 0}
+.matchup:first-child{border-top:0}
+.match-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.match-id{color:var(--gold);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+.scoreline{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900;letter-spacing:-1.5px}
+.scoreline span{color:var(--muted);font-weight:500}
+.winner{color:var(--green)}
+.loser{color:#e7a1a1}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.tag{font-size:.72rem;padding:5px 9px;border-radius:999px;background:#202734;color:#c9d1dc;border:1px solid #30394a}
+.tag.gold{color:#f1cf78;border-color:#6d5930;background:#2a2315}
+.story{color:#c9d1dc;font-size:1rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.teambox{background:#0d1219;border:1px solid var(--line);border-radius:15px;padding:18px}
+.teambox h3{margin:0 0 8px;font-size:1.12rem}
+.teambox .pts{font-size:1.55rem;font-weight:900}
+.teambox small{color:var(--muted)}
+.detailgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+.detail{background:#171d26;border-radius:11px;padding:11px}
+.detail b{display:block;color:#fff;font-size:.82rem}
+.detail span{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
+.callout{border-left:4px solid var(--gold);background:#17150f;padding:18px 20px;border-radius:0 13px 13px 0;margin:22px 0;color:#d9d2bd}
+.injury{border-left-color:var(--red);background:#1a1214}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;background:#11161e}
+td{font-size:.9rem}
+footer{border-top:1px solid var(--line);padding:35px 0 55px;color:var(--muted);font-size:.85rem}
+.quote{font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.15;font-weight:800;color:#fff;margin:20px 0}
+@media(max-width:850px){.grid,.two{grid-template-columns:1fr}.detailgrid{grid-template-columns:repeat(2,1fr)}.hero{padding-top:50px}h1{letter-spacing:-2px}.match-head{flex-direction:column}}
+@media(max-width:480px){.detailgrid{grid-template-columns:1fr}.hero:after{font-size:80px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="container">
+<div class="kicker">TVC Fantasy · Temporada 2026</div>
+<h1>SEMANA 2:<br>EL DOMINGO DE LOS GIGANTES</h1>
+<p class="deck">Una jornada con 238 puntos, derrotas que dolieron como una patada en el poste y bancas capaces de provocar insomnio. La Semana 2 dejó claro que en fantasy no basta con tener jugadores: hay que ponerlos en el lugar correcto, sobrevivir al calendario y, sobre todo, sobrevivir al domingo.</p>
+<div class="hero-meta">
+<span class="pill">12 equipos</span><span class="pill">6 enfrentamientos</span><span class="pill">Temporada 2026</span><span class="pill">Crónica oficial de jornada</span>
+</div>
+</div>
+</header>
+
+<nav><div class="container navin">
+<a href="#resumen">Resumen</a><a href="#garrobos">Garrobos vs Bulleggs</a><a href="#espejitos">Espejitos vs Iron Chef</a><a href="#pollos">Pollos vs Hijos</a><a href="#backfield">Backfield vs Seahawkmania</a><a href="#delfines">Delfines vs Tumbapatos</a><a href="#medulas">Médulas vs Zorritos</a>
+</div></nav>
+
+<main class="container">
+
+<section id="resumen">
+<div class="kicker">El tablero de la jornada</div>
+<h2 class="section-title">Seis partidos, seis historias</h2>
+<p class="section-intro">La Semana 2 tuvo de todo: un líder que prácticamente atropelló a su rival, dos victorias de alto dramatismo, una derrota por apenas 1.15 puntos y un equipo que terminó 0-11 en el registro virtual All-Play.</p>
+<div class="grid">
+<div class="card"><div class="stat">238.77</div><div class="stat-label">Máxima puntuación</div><p>Garrobos de Hierro no dejó dudas: fue el único equipo por encima de 200 puntos.</p></div>
+<div class="card"><div class="stat">1.15</div><div class="stat-label">Margen más cerrado</div><p>Espejitos FFT sobrevivió ante Iron Chef Dynasty por poco más de un punto.</p></div>
+<div class="card"><div class="stat">0-11</div><div class="stat-label">All-Play de Seahawkmania</div><p>La jornada más complicada de la liga correspondió al equipo que terminó último en puntos.</p></div>
+</div>
+</section>
+
+<section id="garrobos">
+<div class="lead-story">
+<div class="match-id">MATCHUP 01 · EL MARTILLO</div>
+<div class="match-head">
+<div><div class="scoreline winner">Garrobos de Hierro <span>238.77</span></div><div class="scoreline loser">Bulleggs, The Champ's <span>106.44</span></div></div>
+<div class="tags"><span class="tag gold">DOMINIO CLARO</span><span class="tag">11-0 All-Play</span></div>
+</div>
+<p class="quote">“No fue una victoria. Fue una demolición con marcador.”</p>
+<p class="story">Garrobos de Hierro inauguró la jornada con la actuación más brutal de toda la Semana 2. Sus 238.77 puntos lo colocaron en la cima de la liga y su registro virtual de 11-0 en All-Play retrata la dimensión de la exhibición. El equipo habría derrotado a todos los demás conjuntos de la liga.</p>
+<p class="story">El protagonista fue <strong>Jaxon Smith-Njigba</strong>, con unos descomunales 44.5 puntos. La alineación alcanzó 82.5% de eficiencia, así que incluso esta máquina dejó puntos sobre la mesa. El pequeño pecado estuvo en Colston Loveland, que apenas aportó 1.3 puntos.</p>
+<div class="callout">La banca tampoco estuvo precisamente dormida: <strong>Travis Kelce sumó 27.1 puntos</strong> fuera de la alineación.</div>
+<p class="story">Del otro lado, Bulleggs terminó décimo en producción semanal con 106.44 puntos. Su eficiencia de 91.1% muestra que el manager aprovechó muy bien su plantilla, pero el techo simplemente no alcanzó para responder al vendaval. La defensa de New England fue su MVP con 25.28 puntos.</p>
+<div class="detailgrid">
+<div class="detail"><b>Garrobos</b><span>238.77 pts · 82.5%</span></div><div class="detail"><b>MVP</b><span>J. Smith-Njigba · 44.5</span></div><div class="detail"><b>Bulleggs</b><span>106.44 pts · 91.1%</span></div><div class="detail"><b>Suplente doloroso</b><span>Kelce · 27.1</span></div>
+</div>
+</div>
+</section>
+
+<section id="espejitos">
+<div class="matchup">
+<div class="match-id">MATCHUP 02 · EL ASALTO POR 1.15</div>
+<div class="match-head"><div><div class="scoreline winner">Espejitos FFT <span>133.09</span></div><div class="scoreline loser">Iron chef Dynasty <span>131.94</span></div></div><div class="tags"><span class="tag gold">DOMINIO CLARO</span><span class="tag">Margen: 1.15</span></div></div>
+<p class="story">El fantasy a veces se decide por una uña, un rebote y probablemente tres conversaciones innecesarias en el grupo de WhatsApp. Espejitos FFT se llevó este duelo por apenas <strong>1.15 puntos</strong>.</p>
+<p class="story">Kenneth Walker encabezó al ganador con 26.8 puntos. Espejitos acabó quinto de la semana, aunque su eficiencia de 77.4% indica que había una cantidad considerable de producción escondida en la banca. Tre Tucker fue precisamente ese pequeño fantasma con 24.9 puntos fuera de la alineación.</p>
+<p class="story">Iron chef Dynasty tuvo una actuación muy eficiente, 89.5%, pero no suficiente. Brock Purdy produjo 32.48 puntos y Jared Goff, desde la banca, 33.78. El kicker Cameron Dicker aportó solamente 1.0 punto. Una derrota mínima con varios "si hubiera..." alrededor.</p>
+<div class="two">
+<div class="teambox"><h3>Espejitos FFT</h3><div class="pts winner">133.09</div><small>MVP: Kenneth Walker · 26.8</small></div>
+<div class="teambox"><h3>Iron chef Dynasty</h3><div class="pts loser">131.94</div><small>MVP: Brock Purdy · 32.48</small></div>
+</div>
+</div>
+</section>
+
+<section id="pollos">
+<div class="matchup">
+<div class="match-id">MATCHUP 03 · EL SHOW DE JOSH ALLEN</div>
+<div class="match-head"><div><div class="scoreline winner">Los Pollos Hermanos 🐓🐓 <span>140.31</span></div><div class="scoreline loser">Hijos del salario minimo <span>132.00</span></div></div><div class="tags"><span class="tag gold">DOMINIO CLARO</span><span class="tag">Margen: 8.31</span></div></div>
+<p class="story">Los Pollos Hermanos encontró en Josh Allen a su arma de demolición. <strong>43.82 puntos</strong> del quarterback fueron suficientes para marcar el ritmo de una victoria que, pese a no ser aplastante, nunca dejó de tener sabor a control.</p>
+<p class="story">El ganador terminó cuarto de la jornada y alcanzó un registro virtual All-Play de 8-3. La eficiencia fue de 79.1%. Chris Bell tuvo una jornada completamente silenciosa con 0.0 puntos, mientras Terrance Ferguson esperaba en la banca con 17.4.</p>
+<p class="story">Hijos del salario minimo, sin embargo, no se fue de la cancha con la cabeza baja. Sus 132 puntos fueron el sexto mejor total de la jornada y el equipo habría derrotado a seis de los once rivales en un escenario All-Play. Patrick Mahomes aportó 34.98 puntos, pero Kyle Pitts se quedó en 2.5 y Rashod Bateman dejó 21.8 en la banca.</p>
+<div class="callout">La historia aquí no fue una paliza: fue una batalla entre dos equipos productivos en la que <strong>Josh Allen puso la diferencia</strong>.</div>
+</div>
+</section>
+
+<section id="backfield">
+<div class="matchup">
+<div class="match-id">MATCHUP 04 · GANAR SIN HACER RUIDO</div>
+<div class="match-head"><div><div class="scoreline winner">Backfield Penetration <span>119.46</span></div><div class="scoreline loser">Seahawkmania <span>102.43</span></div></div><div class="tags"><span class="tag gold">VICTORIA CON SUERTE</span><span class="tag">3-8 All-Play</span></div></div>
+<p class="story">No todas las victorias necesitan fuegos artificiales. Backfield Penetration se llevó el duelo con 119.46 puntos, apenas noveno en producción semanal, pero encontró frente a sí al único equipo que terminó por debajo de los 103 puntos.</p>
+<p class="story">Las Vegas Raiders fue la gran sorpresa de la alineación con 17.68 puntos y terminó como MVP del ganador. Michael Wilson apenas consiguió 3.8, mientras Denzel Boston observaba desde la banca con 20.5.</p>
+<p class="story">Seahawkmania vivió una tarde negra: 102.43 puntos, 12.º lugar de la semana y un registro virtual de 0-11. Jake Ferguson encabezó al equipo con 20.3 puntos. J.K. Dobbins solo produjo 3.6, mientras Deshaun Watson consiguió 21.72 desde la banca.</p>
+<div class="callout">Backfield no necesitó una gran puntuación para ganar. <strong>Necesitó simplemente no ser el equipo que hizo 102.43.</strong></div>
+</div>
+</section>
+
+<section id="delfines">
+<div class="lead-story">
+<div class="match-id">MATCHUP 05 · EL PARTIDO DE LA SEMANA</div>
+<div class="match-head"><div><div class="scoreline winner">Delfines de Tabasco <span>158.10</span></div><div class="scoreline loser">Tumbapatos FFC <span>147.78</span></div></div><div class="tags"><span class="tag gold">DOMINIO CLARO</span><span class="tag">2.º y 3.º DE LA SEMANA</span></div></div>
+<p class="quote">“Reconstrucción, sí. Pero con 158 puntos.”</p>
+<p class="story">Aquí conviene aclarar el nombre: <strong>Reconstrucfines Tabasco son los Delfines de Tabasco</strong>, un equipo que ha decidido abrazar la narrativa de la reconstrucción. El problema para sus rivales es que esta reconstrucción viene con Dak Prescott lanzando ladrillos de 36.76 puntos.</p>
+<p class="story">Delfines terminó <strong>segundo de toda la liga en puntuación</strong>, con 158.10, y registró un espectacular 10-1 en All-Play. La eficiencia fue de 84.5%. Chad Ryland apenas aportó 1.0, pero el ataque compensó de sobra.</p>
+<p class="story">Tumbapatos, por su parte, protagonizó quizá la derrota más cruel de la jornada. Sus <strong>147.78 puntos fueron el tercer mejor registro de la Semana 2</strong>. Davante Adams se desató con 41.5 y, en un universo All-Play, Tumbapatos habría derrotado a nueve de los once rivales.</p>
+<div class="callout"><strong>El dato que duele:</strong> Jaylen Waddle produjo 23.8 puntos desde la banca. No obstante, incluso con esa producción, el resultado habría seguido siendo una batalla cerrada contra Delfines.</div>
+<p class="story">La derrota de Tumbapatos encaja perfectamente en la categoría de mala suerte: hacer 147.78 y aun así cruzarte con el segundo equipo de la semana es una de esas bromas privadas que el fantasy se cuenta a sí mismo.</p>
+<div class="detailgrid">
+<div class="detail"><b>Delfines</b><span>158.10 pts · 84.5%</span></div><div class="detail"><b>MVP</b><span>Dak Prescott · 36.76</span></div><div class="detail"><b>Tumbapatos</b><span>147.78 pts · 82.2%</span></div><div class="detail"><b>MVP rival</b><span>Davante Adams · 41.5</span></div>
+</div>
+</div>
+</section>
+
+<section id="medulas">
+<div class="matchup">
+<div class="match-id">MATCHUP 06 · VICTORIA, PERO CON HISTORIA</div>
+<div class="match-head"><div><div class="scoreline winner">Los Medulas <span>127.92</span></div><div class="scoreline loser">Zorritos <span>103.25</span></div></div><div class="tags"><span class="tag gold">VICTORIA CON SUERTE</span><span class="tag">Margen: 24.67</span></div></div>
+<p class="story">Los Medulas cerró la jornada con una victoria que no necesitó de una puntuación espectacular. Sus 127.92 puntos fueron apenas el octavo mejor total de la semana, pero la alineación estuvo muy bien ejecutada: <strong>92.0% de eficiencia</strong>, la mejor de estos dos equipos.</p>
+<p class="story">Amon-Ra St. Brown encabezó la ofensiva con 37.2 puntos. Wan'Dale Robinson tuvo una jornada de apenas 1.9, mientras la defensa de San Francisco, con 10.81 puntos, se quedó esperando en la banca.</p>
+
+<div class="callout injury">
+<strong>Pero hay que poner la derrota de Zorritos en contexto.</strong> El resultado fue categórico en el marcador, y su eficiencia de 72.9% dejó muchos puntos fuera. Sin embargo, el equipo también fue golpeado por las lesiones durante los partidos. Las molestias de <strong>Jayden Daniels y DJ Moore</strong> temprano en sus respectivos encuentros limitaron severamente su producción. Además, <strong>Puka Nacua</strong> quedó fuera para Monday Night Football, impidiendo que Zorritos pudiera siquiera contar con esa pieza en su alineación.
+</div>
+
+<p class="story">Eso no borra el problema de la alineación. Zorritos terminó undécimo con 103.25 puntos y tuvo a <strong>Matthew Stafford con 35.98 puntos en la banca</strong>. Pero la fotografía completa es más compleja que un simple "mal manejo". Hubo decisiones mejorables, sí, y también hubo un domingo particularmente poco amable con su roster.</p>
+
+<p class="story">Trey McBride fue el máximo anotador titular con 18.1 puntos. DJ Moore terminó con -0.1, una cifra especialmente cruel considerando que su partido se vio condicionado por la lesión. En un escenario óptimo, Zorritos habría llegado a 141.69 puntos.</p>
+
+<div class="two">
+<div class="teambox"><h3>Los Medulas</h3><div class="pts winner">127.92</div><small>92.0% eficiencia · Amon-Ra 37.2</small></div>
+<div class="teambox"><h3>Zorritos</h3><div class="pts loser">103.25</div><small>72.9% eficiencia · Stafford en banca: 35.98</small></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="kicker">Los números que cuentan la historia</div>
+<h2 class="section-title">Ranking de puntuación · Semana 2</h2>
+<p class="section-intro">La tabla ordena a los doce equipos por puntos reales obtenidos en la jornada.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Equipo</th><th>Pts</th><th>Eficiencia</th><th>All-Play</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Garrobos de Hierro</strong></td><td>238.77</td><td>82.5%</td><td>11-0</td><td>Victoria</td></tr>
+<tr><td>2</td><td><strong>Delfines de Tabasco</strong></td><td>158.10</td><td>84.5%</td><td>10-1</td><td>Victoria</td></tr>
+<tr><td>3</td><td><strong>Tumbapatos FFC</strong></td><td>147.78</td><td>82.2%</td><td>9-2</td><td>Derrota</td></tr>
+<tr><td>4</td><td><strong>Los Pollos Hermanos 🐓🐓</strong></td><td>140.31</td><td>79.1%</td><td>8-3</td><td>Victoria</td></tr>
+<tr><td>5</td><td><strong>Espejitos FFT</strong></td><td>133.09</td><td>77.4%</td><td>7-4</td><td>Victoria</td></tr>
+<tr><td>6</td><td><strong>Hijos del salario minimo</strong></td><td>132.00</td><td>79.6%</td><td>6-5</td><td>Derrota</td></tr>
+<tr><td>7</td><td><strong>Iron chef Dynasty</strong></td><td>131.94</td><td>89.5%</td><td>5-6</td><td>Derrota</td></tr>
+<tr><td>8</td><td><strong>Los Medulas</strong></td><td>127.92</td><td>92.0%</td><td>4-7</td><td>Victoria</td></tr>
+<tr><td>9</td><td><strong>Backfield Penetration</strong></td><td>119.46</td><td>83.6%</td><td>3-8</td><td>Victoria</td></tr>
+<tr><td>10</td><td><strong>Bulleggs, The Champ's</strong></td><td>106.44</td><td>91.1%</td><td>2-9</td><td>Derrota</td></tr>
+<tr><td>11</td><td><strong>Zorritos</strong></td><td>103.25</td><td>72.9%</td><td>1-10</td><td>Derrota</td></tr>
+<tr><td>12</td><td><strong>Seahawkmania</strong></td><td>102.43</td><td>74.1%</td><td>0-11</td><td>Derrota</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section>
+<div class="kicker">La banca también juega</div>
+<h2 class="section-title">Los fantasmas de la Semana 2</h2>
+<div class="grid">
+<div class="card"><div class="stat">35.98</div><div class="stat-label">Matthew Stafford</div><p><strong>Zorritos.</strong> El quarterback explotó en la banca mientras el equipo sufría con una alineación golpeada por lesiones.</p></div>
+<div class="card"><div class="stat">33.78</div><div class="stat-label">Jared Goff</div><p><strong>Iron chef Dynasty.</strong> Una producción de QB titular atrapada detrás de la línea de sustitución.</p></div>
+<div class="card"><div class="stat">27.10</div><div class="stat-label">Travis Kelce</div><p><strong>Garrobos de Hierro.</strong> Hasta el equipo que hizo 238.77 dejó una buena cantidad de pólvora en la banca.</p></div>
+</div>
+</section>
+
+<section>
+<div class="lead-story">
+<div class="kicker">El veredicto de la redacción</div>
+<h2 class="section-title">La Semana 2 dejó una cosa clara</h2>
+<p class="story">La liga ya tiene una primera fotografía de sus extremos. <strong>Garrobos de Hierro</strong> produjo una jornada fuera de escala. <strong>Delfines de Tabasco</strong> confirmó que la famosa reconstrucción también puede producir 158.10 puntos. <strong>Tumbapatos</strong> descubrió que 147.78 no garantizan nada si enfrente aparece una locomotora. <strong>Los Pollos Hermanos</strong> encontró una jornada monstruosa de Josh Allen. <strong>Backfield Penetration</strong> ganó sin necesitar una gran producción. <strong>Los Medulas</strong> hizo gala de eficiencia. Y en el otro extremo, <strong>Seahawkmania</strong> tuvo una jornada para olvidar, mientras <strong>Zorritos</strong> quedó atrapado entre malas decisiones, producción en la banca y un roster castigado por lesiones.</p>
+<p class="story">Todavía es temprano para escribir destinos. Pero después de dos semanas, ya hay suficientes historias como para que esta liga empiece a tener memoria.</p>
+<p class="quote">El fantasy no premia al que tiene la mejor plantilla en teoría. Premia al que logra que su plantilla aparezca en el marcador cuando importa.</p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<strong>TVC Fantasy · Semana 2 · Temporada 2026</strong><br>
+Crónica editorial de jornada. Estadísticas proporcionadas por la liga. Las referencias a lesiones de Zorritos corresponden al contexto aportado para esta crónica.
+</div>
+</footer>
+
+</body>
+</html>
