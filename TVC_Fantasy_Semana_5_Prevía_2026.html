@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TVC Fantasy · Semana 5 · Previa 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D0D0D;--card:#161616;--line:#2a2a2a;--gold:#E8C44A;--txt:#ecebe6;--mut:#9a9889;--win:#4cc38a;--loss:#e5594f}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(900px 500px at 50% -100px,#2b2410 0,transparent 70%),var(--bg);color:var(--txt);font:400 16px/1.6 'DM Sans',sans-serif}
+.w{max-width:980px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.02em}
+header{padding:64px 0 36px;text-align:center;border-bottom:1px solid var(--line)}
+header h1{font-size:clamp(54px,11vw,120px);line-height:.92;color:var(--gold);text-shadow:0 0 40px #e8c44a33}
+header p{color:var(--mut);max-width:640px;margin:18px auto 0}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:24px}
+nav a{color:var(--txt);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:5px 14px;font-size:14px}
+nav a:hover,nav a:focus-visible{border-color:var(--gold);color:var(--gold);outline:0}
+.sec{margin:38px 0 14px}
+.sec h2{font-size:38px;color:var(--gold)}
+.sec p{color:#cfcdc2;max-width:75ch;margin-top:6px}
+.sum{margin:12px 0;border:1px solid var(--line);border-radius:10px;overflow-x:auto;background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:600px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--gold);font:400 20px 'Bebas Neue';letter-spacing:.04em}
+tr:last-child td{border:0}
+.ok{color:var(--win);font-weight:700}.no{color:var(--loss);font-weight:700}
+.score{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.score div{flex:1;min-width:130px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.score b{display:block;font:400 34px 'Bebas Neue';color:var(--gold)}
+.score span{font-size:12px;color:var(--mut)}
+.bye{border:1px solid #5a4a1a;background:linear-gradient(90deg,#e8c44a1c,transparent);border-radius:12px;padding:18px 22px;margin-top:12px}
+.bye h3{font-size:26px;color:var(--gold)}
+.g{margin:44px 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.gh{padding:22px 24px 8px}
+.gh small{color:var(--gold);font-weight:700}
+.gh h2{font-size:clamp(30px,5vw,46px);line-height:1.05;margin-top:4px}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;padding:18px 24px}
+.t{text-align:center}
+.t b{display:block;font:400 clamp(22px,4vw,34px)/1.05 'Bebas Neue'}
+.t span{color:var(--mut);font-size:13px}
+.rec{font:400 44px/1 'Bebas Neue';color:var(--gold)}
+.vsx{font:400 22px 'Bebas Neue';color:var(--mut)}
+.chips{display:flex;gap:6px;justify-content:center;margin-top:6px}
+.c{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:#222}
+.W{color:var(--win)}.L{color:var(--loss)}
+.bar{margin:4px 24px 0}
+.r{display:flex;height:34px;border-radius:8px;overflow:hidden;font:400 21px/34px 'Bebas Neue'}
+.a{background:var(--gold);color:#111;padding-left:12px}
+.b{background:#3a3a3a;text-align:right;padding-right:12px;flex:1}
+.bar p{font-size:12px;color:var(--mut);margin:4px 0 0;display:flex;justify-content:space-between}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin:20px 24px;border-radius:8px;overflow:hidden}
+.stats div{background:#111;padding:10px;text-align:center}
+.stats b{display:block;font:400 22px 'Bebas Neue';color:var(--gold)}
+.stats span{font-size:12px;color:var(--mut)}
+.body{padding:4px 24px 8px}
+.body p{margin-bottom:12px;max-width:72ch}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:6px 24px 8px}
+.cols h4{font:400 20px 'Bebas Neue';color:var(--gold);letter-spacing:.04em;margin-bottom:4px}
+.cols ul{list-style:none;padding:0;font-size:14px;color:#cfcdc2}
+.cols li{padding:5px 0;border-top:1px solid #222}
+.o{color:var(--loss)}.d{color:#e0a43c}
+.al{margin:6px 24px 14px;padding:10px 14px;border-left:3px solid var(--loss);background:#1d1413;font-size:14px;border-radius:0 8px 8px 0}
+.lines{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:#101010}
+.lines div{padding:14px;text-align:center;border-right:1px solid var(--line)}
+.lines div:last-child{border:0}
+.lines small{display:block;color:var(--mut);font-size:12px}
+.lines b{font:400 26px 'Bebas Neue'}
+.pick{padding:14px 24px;background:linear-gradient(90deg,#e8c44a22,transparent);font-weight:700}
+.pick span{color:var(--gold);font-family:'Bebas Neue';font-size:22px;letter-spacing:.04em;margin-right:8px}
+footer{padding:30px 0 60px;color:var(--mut);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+@media(max-width:640px){.vs{grid-template-columns:1fr}.vsx{display:none}.stats,.lines{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.lines div{border-bottom:1px solid var(--line)}}
+@media(prefers-reduced-motion:no-preference){header h1{animation:in 1s ease-out both}@keyframes in{from{opacity:0;letter-spacing:.2em}to{opacity:1}}}
+</style></head><body>
+<header><div class="w">
+<h1>Semana 5</h1><h2 style="font-size:30px;margin-top:6px">Previa y pronósticos · Liga Fantasy TVC Deportes 2026</h2>
+<p>Primeros descansos de la temporada, un líder invicto que pierde a dos estrellas y tres equipos que siguen sin ganar. Así llega la jornada 5.</p>
+<nav id="nav"></nav></div></header>
+<main class="w">
+<div class="sec"><h2>Revisión de la Semana 4</h2><p>Los pronósticos de la jornada pasada acertaron cinco de seis ganadores. El fallo fue Delfines de Tabasco, que cayó ante Backfield Penetration pese a llegar como ligero favorito.</p></div>
+<div class="score"><div><b>5-1</b><span>Ganadores</span></div><div><b>4-2</b><span>Contra el spread</span></div><div><b>3-3</b><span>Over/Under</span></div></div>
+<div class="sum"><table><thead><tr><th>Resultado</th><th>Ganador</th><th>Spread</th><th>Total</th></tr></thead><tbody id="rec"></tbody></table></div>
+<div class="bye"><h3>Descansan Panthers y Chiefs</h3><p>Primeras semanas de bye, y con ellas se van Mahomes, Tetairoa McMillan, Chuba Hubbard y Kenneth Walker. Entre los afectados que aparecen en los reportes está Hubbard, base del backfield de Iron Chef Dynasty, y Rashee Rice, en la banca de Tumbapatos FC. Si alguno de estos jugadores es titular en tu alineación, hay que buscar relevo antes del jueves: los waivers se resuelven a las 10 am de CDMX.</p></div>
+<div class="sec"><h2>Pronósticos de la Semana 5</h2></div>
+<div class="sum"><table><thead><tr><th>Duelo</th><th>Pronóstico</th><th>Línea</th><th>Prob.</th></tr></thead><tbody id="sum"></tbody></table></div>
+<div id="games"></div>
+<div class="sec"><h2>Así va la tabla por división</h2></div>
+<div class="sum"><table><thead><tr><th>Gerardo Velázquez de León</th><th>Luis Castillo</th><th>Alberto Bernard</th></tr></thead><tbody>
+<tr><td>Garrobos de Hierro 4-0</td><td>Espejitos FFT 4-0</td><td>Los Médulas 2-2</td></tr>
+<tr><td>Zorritos 3-1</td><td>Backfield Penetration 3-1</td><td>Los Pollos Hermanos 1-3</td></tr>
+<tr><td>Iron Chef Dynasty 3-1</td><td>Delfines de Tabasco 2-2</td><td>The Bulleggs 1-3</td></tr>
+<tr><td>Seahawkmania 0-4</td><td>Tumbapatos FC 1-3</td><td>Hijos del Salario Mínimo 0-4</td></tr></tbody></table></div>
+</main>
+<footer><div class="w">Las proyecciones de Sleeper volvieron a llegar en 0.0, por lo que los pronósticos se calculan con récord, puntos por juego, rachas, historial directo y bajas. Los puntajes de la Semana 4 se obtuvieron de la diferencia de puntos a favor entre ambas previas. Las líneas de apuesta son ficticias y sin valor monetario.</div></footer>
+<script>
+const R=[["Backfield Penetration 140.4 – 129.5 Delfines de Tabasco","Falló (Delfines)","Falló","Under ✓"],["Garrobos de Hierro 217.8 – 140.9 Los Médulas","Acertó","Cubrió","Over ✓"],["Iron Chef Dynasty 186.1 – 140.6 Hijos del Salario Mínimo","Acertó","Cubrió","Over ✓"],["Espejitos FFT 151.4 – 148.6 Tumbapatos FC","Acertó","No cubrió","Under ✓"],["The Bulleggs 107.7 – 104.3 Seahawkmania","Acertó","Cubrió","Under ✓"],["Zorritos 194.8 – 129.7 Los Pollos Hermanos","Acertó","Cubrió","Over ✓"]];
+document.getElementById('rec').innerHTML=R.map(r=>`<tr><td>${r[0]}</td><td class="${r[1][0]=='A'?'ok':'no'}">${r[1]}</td><td class="${r[2][0]=='C'?'ok':'no'}">${r[2]}</td><td class="ok">${r[3]}</td></tr>`).join('');
+const G=[
+{tag:"Un domingo para mover la tabla",h:"Delfines busca reponerse ante un Bulleggs sin QB titular",
+l:{n:"The Bulleggs",r:"1-3",k:"10°",pf:450.19,pa:658.37,s:"1W",w:107.7,st:["Jacoby Brissett (QB)","Emmett Johnson (RB)","Kenny Gainwell (RB)"],o:["Adonai Mitchell (WR) · Out, dedo · titular","Carson Beck (QB) · Out, decisión técnica","Colby Parkinson (TE) · Out","De'Von Achane (RB) · IR, LCA","Rico Dowdle (RB) · Out"],d:[]},
+v:{n:"Delfines de Tabasco",r:"2-2",k:"6°",pf:574.72,pa:632.7,s:"2L",w:129.5,st:["Kirk Cousins (QB)","Jadarian Price (RB)","Jam Miller (RB)"],o:["Jadarian Price (RB) · IR, pecho","DeVonta Smith (WR) · Out, isquiotibial · banca","Omar Cooper (WR) · IR, tobillo"],d:[]},
+h2h:[6,10],p:34,sp:"Delfines -9.5",ml:["+160","-190"],ou:"258.5",
+t:["Bulleggs ganó por 3.3 puntos a otro 0-4 con apenas 107.7 puntos, y sigue siendo el segundo peor ataque de la liga con 112.5 por juego. Esta vez enfrenta a un equipo que promedia 143.7 y que no perdió por falta de producción, sino por un revés ante Backfield.","El historial es claro: 10-6 a favor de Delfines. Bulleggs tiene un titular Out en Mitchell y a Beck descartado por decisión técnica, así que su frente de pase cuenta con un solo hombre sano. Delfines también perdió a Price y a Smith, pero ambos están fuera de la titular o de la banca activa, y eso pesa menos."],
+a:"Mitchell figura como titular Out en Bulleggs. Su alineación necesita un ajuste de último minuto.",
+pk:"Delfines de Tabasco. Es su oportunidad de frenar la caída."},
+{tag:"El duelo grande de la jornada",h:"Zorritos contra Garrobos: el invicto pierde a Chase y a Barkley",
+l:{n:"Zorritos",r:"3-1",k:"3°",pf:664.44,pa:518.48,s:"2W",w:194.8,st:["Jayden Daniels (QB)","Jaylen Wright (RB)","DJ Giddens (RB)"],o:["Jayden Daniels (QB) · Out, codo","Marcus Mariota (QB) · Out, rodilla","Terry McLaurin (WR) · Out, isquiotibial","Trey Benson (RB) · IR"],d:["Jeremiyah Love (RB) · Questionable, tobillo · titular","DJ Moore (WR) · Questionable · titular","Tee Higgins (WR) · Questionable, ingle · titular"]},
+v:{n:"Garrobos de Hierro",r:"4-0",k:"1°",pf:788.77,pa:514.09,s:"4W",w:217.8,st:["Drake Maye (QB)","Jonathan Taylor (RB)","Chase Brown (RB)"],o:["Ja'Marr Chase (WR) · Out, conmoción","Saquon Barkley (RB) · Out, isquiotibial","Ricky Pearsall (WR) · IR, PCL","Jonathon Brooks (RB) · IR"],d:["Lamar Jackson (QB) · Questionable, tobillo · banca"]},
+h2h:[9,13],p:43,sp:"Garrobos -3.5",ml:["+125","-145"],ou:"338.5",
+t:["Zorritos anotó 194.8 la semana pasada y Garrobos respondió con 217.8, así que son las dos mejores ofensivas de la liga: 166.1 contra 197.2 por juego. Pero esta vez ambos llegan con la plantilla herida. Garrobos sale sin Chase ni Barkley, dos de sus nombres más pesados, mientras que Zorritos no tiene a Daniels ni a Mariota, y se queda sin un QB natural en la alineación.","Con tres titulares dudosos entre Love, Moore y Higgins, Zorritos tiene más incertidumbre que su rival. Y el historial favorece a Garrobos 13-9. Maye, Taylor y Brown todavía alcanzan para sostener un ataque de élite, aunque la ventaja se reduce a un margen de tres o cuatro puntos."],
+a:"Zorritos no tiene QB sano en reportes. Hay que confirmar quién abre bajo center antes del kickoff.",
+pk:"Garrobos de Hierro por muy poco. Es el duelo que puede romper la racha de cualquiera."},
+{tag:"El bye pega a Iron Chef",h:"Sin Hubbard, Iron Chef defiende el tercer lugar",
+l:{n:"Iron Chef Dynasty",r:"3-1",k:"4°",pf:661.69,pa:523.32,s:"2W",w:186.1,st:["Brock Purdy (QB)","Alvin Kamara (RB)","Chuba Hubbard (RB, bye)"],o:["Jordyn Tyson (WR) · IR","Travis Etienne (RB) · IR","Trevor Etienne (RB) · IR","Jayden Reed (WR) · IR","Savion Williams (WR) · IR"],d:["Alvin Kamara (RB) · Questionable, rodilla · titular","Chris Brooks (RB) · Questionable, banca"]},
+v:{n:"Los Pollos Hermanos",r:"1-3",k:"9°",pf:555.87,pa:652.19,s:"2L",w:129.7,st:["Josh Allen (QB)","Ray Davis (RB)","Najee Harris (RB)"],o:["Jalen Coker (WR) · Out, cuádriceps","Skyler Bell (WR) · Out","Terrance Ferguson (TE) · IR","Isaac Guerendo (RB) · PUP"],d:["Pat Bryant (WR) · Questionable · banca"]},
+h2h:[8,9],p:62,sp:"Iron Chef -6.5",ml:["-170","+145"],ou:"301.5",
+t:["Iron Chef anotó 186.1 la semana pasada y promedia 165.4 con apenas 130.8 permitidos. Pero esta jornada pierde a su RB Hubbard por el descanso de Panthers, y Kamara llega Questionable de la rodilla. El backfield, de pronto, es su zona frágil.","Los Pollos Hermanos tienen un Josh Allen capaz de cambiar cualquier marcador, pero vienen de caer por 65 puntos y promedian 139 con 163 recibidos. Con un historial parejo (9-8 a favor de Pollos), el cuadro actual sigue inclinando la balanza hacia Iron Chef."],
+a:"Hubbard descansa y Kamara es duda en la titular. Iron Chef necesita dos opciones en el backfield.",
+pk:"Iron Chef Dynasty, aunque con un margen menor al que mostraba su ventaja de la semana 4."},
+{tag:"Parejos hasta en la desgracia",h:"Tumbapatos recibe a un Hijos del Salario Mínimo sin victorias",
+l:{n:"Tumbapatos FC",r:"1-3",k:"8°",pf:569.26,pa:566.59,s:"1L",w:148.6,st:["Malik Willis (QB)","Jonah Coleman (RB)","Ty Johnson (RB)"],o:["Rachaad White (RB) · Out, hombro","Tank Bigsby (RB) · Out","Noah Fant (TE) · Out","Mason Taylor (TE) · Out","Isiah Pacheco (RB) · IR"],d:["Rashee Rice (WR) · Questionable · banca (bye de Chiefs)"]},
+v:{n:"Hijos del Salario Mínimo",r:"0-4",k:"11°",pf:567.46,pa:720.07,s:"4L",w:140.6,st:["Taylen Green (QB)","Emari Demercado (RB)","Will Shipley (RB)"],o:["Justin Jefferson (WR) · Out, tobillo · banca","Taylen Green (QB) · Out, decisión técnica","Emari Demercado (RB) · Out","Caleb Douglas (WR) · Out"],d:[]},
+h2h:[7,10],p:56,sp:"Tumbapatos -2.5",ml:["-130","+110"],ou:"281.5",
+t:["Los puntos a favor son casi idénticos: 569.26 contra 567.46. Lo que separa a los equipos es la defensa. Tumbapatos recibe 141.6 por juego y Hijos, 180. Un equipo con 0-4 y 720 puntos concedidos no es un 0-4 por mala racha, sino por una defensa que no existe.","Hijos mostró mejor ofensiva de lo esperado en la Semana 4 (140.6 puntos ante Iron Chef), pero su banca es un hospital: Jefferson, Green, Demercado y Douglas están Out. Y el historial, 10-7 a favor de Hijos, lo hace un rival incómodo. Para Tumbapatos, el bye de Chiefs resta a Rice, pero está en banca."],
+a:"Hijos tiene cuatro nombres Out. Su alineación depende de jugadores sanos y de bajo perfil.",
+pk:"Tumbapatos FC por margen corto. Puede ser el primer triunfo de la historia reciente para Hijos si la defensa de Tumbapatos falla."},
+{tag:"El 0-4 que ya compite",h:"Seahawkmania sigue buscando su primera victoria",
+l:{n:"Los Médulas",r:"2-2",k:"7°",pf:545.8,pa:606.33,s:"1L",w:140.9,st:["Joe Flacco (QB)","Roschon Johnson (RB)","Bucky Irving (RB)"],o:["Ladd McConkey (WR) · Out, pie · banca","Devin Singletary (RB) · Out","Jordan James (RB) · Out","James Conner (RB) · IR"],d:[]},
+v:{n:"Seahawkmania",r:"0-4",k:"12°",pf:437.92,pa:530.69,s:"4L",w:104.3,st:["Drew Allar (QB)","AJ Dillon (RB)","J.K. Dobbins (RB)"],o:["Caleb Williams (QB) · Out, isquiotibial","Drew Allar (QB) · Out, decisión técnica","Tank Dell (WR) · IR, LCA+MCL","Tyquan Thornton (WR) · Out (bye de Chiefs)"],d:["Mack Hollins (WR) · Questionable, pantorrilla · titular","Eli Raridon (TE) · Questionable"]},
+h2h:[6,8],p:64,sp:"Médulas -7.5",ml:["-175","+150"],ou:"247.5",
+t:["Seahawkmania perdió por apenas 3.3 puntos ante Bulleggs, pero anotó 104.3 y acumula 109.5 por juego, el peor ataque de la liga. Con Williams y Allar fuera, su posición de quarterback es una incógnita, y Hollins aparece dudoso en la titular.","Los Médulas ya no tienen la fuerza de hace dos semanas, ya que cayeron 217.8 a 140.9 ante Garrobos, y llegan sin McConkey. Aun así, 136.5 por juego supera con holgura al rival. El historial es lo único que sonríe a Seahawkmania: 8-6 en la serie."],
+a:"Seahawkmania no tiene un QB disponible en los reportes. Es la pregunta de la jornada.",
+pk:"Los Médulas. Seahawkmania necesita un milagro en el pase."},
+{tag:"La verdadera prueba del 4-0",h:"Espejitos defiende su invicto frente a Backfield",
+l:{n:"Espejitos FFT",r:"4-0",k:"2°",pf:655.08,pa:570.4,s:"4W",w:151.4,st:["Jaxson Dart (QB, IR)","Zach Charbonnet (RB, PUP)","Josh Jacobs (RB)"],o:["Jaxson Dart (QB) · IR, menisco","Zach Charbonnet (RB) · PUP, LCA","Dallas Goedert (TE) · Out, MCL","A.J. Brown (WR) · IR, tobillo"],d:["Kyle Monangai (RB) · Questionable, banca","Jalen Nailor (WR) · Questionable, banca"]},
+v:{n:"Backfield Penetration",r:"3-1",k:"5°",pf:577.35,pa:555.32,s:"1W",w:140.4,st:["Michael Penix (QB)","Emanuel Wilson (RB)","Tyrone Tracy (RB)"],o:["Keenan Allen (WR) · Out, ingle · titular","Breece Hall (RB) · Out, cuádriceps","Baker Mayfield (QB) · Out, pulgar","Christian Kirk (WR) · IR"],d:[]},
+h2h:[16,3],p:58,sp:"Espejitos -4.5",ml:["-150","+130"],ou:"301.5",
+t:["Espejitos suma cuatro victorias, pero la última fue por 2.8 puntos sobre Tumbapatos, y su 163.8 por juego va acompañado de 142.6 recibidos. Es un invicto sin un colchón holgado, y con Dart y Charbonnet en la enfermería, su base ofensiva ya no es la que arrancó la temporada.","Backfield viene de una victoria sobre Delfines y está 3-1 con una ofensiva de 144.3 por juego. Pero Allen y Hall están Out, y el historial es abrumador a favor de Espejitos: 16-3. Ese récord pesa, aunque con tantos jugadores fuera, la distancia es más corta de lo que dice la serie."],
+a:"Allen es titular Out en Backfield. Es su pieza más dañada de la semana.",
+pk:"Espejitos FFT, pero con la ventaja más ajustada de su temporada."}
+];
+const f=(n,d=1)=>n.toFixed(d),li=(a,c)=>a.map(x=>`<li class="${c}">${x}</li>`).join('');
+const side=t=>`<div class="t"><b>${t.n}</b><span>${t.k} de 12</span><div class="rec">${t.r}</div><div class="chips"><span class="c ${t.s[1]}">${t.s}</span></div></div>`;
+let nav='',sum='',out='';
+G.forEach((g,i)=>{
+ const fav=g.p>=50?g.l.n:g.v.n,pw=g.p>=50?g.p:100-g.p;
+ nav+=`<a href="#g${i+1}">${g.l.n} vs ${g.v.n}</a>`;
+ sum+=`<tr><td>${g.l.n} vs ${g.v.n}</td><td><b>${fav}</b></td><td>${g.sp}</td><td>${pw}%</td></tr>`;
+ const ppg=t=>f(t.pf/4),pag=t=>f(t.pa/4);
+ out+=`<article class="g" id="g${i+1}"><div class="gh"><small>${g.tag}</small><h2>${g.h}</h2></div>
+ <div class="vs">${side(g.l)}<div class="vsx">VS</div>${side(g.v)}</div>
+ <div class="bar"><div class="r"><div class="a" style="width:${g.p}%">${g.p}%</div><div class="b">${100-g.p}%</div></div><p><span>${g.l.n}</span><span>${g.v.n}</span></p></div>
+ <div class="stats"><div><b>${ppg(g.l)} / ${ppg(g.v)}</b><span>Puntos por juego</span></div><div><b>${pag(g.l)} / ${pag(g.v)}</b><span>Recibidos por juego</span></div><div><b>${f(g.l.w)} / ${f(g.v.w)}</b><span>Puntos en Semana 4</span></div><div><b>${g.h2h[0]}-${g.h2h[1]}</b><span>Serie histórica (${g.h2h[0]+g.h2h[1]} juegos)</span></div></div>
+ <div class="body">${g.t.map(x=>`<p>${x}</p>`).join('')}</div>
+ <div class="cols"><div><h4>Figuras de ${g.l.n}</h4><ul>${li(g.l.st,'')}</ul><h4 style="margin-top:10px">Ausencias y dudas</h4><ul>${li(g.l.o,'o')}${li(g.l.d,'d')}</ul></div>
+ <div><h4>Figuras de ${g.v.n}</h4><ul>${li(g.v.st,'')}</ul><h4 style="margin-top:10px">Ausencias y dudas</h4><ul>${li(g.v.o,'o')}${li(g.v.d,'d')}</ul></div></div>
+ <div class="al"><b>Alerta de alineación:</b> ${g.a}</div>
+ <div class="lines"><div><small>Spread</small><b>${g.sp}</b></div><div><small>Moneyline (local / visitante)</small><b>${g.ml[0]} / ${g.ml[1]}</b></div><div><small>Over/Under</small><b>${g.ou}</b></div><div><small>Probabilidad</small><b>${g.p}% / ${100-g.p}%</b></div></div>
+ <div class="pick"><span>Pronóstico</span>${g.pk}</div></article>`;
+});
+document.getElementById('nav').innerHTML=nav;
+document.getElementById('sum').innerHTML=sum;
+document.getElementById('games').innerHTML=out;
+</script></body></html>
