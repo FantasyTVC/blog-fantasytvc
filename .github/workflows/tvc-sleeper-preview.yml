@@ -1,1 +1,39 @@
+name: TVC - Prueba de sincronizacion Sleeper
+
+on:
+  workflow_dispatch:
+  # Activar después de validar la prueba manual:
+  # schedule:
+  #   - cron: '17 8 * * 2'
+  #     timezone: 'America/Mexico_City'
+  #   - cron: '17 8 * * 3'
+  #     timezone: 'America/Mexico_City'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tvc-sleeper-preview
+  cancel-in-progress: false
+
+jobs:
+  sync-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@v4
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Consultar y validar Sleeper
+        run: python scripts/sync_sleeper.py --output data/preview
+      - name: Guardar resultado de prueba (no publica)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tvc-sleeper-preview
+          path: data/preview/sleeper_2026_preview.json
+          if-no-files-found: error
+          retention-days: 14
 
