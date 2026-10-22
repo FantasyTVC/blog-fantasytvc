@@ -8,15 +8,37 @@ from pathlib import Path
 import sys
 import urllib.error
 import urllib.request
+import time
+import random
 
 API = 'https://api.sleeper.app/v1'
 LEAGUE = '1322389661489856512'
 
 
 def get(path):
-    req = urllib.request.Request(API + path, headers={'User-Agent': 'TVC-Stats-Lab/0.1', 'Accept': 'application/json'})
-    with urllib.request.urlopen(req, timeout=25) as response:
-        return json.load(response)
+    url = API + path
+    retries = 5
+    for attempt in range(1, retries + 1):
+        try:
+            print(f'Consultando {path} (intento {attempt}/{retries})', flush=True)
+            req = urllib.request.Request(url, headers={
+                'User-Agent': 'TVC-Stats-Lab/0.2', 'Accept': 'application/json'
+            })
+            with urllib.request.urlopen(req, timeout=30) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as exc:
+            retryable = exc.code in (429, 500, 502, 503, 504)
+            print(f'HTTP {exc.code} en {path}', file=sys.stderr, flush=True)
+            if not retryable or attempt == retries:
+                raise RuntimeError(f'Sleeper respondió HTTP {exc.code} en {path} después de {attempt} intento(s)') from exc
+        except (urllib.error.URLError, TimeoutError) as exc:
+            print(f'Fallo de red en {path}: {exc}', file=sys.stderr, flush=True)
+            if attempt == retries:
+                raise RuntimeError(f'No se pudo consultar {path} después de {retries} intentos') from exc
+        wait = min(2 ** attempt + random.uniform(0, 1), 18)
+        print(f'Reintentando en {wait:.1f} segundos...', flush=True)
+        time.sleep(wait)
+    raise RuntimeError(f'No se pudo consultar {path}')
 
 
 def run(outdir):
@@ -88,6 +110,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     try:
         run(Path(args.output))
-    except (ValueError, urllib.error.URLError, KeyError, TypeError) as exc:
+    except (ValueError, urllib.error.URLError, KeyError, TypeError, RuntimeError) as exc:
         print(f'ERROR de sincronización: {exc}', file=sys.stderr)
         sys.exit(1)
