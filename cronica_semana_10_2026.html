@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crónica Semana 10 · Liga Fantasy TVC Deportes 2026</title>
+<meta name="description" content="Garrobos de Hierro firma 226.10, Iron Chef Dynasty corta la racha de Zorritos Jr y Backfield Penetration se queda sin luz. Crónica de la Semana 10 de la Liga Fantasy TVC Deportes.">
+<meta property="og:title" content="Crónica Semana 10 · Liga Fantasy TVC Deportes 2026">
+<meta property="og:description" content="Garrobos de Hierro firma 226.10, Iron Chef Dynasty corta la racha de Zorritos Jr y Backfield Penetration se queda sin luz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D0D0D; --panel:#151515; --panel2:#1b1b1b; --line:#2a2a2a;
+  --gold:#E8C44A; --text:#ECECEC; --muted:#A3A3A3;
+  --win:#46C987; --loss:#E5605A;
+  --qb:#E8744A; --rb:#46C987; --wr:#4A9BE8; --te:#B07CE8; --def:#9aa0a6;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.65;font-size:17px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 64px}
+.bebas{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400}
+
+/* barra superior */
+.topbar{border-bottom:1px solid var(--line);background:#0a0a0a}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;color:var(--gold)}
+.brand span{color:var(--text)}
+.topbar small{color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+
+/* portada */
+.cover{margin:26px 0 0}
+.cover img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.cover figcaption{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.5}
+
+/* hero */
+.hero{padding:30px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Bebas Neue',sans-serif;letter-spacing:.22em;color:var(--gold);font-size:17px}
+h1{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(46px,9vw,88px);line-height:.95;margin:10px 0 18px;letter-spacing:.01em}
+h1 em{color:var(--gold);font-style:normal}
+.dek{font-size:20px;color:#d2d2d2;max-width:780px;margin:0 0 18px}
+.byline{color:var(--muted);font-size:14px;letter-spacing:.04em}
+.byline b{color:var(--text)}
+
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;margin:28px 0 6px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:8px;padding:14px 14px 12px}
+.kpi .n{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:var(--gold)}
+.kpi .l{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;line-height:1.3}
+.kpi .s{font-size:12.5px;color:#cfcfcf;margin-top:4px}
+
+/* tipografía de secciones */
+h2.sec{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:40px;letter-spacing:.03em;color:var(--gold);margin:58px 0 6px;display:flex;align-items:center;gap:14px;line-height:1.05}
+h2.sec::before{content:"";width:8px;height:34px;background:var(--gold);border-radius:2px;flex:none}
+.sub{color:var(--muted);margin:0 0 20px;font-size:15px}
+p{margin:0 0 14px}
+.lede p:first-child::first-letter{font-family:'Bebas Neue',sans-serif;font-size:72px;float:left;line-height:.82;padding:6px 10px 0 0;color:var(--gold)}
+.lede{font-size:18.5px}
+strong{color:#fff}
+.hl{color:var(--gold);font-weight:700}
+
+/* tarjetas de partido */
+.game{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:0 0 20px;position:relative;overflow:hidden}
+.game::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+.gtag{display:inline-block;font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;font-size:14px;background:var(--gold);color:#111;padding:2px 10px;border-radius:3px;margin-bottom:12px}
+.score{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-bottom:14px}
+.side{display:flex;flex-direction:column;gap:2px}
+.side.r{text-align:right;align-items:flex-end}
+.tn{font-family:'Bebas Neue',sans-serif;font-size:27px;line-height:1.05;letter-spacing:.02em}
+.rec{font-size:12.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.pts{font-family:'Bebas Neue',sans-serif;font-size:50px;line-height:1}
+.side.win .pts{color:var(--win)}
+.side.lose .pts{color:var(--loss)}
+.mid{text-align:center}
+.mid .vs{display:block;font-family:'Bebas Neue',sans-serif;color:var(--muted);letter-spacing:.2em}
+.mid .mg{display:inline-block;margin-top:2px;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:99px;background:#241f0c;color:var(--gold);border:1px solid #4d4115;white-space:nowrap}
+.figs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:3px 12px 3px 4px;font-size:13.5px}
+.chip i{font-style:normal;font-weight:700;color:#fff}
+.chip.bench{border-style:dashed;border-color:#5a5a5a}
+.chip.bench::after{content:"BANCA";font-size:10px;letter-spacing:.1em;color:var(--loss);font-weight:700}
+.pos{display:inline-block;min-width:30px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#0d0d0d;border-radius:99px;padding:2px 6px}
+.pos.qb{background:var(--qb)} .pos.rb{background:var(--rb)} .pos.wr{background:var(--wr)} .pos.te{background:var(--te)} .pos.df{background:var(--def)}
+
+/* gráficas */
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 10px 10px}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox .lbl{fill:#e6e6e6;font-size:13px;font-family:'DM Sans',sans-serif}
+.chartbox .val{fill:#fff;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;paint-order:stroke;stroke:#151515;stroke-width:4px;stroke-linejoin:round}
+.chartbox .cnt{fill:var(--muted);font-size:12px;font-family:'DM Sans',sans-serif}
+.chartbox .hd{fill:var(--muted);font-size:11px;letter-spacing:.08em;font-family:'DM Sans',sans-serif}
+.legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--muted);margin:6px 0 4px}
+.legend b{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+
+/* premios */
+.awards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.award{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.award .ic{font-size:26px;line-height:1}
+.award h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:25px;letter-spacing:.04em;color:var(--gold);margin:6px 0 0;line-height:1.1}
+.award .who{font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.award p{font-size:15px;margin:0;color:#dcdcdc;line-height:1.55}
+
+/* tiers */
+.tiers{display:grid;gap:10px;margin:18px 0}
+.tier{display:grid;grid-template-columns:130px 1fr;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tier .tn2{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:#0d0d0d;line-height:1.05}
+.tier.t1 .tn2{background:var(--gold)} .tier.t2 .tn2{background:#9aa0a6} .tier.t3 .tn2{background:#b0584f;color:#fff}
+.tier ul{list-style:none;margin:0;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px}
+.tier li{background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:3px 12px;font-size:13.5px}
+.tier li b{color:var(--gold);margin-left:5px}
+
+/* divisiones */
+.divs{display:grid;gap:14px}
+.div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.div h3{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;letter-spacing:.04em;margin:0 0 2px}
+.div .tg{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.div p{font-size:15.5px;margin:0 0 10px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.d-gvl{background:var(--gold)} .d-lc{background:var(--wr)} .d-ab{background:var(--te)}
+
+/* tabla */
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+th{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.1em;font-size:15px;color:var(--gold);text-align:right;padding:11px 10px;background:#0f0f0f;border-bottom:1px solid var(--line);white-space:nowrap}
+th.l,td.l{text-align:left}
+td{padding:10px 10px;text-align:right;border-bottom:1px solid #202020;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.pos-n{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);text-align:center;width:38px}
+td.tm{font-weight:700;color:#fff;text-align:left}
+td.rc{font-weight:700;color:#fff}
+.dv{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#0d0d0d;border-radius:4px;padding:1px 6px}
+.dv.gvl{background:var(--gold)} .dv.lc{background:var(--wr)} .dv.ab{background:var(--te)}
+.rg.g{color:var(--win);font-weight:700} .rg.p{color:var(--loss);font-weight:700}
+tr.top td.pos-n{color:var(--gold)}
+tr.cut td{border-bottom:2px dashed var(--gold)}
+tr.out td{opacity:.78}
+.note{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+
+/* próxima jornada */
+.matches{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.mt{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.mt .bd{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.12em;padding:2px 9px;border-radius:3px;background:#2a2a2a;color:var(--gold);margin-bottom:8px;margin-right:4px}
+.mt .bd.hot{background:var(--gold);color:#111}
+.row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.row .t{display:flex;flex-direction:column}
+.row .t.r{text-align:right;align-items:flex-end}
+.row .t b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:22px;line-height:1.05;letter-spacing:.02em}
+.row .t span{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.row .vs{font-family:'Bebas Neue',sans-serif;color:var(--muted);letter-spacing:.15em}
+.proj{display:flex;justify-content:space-between;font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;margin:8px 0 6px}
+.bar{display:flex;height:10px;border-radius:99px;overflow:hidden;background:#222}
+.bar i{display:block;background:var(--gold)}
+.bar i + i{background:#4A9BE8}
+.pct{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin:4px 0 10px;font-weight:700}
+.mt p{font-size:14.5px;margin:0;color:#d6d6d6;line-height:1.55}
+
+footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.6}
+footer .sig{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:22px;letter-spacing:.06em;margin-bottom:6px}
+
+@media (max-width:640px){
+  body{font-size:16.5px}
+  h2.sec{font-size:34px}
+  .score{grid-template-columns:1fr;text-align:left}
+  .side.r{text-align:left;align-items:flex-start}
+  .mid{text-align:left}
+  .tier{grid-template-columns:1fr}
+  .tier .tn2{padding:8px}
+  .matches{grid-template-columns:1fr}
+}
+
+/* portada tipográfica */
+.cover-art{position:relative;margin:26px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  background:radial-gradient(900px 380px at 90% -25%,rgba(232,196,74,.22),transparent 62%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 64px),
+  linear-gradient(180deg,#181818,#0e0e0e);box-shadow:0 10px 40px rgba(0,0,0,.5);
+  padding:30px 28px 26px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:26px;align-items:center}
+.cover-art>div{min-width:0}
+.cover-art .lab{font-family:'Bebas Neue',sans-serif;letter-spacing:.2em;color:var(--muted);font-size:15px}
+.cover-art .big{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,13vw,120px);line-height:.86;color:var(--gold);letter-spacing:.01em;margin:4px 0 8px;text-shadow:0 0 40px rgba(232,196,74,.25)}
+.cover-art .cap{font-size:15.5px;color:#d9d9d9;line-height:1.5;max-width:340px}
+.cover-art .cap b{color:#fff}
+.ticker{display:grid;gap:7px}
+.tk{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.25}
+.tk .w{font-weight:700;color:#fff}
+.tk .l{color:var(--muted);text-align:right}
+.tk .sc{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.04em;color:var(--gold);white-space:nowrap}
+.tk .sc i{font-style:normal;color:var(--muted);margin:0 3px}
+.kpi .n{font-size:34px}
+.brand{white-space:nowrap}
+.topbar small{text-align:right}
+.prev{display:inline-block;margin:0 0 14px;font-size:13px;letter-spacing:.06em;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.prev:hover{color:var(--gold);border-color:var(--gold)}
+td.mv{font-weight:700;text-align:center;width:48px;font-size:13px}
+td.mv.up{color:var(--win)} td.mv.dn{color:var(--loss)} td.mv.eq{color:var(--muted)}
+.race{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.race .div h3{font-size:24px}
+.mini{width:100%;border-collapse:collapse;min-width:0;font-size:14px;margin-top:6px}
+.mini td{padding:5px 4px;border-bottom:1px solid #222;white-space:normal}
+.mini td:first-child{text-align:left;color:#fff;font-weight:700}
+.mini td.n{color:var(--gold);font-weight:700;white-space:nowrap;text-align:center}
+@media (max-width:640px){.race{grid-template-columns:1fr}.cover-art{grid-template-columns:1fr;padding:24px 18px}.brand{font-size:21px}.topbar small{font-size:10.5px;letter-spacing:.08em}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">TVC <span>DEPORTES</span></div>
+  <small>Liga Fantasy · Temporada 2026</small>
+</div></div>
+
+<div class="wrap">
+
+<!-- ======================= PORTADA ======================= -->
+<div class="cover-art" role="img" aria-label="Portada de la Semana 10: Garrobos de Hierro anotó 226.10 puntos, la mayor cifra de la jornada, y los seis resultados de la semana">
+  <div>
+    <div class="lab">ANOTACIÓN DE LA JORNADA · SEMANA 10</div>
+    <div class="big">226.10</div>
+    <div class="cap"><b>Garrobos de Hierro</b> rompe el techo: 79.00 puntos arriba del promedio de la jornada, quinta victoria seguida y 9-1 en la tabla.</div>
+  </div>
+  <div class="ticker">
+    <div class="tk"><span class="w">Garrobos de Hierro</span><span class="sc">226.10<i>–</i>146.55</span><span class="l">Seahawkmania</span></div>
+<div class="tk"><span class="w">Los Pollos Hermanos</span><span class="sc">170.55<i>–</i>128.52</span><span class="l">Tumbapatos FC</span></div>
+<div class="tk"><span class="w">Iron Chef Dynasty</span><span class="sc">169.21<i>–</i>127.77</span><span class="l">Zorritos Jr</span></div>
+<div class="tk"><span class="w">Hijos del Salario Mínimo</span><span class="sc">165.89<i>–</i>96.40</span><span class="l">Backfield Penetration</span></div>
+<div class="tk"><span class="w">Delfines de Tabasco</span><span class="sc">144.25<i>–</i>135.34</span><span class="l">Los Médulas</span></div>
+<div class="tk"><span class="w">Espejitos FFT</span><span class="sc">137.83<i>–</i>116.74</span><span class="l">The Bulleggs</span></div>
+  </div>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <a class="prev" href="cronica_semana_9_2026.html">← Crónica de la Semana 9</a>
+  <div class="kicker">CRÓNICA · SEMANA 10 · LIGA FANTASY TVC DEPORTES</div>
+  <h1>Garrobos acelera a 226, Zorritos Jr <em>se estrella</em> y Backfield se queda sin luz</h1>
+  <p class="dek">Garrobos de Hierro firma 226.10 y se va a 9-1, Iron Chef Dynasty le corta a Zorritos Jr la racha de siete victorias y Backfield Penetration cae a 96.40, el peor marcador de la jornada, con un techo posible de apenas 115.15.</p>
+  <div class="byline"><b>Por la redacción de TVC Deportes</b> · Datos: Sleeper y registro histórico 2017-2025 · Cierre de la Semana 10</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">1,765.15</div><div class="l">Puntos totales</div><div class="s">6 duelos, 12 equipos · +156.49 vs Semana 9</div></div>
+    <div class="kpi"><div class="n">147.10</div><div class="l">Promedio por equipo</div><div class="s">+13.04 vs Semana 9 · +4.68 vs el promedio de la temporada (142.42)</div></div>
+    <div class="kpi"><div class="n">226.10</div><div class="l">Mejor marcador</div><div class="s">Garrobos de Hierro</div></div>
+    <div class="kpi"><div class="n">96.40</div><div class="l">Peor marcador</div><div class="s">Backfield Penetration</div></div>
+    <div class="kpi"><div class="n">79.55</div><div class="l">Mayor paliza</div><div class="s">Garrobos de Hierro vs Seahawkmania</div></div>
+    <div class="kpi"><div class="n">8.91</div><div class="l">Duelo más cerrado</div><div class="s">Delfines de Tabasco vs Los Médulas</div></div>
+  </div>
+</header>
+
+<!-- ======================= LEDE ======================= -->
+<section class="lede" style="margin-top:34px">
+  <p>Hay jornadas en las que un solo equipo decide si el resto de la liga está jugando fantasy o ensayando un simulacro de evacuación. La Semana 10 tuvo a uno de esos protagonistas. <span class="hl">Garrobos de Hierro</span> firmó 226.10 puntos, 79.00 por encima del promedio de la jornada (147.10), y se fue a 9-1 con cinco victorias seguidas. Para dimensionarlo: su ventaja en puntos acumulados sobre <span class="hl">Zorritos Jr</span>, que la semana pasada era de 186.79, ahora es de 285.12.</p>
+  <p>Del otro lado de la división, el titular es de cierre de ciclo: <span class="hl">Iron Chef Dynasty</span> venció 169.21 a 127.77 al segundo lugar y puso fin a una racha de siete victorias. El Zorrito anotó 41.64 puntos menos que su promedio previo, superó a apenas 2 de los otros 11 equipos y pasó de 8-1 a 8-2. Ya no es co-líder: es perseguidor, y quedan cuatro jornadas.</p>
+  <p>Y en el resto del tablero se movió casi todo. Los Pollos Hermanos suman tres victorias seguidas y mandan en su división con 5-5; Delfines de Tabasco cortó una racha de cuatro derrotas; Los Médulas acumularon la tercera derrota consecutiva y se hundieron debajo de la línea de playoffs; y Backfield Penetration se apagó con 96.40. Con la fecha límite de transferencias a la vuelta de la esquina (semana 13), esto se está poniendo bueno. Vamos por partes.</p>
+</section>
+
+<!-- ======================= MARCADORES ======================= -->
+<h2 class="sec">El marcador</h2>
+<p class="sub">Seis duelos, seis historias. Récords posteriores a la Semana 10. Margen promedio de victoria: 43.75 puntos (en la Semana 9 fue de 31.63).</p>
+
+<article class="game">
+  <span class="gtag">LA MÁQUINA</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Garrobos de Hierro</span><span class="rec">9-1 · Gerardo Velázquez de León</span><span class="pts">226.10</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+79.55</span></div>
+    <div class="side r lose"><span class="tn">Seahawkmania</span><span class="rec">2-8 · Gerardo Velázquez de León</span><span class="pts">146.55</span></div>
+  </div>
+  <p>Garrobos de Hierro no jugó contra Seahawkmania: jugó contra la historia. Christian McCaffrey (49.30, el mejor puntaje individual de toda la jornada), Ja'Marr Chase (37.10) y Jaxon Smith-Njigba (33.10) sumaron <strong>119.50 puntos</strong> entre los tres, más de lo que produjo Backfield Penetration con su alineación completa (96.40). El 226.10 final quedó a 42.08 del récord histórico de la liga (268.18) y a 9.80 de colarse al top 10 de todos los tiempos (el décimo lugar es 235.90).</p><p>Y lo más obsceno: según MAX POINTS, su techo de la semana era 288.13. Dejaron <strong>62.03 puntos sin usar</strong>, entre ellos los 43.16 de Joe Burrow, sentado. Seahawkmania, por su parte, hizo 146.55 (el quinto mejor marcador de la jornada y 34.46 por encima de su promedio) y aun así perdió por 79.55: el equivalente fantasy a mejorar en el examen y seguir reprobando. En el registro 2017-2025, Garrobos ya ganaba esta serie 8-3.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos rb">RB</span>Christian McCaffrey <i>49.30</i></span><span class="chip"><span class="pos wr">WR</span>Ja'Marr Chase <i>37.10</i></span><span class="chip"><span class="pos wr">WR</span>Jaxon Smith-Njigba <i>33.10</i></span><span class="chip bench"><span class="pos qb">QB</span>Joe Burrow <i>43.16</i></span><span class="chip bench"><span class="pos wr">WR</span>Stefon Diggs <i>20.30</i></span><span class="chip"><span class="pos qb">QB</span>Trevor Lawrence (SEA) <i>34.78</i></span>
+  </div>
+</article>
+
+<article class="game">
+  <span class="gtag">FIN DE LA RACHA</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Iron Chef Dynasty</span><span class="rec">6-4 · Gerardo Velázquez de León</span><span class="pts">169.21</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+41.44</span></div>
+    <div class="side r lose"><span class="tn">Zorritos Jr</span><span class="rec">8-2 · Gerardo Velázquez de León</span><span class="pts">127.77</span></div>
+  </div>
+  <p>Siete victorias consecutivas se acabaron de la forma menos épica posible: con un Zorritos Jr que anotó 127.77 (41.64 por debajo de su promedio previo, el tercer peor marcador de la jornada) y un Iron Chef Dynasty que, con Chuba Hubbard (36.20) y Brock Purdy (33.66) de punta de lanza, puso 169.21 y se llevó el duelo divisional por 41.44. Iron Chef ya dominaba la serie 10-7 en el registro 2017-2025; la estiró.</p><p>Lo incómodo para el Zorrito: según el MAX POINTS de la semana, su techo era de 157.77. Ni con la alineación perfecta habría llegado a los 169.21 de Iron Chef; esto no se perdió en la banca, se perdió en la cancha. Eso sí, la banca tampoco ayuda a la tranquilidad: C.J. Stroud (26.44), Matthew Stafford (24.76) y DJ Moore (19.40) sumaron <strong>70.60 puntos sentados</strong>. Stroud lleva 214.48 en el año (el undécimo total de toda la liga) y 194.96 de ellos los ha anotado desde la banca.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos rb">RB</span>Chuba Hubbard <i>36.20</i></span><span class="chip"><span class="pos qb">QB</span>Brock Purdy <i>33.66</i></span><span class="chip bench"><span class="pos qb">QB</span>Jared Goff (IRN) <i>27.42</i></span><span class="chip bench"><span class="pos df">DEF</span>Minnesota Vikings (IRN) <i>23.31</i></span><span class="chip bench"><span class="pos qb">QB</span>C.J. Stroud (ZOR) <i>26.44</i></span><span class="chip bench"><span class="pos qb">QB</span>Matthew Stafford (ZOR) <i>24.76</i></span><span class="chip bench"><span class="pos wr">WR</span>DJ Moore (ZOR) <i>19.40</i></span>
+  </div>
+</article>
+
+<article class="game">
+  <span class="gtag">EL APAGÓN</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Hijos del Salario Mínimo</span><span class="rec">3-7 · Alberto Bernard «Chirinos»</span><span class="pts">165.89</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+69.49</span></div>
+    <div class="side r lose"><span class="tn">Backfield Penetration</span><span class="rec">6-4 · Luis Castillo</span><span class="pts">96.40</span></div>
+  </div>
+  <p>Hijos del Salario Mínimo hizo 165.89, el cuarto mejor marcador de la jornada, con un binomio que parece sacado de un videojuego: Jahmyr Gibbs (48.20) y Patrick Mahomes (45.42) pusieron <strong>93.62 puntos</strong>, casi lo mismo que anotó todo Backfield Penetration (96.40). Con la victoria, HSM sale de 2-7 y se instala en 3-7; sigue siendo el equipo al que más puntos le han anotado en la liga (1,571.46), pero esta semana, al menos, fue él quien repartió.</p><p>Backfield, en cambio, no encontró el interruptor. Los 96.40 quedaron 46.82 por debajo de su promedio previo y fueron el peor marcador de la jornada. Peor aún: según MAX POINTS, su techo semanal fue de apenas <strong>115.15</strong>, por debajo del promedio de la jornada (147.10). Segunda derrota consecutiva: de co-líder de su división a perseguidor de Espejitos FFT, con un 1-2 en las últimas tres semanas. HSM ya dominaba la serie histórica 10-5.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos rb">RB</span>Jahmyr Gibbs <i>48.20</i></span><span class="chip"><span class="pos qb">QB</span>Patrick Mahomes <i>45.42</i></span>
+  </div>
+</article>
+
+<article class="game">
+  <span class="gtag">EL POLLO INOXIDABLE</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Los Pollos Hermanos</span><span class="rec">5-5 · Alberto Bernard «Chirinos»</span><span class="pts">170.55</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+42.03</span></div>
+    <div class="side r lose"><span class="tn">Tumbapatos FC</span><span class="rec">4-6 · Luis Castillo</span><span class="pts">128.52</span></div>
+  </div>
+  <p>Los Pollos Hermanos firmaron el segundo mejor marcador de la semana (170.55, superaron a 10 de los otros 11 equipos) gracias a George Pickens (45.50, cuarto mejor puntaje individual de la jornada), derrotaron a Tumbapatos FC por 42.03 y hilvanaron su tercera victoria consecutiva. Resultado: 5-5 y liderato divisional. Sí, un 5-5 mandando en una división suena a chiste, pero así están las tablas.</p><p>Lo que no es chiste: son los mejores alineadores de la liga, con 88.19% de eficiencia entre puntos reales y MAX POINTS acumulados (le quitan el primer lugar a Iron Chef), y su banca ha generado apenas 463.58 puntos en el año, poco más de la mitad que la siguiente banca más corta (HSM, 838.30). O alinean como relojeros o tienen la banca más escueta del circuito; probablemente ambas. Tumbapatos FC cayó a 4-6 con 128.52; Isaiah Likely (28.70) fue lo mejor que tuvo.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos wr">WR</span>George Pickens <i>45.50</i></span><span class="chip"><span class="pos te">TE</span>Isaiah Likely (TUM) <i>28.70</i></span>
+  </div>
+</article>
+
+<article class="game">
+  <span class="gtag">RELOJ SUIZO</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Espejitos FFT</span><span class="rec">7-3 · Luis Castillo</span><span class="pts">137.83</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+21.09</span></div>
+    <div class="side r lose"><span class="tn">The Bulleggs</span><span class="rec">2-8 · Alberto Bernard «Chirinos»</span><span class="pts">116.74</span></div>
+  </div>
+  <p>Espejitos FFT ganó 137.83 a 116.74 y quedó solo en la cima de la División Luis Castillo con 7-3. Lo curioso no es el marcador, sino la serie: sus últimas tres jornadas fueron de 137.60, 136.41 y 137.83. <strong>1.42 puntos</strong> separan la mejor de la peor, con una desviación estándar de 0.62. Espejitos no anota puntos: los cronometra. Eso sí, 137.83 fue apenas el séptimo marcador de la semana y 10.34 menos que su promedio previo; ganó, pero con el piso de siempre.</p><p>The Bulleggs sigue habitando el sótano (2-8), aunque su 116.74 quedó 7.00 por encima de su promedio previo gracias a Emmett Johnson (37.10), un corredor que había pasado ocho semanas en la banca (67.24 puntos ahí sentado) y que, en apenas su segunda titularidad del año, empató a Chase como uno de los diez mejores puntajes de la jornada. Cualquier moraleja sobre alinear a tiempo es pura coincidencia.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos rb">RB</span>Emmett Johnson (BUL) <i>37.10</i></span>
+  </div>
+</article>
+
+<article class="game">
+  <span class="gtag">EL MÁS CERRADO</span>
+  <div class="score">
+    <div class="side win"><span class="tn">Delfines de Tabasco</span><span class="rec">4-6 · Luis Castillo</span><span class="pts">144.25</span></div>
+    <div class="mid"><span class="vs">VS</span><span class="mg">+8.91</span></div>
+    <div class="side r lose"><span class="tn">Los Médulas</span><span class="rec">4-6 · Alberto Bernard «Chirinos»</span><span class="pts">135.34</span></div>
+  </div>
+  <p>Apenas 8.91 puntos separaron a Delfines de Tabasco (144.25) de Los Médulas (135.34), y la diferencia estuvo en el brazo de Dak Prescott: <strong>46.42</strong>, el tercer mejor puntaje individual de la jornada, con los 30.53 de Parker Washington de refuerzo. Delfines cortó así una racha de cuatro derrotas, aunque sigue en 4-6 y último en el Power Ranking de TVC Stats Lab. Una victoria que cambia poco y consuela mucho.</p><p>Los Médulas hicieron 135.34 (44.30 más que la catástrofe de la Semana 9, cuando se quedaron en 91.04) y aun así perdieron: tercera derrota consecutiva, 4-6 y novenos en la tabla, justo debajo de la línea de playoffs (hoy, por puntos a favor: 57.47 menos que Delfines). Deebo Samuel (29.25) fue su mejor pieza. Sin pastel y, ahora, sin boleto: la portada de la semana pasada ya lo anticipaba.</p>
+  <div class="figs">
+    <span class="chip"><span class="pos qb">QB</span>Dak Prescott <i>46.42</i></span><span class="chip"><span class="pos wr">WR</span>Parker Washington <i>30.53</i></span><span class="chip"><span class="pos wr">WR</span>Deebo Samuel Sr. (MED) <i>29.25</i></span>
+  </div>
+</article>
+
+<!-- ======================= GRÁFICA 1 ======================= -->
+<h2 class="sec">El mapa de la jornada</h2>
+<p class="sub">Puntos de los doce equipos, con el promedio de la jornada (147.10) y a cuántos de los otros once equipos superó cada marcador. Solo cuatro equipos pasaron el promedio, jalado hacia arriba por un Garrobos fuera de serie.</p>
+<div class="chartbox">
+<svg viewBox="0 0 800 462" role="img" aria-label="Gráfica de barras con los puntos de cada equipo en la Semana 10">
+  <text x="210" y="16" class="hd">PUNTOS DE LA JORNADA</text>
+  <text x="792" y="16" class="hd" text-anchor="end">SUPERÓ A</text>
+  <line x1="533.6" y1="26" x2="533.6" y2="452" stroke="#E8C44A" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="537.6" y="456" class="hd" style="fill:#E8C44A">PROMEDIO 147.10</text>
+
+  <text x="198" y="53" class="lbl" text-anchor="end">Garrobos de Hierro</text>
+  <rect x="210" y="36" width="497.4" height="24" rx="4" fill="#E8C44A"/>
+  <text x="715.4" y="53" class="val">226.10</text><text x="792" y="53" class="cnt" text-anchor="end">11/11</text>
+
+  <text x="198" y="88" class="lbl" text-anchor="end">Los Pollos Hermanos</text>
+  <rect x="210" y="71" width="375.2" height="24" rx="4" fill="#E8C44A"/>
+  <text x="593.2" y="88" class="val">170.55</text><text x="792" y="88" class="cnt" text-anchor="end">10/11</text>
+
+  <text x="198" y="123" class="lbl" text-anchor="end">Iron Chef Dynasty</text>
+  <rect x="210" y="106" width="372.3" height="24" rx="4" fill="#E8C44A"/>
+  <text x="590.3" y="123" class="val">169.21</text><text x="792" y="123" class="cnt" text-anchor="end">9/11</text>
+
+  <text x="198" y="158" class="lbl" text-anchor="end">Hijos del Salario Mínimo</text>
+  <rect x="210" y="141" width="365.0" height="24" rx="4" fill="#E8C44A"/>
+  <text x="583.0" y="158" class="val">165.89</text><text x="792" y="158" class="cnt" text-anchor="end">8/11</text>
+
+  <text x="198" y="193" class="lbl" text-anchor="end">Seahawkmania</text>
+  <rect x="210" y="176" width="322.4" height="24" rx="4" fill="#E5605A"/>
+  <text x="540.4" y="193" class="val">146.55</text><text x="792" y="193" class="cnt" text-anchor="end">7/11</text>
+
+  <text x="198" y="228" class="lbl" text-anchor="end">Delfines de Tabasco</text>
+  <rect x="210" y="211" width="317.4" height="24" rx="4" fill="#E8C44A"/>
+  <text x="535.4" y="228" class="val">144.25</text><text x="792" y="228" class="cnt" text-anchor="end">6/11</text>
+
+  <text x="198" y="263" class="lbl" text-anchor="end">Espejitos FFT</text>
+  <rect x="210" y="246" width="303.2" height="24" rx="4" fill="#E8C44A"/>
+  <text x="521.2" y="263" class="val">137.83</text><text x="792" y="263" class="cnt" text-anchor="end">5/11</text>
+
+  <text x="198" y="298" class="lbl" text-anchor="end">Los Médulas</text>
+  <rect x="210" y="281" width="297.7" height="24" rx="4" fill="#E5605A"/>
+  <text x="515.7" y="298" class="val">135.34</text><text x="792" y="298" class="cnt" text-anchor="end">4/11</text>
+
+  <text x="198" y="333" class="lbl" text-anchor="end">Tumbapatos FC</text>
+  <rect x="210" y="316" width="282.7" height="24" rx="4" fill="#E5605A"/>
+  <text x="500.7" y="333" class="val">128.52</text><text x="792" y="333" class="cnt" text-anchor="end">3/11</text>
+
+  <text x="198" y="368" class="lbl" text-anchor="end">Zorritos Jr</text>
+  <rect x="210" y="351" width="281.1" height="24" rx="4" fill="#E5605A"/>
+  <text x="499.1" y="368" class="val">127.77</text><text x="792" y="368" class="cnt" text-anchor="end">2/11</text>
+
+  <text x="198" y="403" class="lbl" text-anchor="end">The Bulleggs</text>
+  <rect x="210" y="386" width="256.8" height="24" rx="4" fill="#E5605A"/>
+  <text x="474.8" y="403" class="val">116.74</text><text x="792" y="403" class="cnt" text-anchor="end">1/11</text>
+
+  <text x="198" y="438" class="lbl" text-anchor="end">Backfield Penetration</text>
+  <rect x="210" y="421" width="212.1" height="24" rx="4" fill="#E5605A"/>
+  <text x="430.1" y="438" class="val">96.40</text><text x="792" y="438" class="cnt" text-anchor="end">0/11</text>
+</svg>
+<div class="legend"><span><b style="background:#E8C44A"></b>Ganó</span><span><b style="background:#E5605A"></b>Perdió</span></div>
+</div>
+<p class="note">Dato de contexto: el récord histórico de la liga (2017-2025) es 268.18 puntos (Espejitos FFT, 2022, semana 8); el mejor marcador de esta jornada quedó 42.08 por debajo. El mínimo histórico es 41.47 (Delfines de Tabasco, 2024, semana 5): el peor de esta semana quedó 54.93 por encima.</p>
+
+<!-- ======================= PREMIOS ======================= -->
+<h2 class="sec">Los premios de la jornada</h2>
+<p class="sub">Nueve menciones honoríficas (y deshonrosas) que no vienen con trofeo.</p>
+<div class="awards">
+
+  <div class="award"><div class="ic">🏋️</div><h3>Hierro Puro</h3><div class="who">Garrobos de Hierro</div>
+    <p>226.10 puntos, 79.00 por encima del promedio de la jornada y otros 62.03 que se quedaron en la banca. Cinco victorias al hilo y una ventaja de 285.12 puntos acumulados sobre su perseguidor. Una semana tranquila.</p></div>
+
+  <div class="award"><div class="ic">🛋️</div><h3>Sofá de Platino</h3><div class="who">Joe Burrow · Garrobos de Hierro</div>
+    <p>43.16 puntos desde la banca, el mejor puntaje de un suplente de la jornada. Es el máximo anotador acumulado de toda la liga (286.30) y 167.68 de esos puntos los ha puesto sentado.</p></div>
+
+  <div class="award"><div class="ic">🧊</div><h3>Congelador</h3><div class="who">Zorritos Jr</div>
+    <p>127.77: 41.64 menos que su promedio previo y fin de una racha de siete triunfos. Superó apenas a 2 de los otros 11 equipos. Hasta Backfield le hizo compañía en el sótano de la jornada.</p></div>
+
+  <div class="award"><div class="ic">🔌</div><h3>Apagón</h3><div class="who">Backfield Penetration</div>
+    <p>96.40 puntos, el peor marcador de la semana (46.82 bajo su promedio previo) y un techo posible de 115.15. Ni la mejor alineación del mundo los salvaba.</p></div>
+
+  <div class="award"><div class="ic">✂️</div><h3>Rompe Rachas</h3><div class="who">Iron Chef Dynasty</div>
+    <p>Cortó la racha de siete victorias de Zorritos Jr con 169.21 puntos. Ahora son 6-4 y se asoman al lote de comodines.</p></div>
+
+  <div class="award"><div class="ic">⏰</div><h3>Reloj Suizo</h3><div class="who">Espejitos FFT</div>
+    <p>137.60, 136.41, 137.83. Tres jornadas con 1.42 puntos de diferencia entre la mejor y la peor. Desviación estándar de 0.62: no es consistencia, es cronometría.</p></div>
+
+  <div class="award"><div class="ic">🛎️</div><h3>El Despertador</h3><div class="who">Delfines de Tabasco</div>
+    <p>Dak Prescott (46.42) los sacó de cuatro derrotas seguidas. Siguen 4-6 y últimos en el Power Ranking, pero con un sábado que celebrar.</p></div>
+
+  <div class="award"><div class="ic">🤝</div><h3>Dúo Dinámico</h3><div class="who">Hijos del Salario Mínimo</div>
+    <p>Gibbs (48.20) y Mahomes (45.42): 93.62 entre dos, casi todo el marcador de Backfield. Una victoria que los deja 3-7 pero con la dignidad intacta.</p></div>
+
+  <div class="award"><div class="ic">🎁</div><h3>Premio de Consolación</h3><div class="who">Seahawkmania</div>
+    <p>Hizo 146.55 (el quinto mejor marcador de la jornada, +34.46 sobre su promedio previo) y perdió por 79.55. Mejoró en el examen; el maestro era Garrobos.</p></div>
+
+</div>
+
+<!-- ======================= RADIOGRAFÍA ======================= -->
+<h2 class="sec">Radiografía: tres niveles y un desperdicio</h2>
+<p class="sub">Promedio de puntos por semana a lo largo de la temporada, con la Semana 10 incluida.</p>
+
+<div class="tiers">
+  <div class="tier t1"><div class="tn2">ÉLITE</div><ul><li>Garrobos de Hierro<b>193.76</b></li><li>Zorritos Jr<b>165.24</b></li></ul></div>
+  <div class="tier t2"><div class="tn2">EL PELOTÓN</div><ul><li>Iron Chef Dynasty<b>148.27</b></li><li>Espejitos FFT<b>147.13</b></li><li>Los Pollos Hermanos<b>145.96</b></li><li>Tumbapatos FC<b>141.72</b></li><li>Hijos del Salario Mínimo<b>139.66</b></li><li>Backfield Penetration<b>138.54</b></li><li>Delfines de Tabasco<b>134.29</b></li></ul></div>
+  <div class="tier t3"><div class="tn2">EL SÓTANO</div><ul><li>Los Médulas<b>128.54</b></li><li>Seahawkmania<b>115.54</b></li><li>The Bulleggs<b>110.44</b></li></ul></div>
+</div>
+
+<p>Dos datos para clavar en la pared. Uno: Garrobos promedia 193.76, 28.52 más que Zorritos Jr (165.24), que a su vez le saca 16.97 al tercero (Iron Chef, 148.27). Dos: <strong>los siete equipos del pelotón están separados por 13.98 puntos de promedio semanal</strong>, menos de lo que Garrobos le saca por sí solo a Zorritos. En volatilidad, Garrobos (28.72) y Zorritos Jr (28.34) son los que más suben y bajan, aunque casi siempre desde muy arriba; los más constantes siguen viviendo abajo: Seahawkmania (13.35) y The Bulleggs (13.39).</p>
+
+<h3 class="bebas" style="font-size:26px;letter-spacing:.04em;color:#fff;margin:28px 0 4px">Puntos dejados sobre la mesa</h3>
+<p class="sub">Diferencia entre los puntos reales y el máximo posible (MAX POINTS) acumulados a la Semana 10, con el porcentaje de eficiencia de alineación.</p>
+<div class="chartbox">
+<svg viewBox="0 0 800 462" role="img" aria-label="Gráfica de puntos dejados sobre la mesa por equipo, acumulado a la Semana 10">
+  <text x="210" y="16" class="hd">MAX POINTS − PUNTOS REALES</text>
+  <text x="792" y="16" class="hd" text-anchor="end">EFICIENCIA</text>
+
+  <text x="198" y="53" class="lbl" text-anchor="end">Tumbapatos FC</text>
+  <rect x="210" y="36" width="452.0" height="24" rx="4" fill="#E5605A"/>
+  <text x="670.0" y="53" class="val">376.66</text><text x="792" y="53" class="cnt" text-anchor="end">79.00%</text>
+
+  <text x="198" y="88" class="lbl" text-anchor="end">Espejitos FFT</text>
+  <rect x="210" y="71" width="437.2" height="24" rx="4" fill="#E5605A"/>
+  <text x="655.2" y="88" class="val">364.32</text><text x="792" y="88" class="cnt" text-anchor="end">80.15%</text>
+
+  <text x="198" y="123" class="lbl" text-anchor="end">Los Médulas</text>
+  <rect x="210" y="106" width="420.2" height="24" rx="4" fill="#E5605A"/>
+  <text x="638.2" y="123" class="val">350.16</text><text x="792" y="123" class="cnt" text-anchor="end">78.59%</text>
+
+  <text x="198" y="158" class="lbl" text-anchor="end">Garrobos de Hierro</text>
+  <rect x="210" y="141" width="419.6" height="24" rx="4" fill="#7a7a82"/>
+  <text x="637.6" y="158" class="val">349.64</text><text x="792" y="158" class="cnt" text-anchor="end">84.71%</text>
+
+  <text x="198" y="193" class="lbl" text-anchor="end">Backfield Penetration</text>
+  <rect x="210" y="176" width="400.3" height="24" rx="4" fill="#7a7a82"/>
+  <text x="618.3" y="193" class="val">333.61</text><text x="792" y="193" class="cnt" text-anchor="end">80.59%</text>
+
+  <text x="198" y="228" class="lbl" text-anchor="end">Seahawkmania</text>
+  <rect x="210" y="211" width="395.1" height="24" rx="4" fill="#7a7a82"/>
+  <text x="613.1" y="228" class="val">329.24</text><text x="792" y="228" class="cnt" text-anchor="end">77.82%</text>
+
+  <text x="198" y="263" class="lbl" text-anchor="end">Zorritos Jr</text>
+  <rect x="210" y="246" width="380.8" height="24" rx="4" fill="#7a7a82"/>
+  <text x="598.8" y="263" class="val">317.32</text><text x="792" y="263" class="cnt" text-anchor="end">83.89%</text>
+
+  <text x="198" y="298" class="lbl" text-anchor="end">The Bulleggs</text>
+  <rect x="210" y="281" width="364.5" height="24" rx="4" fill="#7a7a82"/>
+  <text x="582.5" y="298" class="val">303.79</text><text x="792" y="298" class="cnt" text-anchor="end">78.43%</text>
+
+  <text x="198" y="333" class="lbl" text-anchor="end">Delfines de Tabasco</text>
+  <rect x="210" y="316" width="346.9" height="24" rx="4" fill="#7a7a82"/>
+  <text x="564.9" y="333" class="val">289.11</text><text x="792" y="333" class="cnt" text-anchor="end">82.29%</text>
+
+  <text x="198" y="368" class="lbl" text-anchor="end">Hijos del Salario Mínimo</text>
+  <rect x="210" y="351" width="322.0" height="24" rx="4" fill="#7a7a82"/>
+  <text x="540.0" y="368" class="val">268.30</text><text x="792" y="368" class="cnt" text-anchor="end">83.88%</text>
+
+  <text x="198" y="403" class="lbl" text-anchor="end">Iron Chef Dynasty</text>
+  <rect x="210" y="386" width="249.8" height="24" rx="4" fill="#46C987"/>
+  <text x="467.8" y="403" class="val">208.15</text><text x="792" y="403" class="cnt" text-anchor="end">87.69%</text>
+
+  <text x="198" y="438" class="lbl" text-anchor="end">Los Pollos Hermanos</text>
+  <rect x="210" y="421" width="234.6" height="24" rx="4" fill="#46C987"/>
+  <text x="452.6" y="438" class="val">195.53</text><text x="792" y="438" class="cnt" text-anchor="end">88.19%</text>
+</svg>
+<div class="legend"><span><b style="background:#E5605A"></b>Mayor desperdicio</span><span><b style="background:#46C987"></b>Mejor aprovechamiento</span></div>
+</div>
+<p class="note">Eficiencia calculada con la asignación óptima de jugadores a los espacios elegibles de la alineación, con datos de Sleeper. Cambio de guardia: Los Pollos Hermanos (88.19%) desplazan a Iron Chef Dynasty (87.69%) como el mejor alineador de la liga. Tumbapatos FC (376.66) y Espejitos FFT (364.32) siguen encabezando el desperdicio.</p>
+
+<!-- ======================= DIVISIONES ======================= -->
+<h2 class="sec">Lectura por divisiones</h2>
+<p class="sub">Orden dentro de cada división tal como lo muestra Sleeper.</p>
+<div class="divs">
+
+  <div class="div">
+    <h3><span class="dot d-gvl"></span>Gerardo Velázquez de León</h3>
+    <div class="tg">La división del Garrobo</div>
+    <p><strong>Garrobos de Hierro (9-1) le saca un juego completo a Zorritos Jr (8-2)</strong> con cuatro jornadas por jugar, y la ventaja en puntos acumulados ya es de 285.12. Ojo con la letra chica: el reglamento marca el enfrentamiento directo como primer criterio de desempate divisional, de modo que lo que pase entre ellos todavía pesa. Iron Chef Dynasty (6-4) resucita y se asoma al lote de comodines; Seahawkmania (2-8) hizo 146.55 y perdió por 79.55: el sótano más ruidoso de la liga.</p>
+  </div>
+
+  <div class="div">
+    <h3><span class="dot d-lc"></span>Luis Castillo</h3>
+    <div class="tg">Un líder con reloj, un perseguidor sin luz</div>
+    <p><strong>Espejitos FFT queda solo en la cima (7-3)</strong>, con Backfield Penetration (6-4) a un juego tras su apagón de 96.40. Más abajo, Tumbapatos FC y Delfines de Tabasco comparten 4-6 y se pelean por los últimos boletos de comodín: hoy Tumbapatos es séptimo y Delfines octavo, con 74.25 puntos a favor de diferencia entre ambos.</p>
+  </div>
+
+  <div class="div">
+    <h3><span class="dot d-ab"></span>Alberto Bernard «Chirinos»</h3>
+    <div class="tg">La división de las migajas, edición .500</div>
+    <p>Los Pollos Hermanos (5-5) son los únicos de la división que no tienen récord perdedor; Los Médulas (4-6), Hijos del Salario Mínimo (3-7) y The Bulleggs (2-8) los persiguen. Y viene lo bueno: con el reglamento en la mano, si la temporada terminara hoy, el campeón divisional de la AB, con 5-5, se sembraría por encima de un Zorritos Jr 8-2, que entraría como comodín. Los tres primeros sembrados son de campeones de división, sin importar el récord.</p>
+  </div>
+
+</div>
+
+<!-- ======================= RECTA FINAL ======================= -->
+<h2 class="sec">La recta final: cuatro jornadas</h2>
+<p class="sub">La temporada regular termina en la Semana 14. Esto es lo que se juega.</p>
+
+<div class="race">
+  <div class="div">
+    <h3>Las tres coronas divisionales</h3>
+    <div class="tg">Campeón de división = boleto + $350</div>
+    <table class="mini">
+      <tr><td>Garrobos de Hierro</td><td class="n">9-1</td><td>+1 sobre Zorritos Jr</td></tr>
+      <tr><td>Espejitos FFT</td><td class="n">7-3</td><td>+1 sobre Backfield</td></tr>
+      <tr><td>Los Pollos Hermanos</td><td class="n">5-5</td><td>+1 sobre Los Médulas</td></tr>
+    </table>
+  </div>
+  <div class="div">
+    <h3>La línea de playoffs</h3>
+    <div class="tg">Tres campeones + cinco comodines</div>
+    <p>Los comodines de hoy: Zorritos Jr (8-2), Iron Chef Dynasty (6-4), Backfield Penetration (6-4), Tumbapatos FC (4-6) y Delfines de Tabasco (4-6). Fuera, por ahora: Los Médulas (4-6, a 57.47 puntos a favor de Delfines) e Hijos del Salario Mínimo (3-7). Los empates se resuelven con los criterios del reglamento, no con la tabla de Sleeper, así que el orden puede cambiar.</p>
+  </div>
+  <div class="div">
+    <h3>La carrera por el draft</h3>
+    <div class="tg">Menor MAX POINTS = mejor selección</div>
+    <p>Los primeros seis turnos del draft de novatos se asignan por MAX POINTS, de menor a mayor, entre los equipos que no clasifiquen o que no terminen entre los cuatro primeros. La lista provisional de hoy: The Bulleggs 1,408.23 · Seahawkmania 1,484.60 · Delfines de Tabasco 1,632.01 · Los Médulas 1,635.59 · Los Pollos Hermanos 1,655.16 · Hijos del Salario Mínimo 1,664.85. Todo puede moverse en cuatro semanas.</p>
+  </div>
+  <div class="div">
+    <h3>El reloj del mercado</h3>
+    <div class="tg">Fecha límite: semana 13</div>
+    <p>Los intercambios cierran antes de que concluya el último partido de la Semana 13. Quedan, por tanto, dos jornadas completas para mover piezas antes de que se apague el mercado.</p>
+  </div>
+</div>
+
+<!-- ======================= TABLA ======================= -->
+<h2 class="sec">Tabla general</h2>
+<p class="sub">Después de diez jornadas. Orden por récord y, en empates, por puntos a favor.</p>
+<div class="tblwrap">
+<table>
+  <thead>
+    <tr>
+      <th>#</th><th class="l">Equipo</th><th>Div</th><th>G-P</th><th>PF</th><th>PC</th><th>Prom</th><th>Racha</th><th>Últ. 3</th><th>Power</th><th>Mov</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="top"><td class="pos-n">1</td><td class="tm">Garrobos de Hierro</td><td><span class="dv gvl">GVL</span></td><td class="rc">9-1</td><td>1,937.55</td><td>1,448.77</td><td>193.76</td><td class="rg g">G5</td><td>3-0</td><td>1</td><td class="mv eq">=</td></tr>
+    <tr class="top"><td class="pos-n">2</td><td class="tm">Zorritos Jr</td><td><span class="dv gvl">GVL</span></td><td class="rc">8-2</td><td>1,652.43</td><td>1,337.61</td><td>165.24</td><td class="rg p">P1</td><td>2-1</td><td>2</td><td class="mv eq">=</td></tr>
+    <tr><td class="pos-n">3</td><td class="tm">Espejitos FFT</td><td><span class="dv lc">LC</span></td><td class="rc">7-3</td><td>1,471.34</td><td>1,383.42</td><td>147.13</td><td class="rg g">G2</td><td>2-1</td><td>4</td><td class="mv eq">=</td></tr>
+    <tr><td class="pos-n">4</td><td class="tm">Iron Chef Dynasty</td><td><span class="dv gvl">GVL</span></td><td class="rc">6-4</td><td>1,482.72</td><td>1,299.78</td><td>148.27</td><td class="rg g">G1</td><td>1-2</td><td>5</td><td class="mv up">▲1</td></tr>
+    <tr><td class="pos-n">5</td><td class="tm">Backfield Penetration</td><td><span class="dv lc">LC</span></td><td class="rc">6-4</td><td>1,385.40</td><td>1,410.54</td><td>138.54</td><td class="rg p">P2</td><td>1-2</td><td>8</td><td class="mv dn">▼1</td></tr>
+    <tr><td class="pos-n">6</td><td class="tm">Los Pollos Hermanos</td><td><span class="dv ab">AB</span></td><td class="rc">5-5</td><td>1,459.63</td><td>1,515.06</td><td>145.96</td><td class="rg g">G3</td><td>3-0</td><td>3</td><td class="mv eq">=</td></tr>
+    <tr><td class="pos-n">7</td><td class="tm">Tumbapatos FC</td><td><span class="dv lc">LC</span></td><td class="rc">4-6</td><td>1,417.15</td><td>1,356.16</td><td>141.72</td><td class="rg p">P1</td><td>1-2</td><td>7</td><td class="mv eq">=</td></tr>
+    <tr class="cut"><td class="pos-n">8</td><td class="tm">Delfines de Tabasco</td><td><span class="dv lc">LC</span></td><td class="rc">4-6</td><td>1,342.90</td><td>1,521.47</td><td>134.29</td><td class="rg g">G1</td><td>1-2</td><td>12</td><td class="mv up">▲1</td></tr>
+    <tr class="out"><td class="pos-n">9</td><td class="tm">Los Médulas</td><td><span class="dv ab">AB</span></td><td class="rc">4-6</td><td>1,285.43</td><td>1,362.99</td><td>128.54</td><td class="rg p">P3</td><td>0-3</td><td>10</td><td class="mv dn">▼1</td></tr>
+    <tr class="out"><td class="pos-n">10</td><td class="tm">Hijos del Salario Mínimo</td><td><span class="dv ab">AB</span></td><td class="rc">3-7</td><td>1,396.55</td><td>1,571.46</td><td>139.66</td><td class="rg g">G1</td><td>2-1</td><td>6</td><td class="mv eq">=</td></tr>
+    <tr class="out"><td class="pos-n">11</td><td class="tm">Seahawkmania</td><td><span class="dv gvl">GVL</span></td><td class="rc">2-8</td><td>1,155.36</td><td>1,399.49</td><td>115.54</td><td class="rg p">P2</td><td>1-2</td><td>11</td><td class="mv eq">=</td></tr>
+    <tr class="out"><td class="pos-n">12</td><td class="tm">The Bulleggs</td><td><span class="dv ab">AB</span></td><td class="rc">2-8</td><td>1,104.44</td><td>1,484.15</td><td>110.44</td><td class="rg p">P1</td><td>1-2</td><td>9</td><td class="mv eq">=</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="note"><b>GVL</b> = Gerardo Velázquez de León · <b>LC</b> = Luis Castillo · <b>AB</b> = Alberto Bernard. <b>Mov</b> compara contra la posición de la Semana 9. La línea punteada marca el corte de playoffs a ocho boletos (tres campeones de división y cinco comodines, según las Generalidades del reglamento; el cuadro descrito más adelante en el mismo documento es de seis, y aquí se usa el criterio de ocho). <b>Power</b> es el Power Ranking de TVC Stats Lab, que pondera el rendimiento de la temporada y el de las últimas tres jornadas. Quedan cuatro jornadas de temporada regular (semanas 11 a 14).</p>
+
+<!-- PARTIDOS_SEMANA_11: insertar aquí la sección "Semana 11: lo que viene" -->
+
+<footer>
+  <div class="sig">TVC DEPORTES</div>
+  Fuentes: Sleeper (marcadores, posiciones, jugadores) y registro histórico de la liga 2017-2025. Los récords históricos se agrupan por franquicia y pueden verse afectados por cambios de nombre. En Sleeper, Delfines de Tabasco aparece como «Reconstrucfines Tabasco» y Los Pollos Hermanos como «Los KiKiRi-Bills». Hasta la próxima jornada, y que la banca los acompañe.
+</footer>
+
+</div>
+</body>
+</html>
